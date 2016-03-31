@@ -3,14 +3,8 @@
 
 **Pipeline to process HiC data using TADbit**
 
-## TO-DO list
-- make io_metadata scripts (in utils/) and replace old ones used in the old pipeline version
-- new reference genomes for hg38 (include mmtv) and mm10
-
 
 ## Modules
-
-**data are only accessed from or added to the metadata if `integrate_metadata=yes`**
 
 1. preliminary_checks
 	- check that a sample with the provided SAMPLE_ID exists in the metadata
@@ -47,4 +41,125 @@
 
 
 
+## Scripts and configuration file
 
+- `hic.sh`: most of the code
+- `hic_submit`: wrapper script that both:
+	- retrieves configuration variables and parameter values from the `hic.config` file
+	- (if applies) submits jobs (one per sample) to execute the pipeline in the CRG cluster
+- `hic.config`: configuration file (see below)
+
+
+Configuration file example:
+```
+; This configuration file follows the INI file format (https://en.wikipedia.org/wiki/INI_file)
+
+[data_type]
+data_type			= hic
+
+[samples]
+samples				=TE_S_T				; e.g.: `samples=s1 s2 s3`, use 'TE_S_T' for testing purposes
+
+[pipeline]
+pipeline_name		= hic
+pipeline_version	= 16.03
+pipeline_run_mode	= full
+
+[IO mode]
+io_mode				= standard									; standard = ******, custom = in and out dir specified
+CUSTOM_IN			= /users/project/4DGenome/pipelines/hic-16.03/test 		; only used if pipeline_io_mode=custom
+CUSTOM_OUT			= /users/project/4DGenome/pipelines/hic-16.03/test 		; only used if pipeline_io_mode=custom
+sample_to_fastqs	= sample_to_fastqs.txt				; file with paths, relative to CUSTOM_IN, to read1 (and read2) FASTQs, only used if pipeline_io_mode=custom
+
+[cluster options]
+submit_to_cluster	= yes					; the following are only applied if submit_to_cluster=yes
+queue				= long-sl65				; for real data = long-sl65, for test = short-sl65
+memory				= 100G					; for real data = 100G, for test = 20G
+max_time			= 100:00:00 				; for real data = 100:00:00, for test = 6:00:00
+slots				= 10 					; for real data = 10, for test = 1
+email				= javier.quilez@crg.eu	; email to which start/end/error emails are sent
+
+[metadata]
+integrate_metadata	= yes					; yes: metadata is stored into database
+
+[genome]
+species					= homo_sapiens		; required if integrate_metadata=no, otherwise, retrieved from the metadata
+version					= hg38_mmtv
+read_length				= 50 				; required if integrate_metadata=no, otherwise, retrieved from the metadata
+
+[trimmomatic]
+; for recommended values see http://www.broadinstitute.org/cancer/software/genepattern/modules/docs/Trimmomatic/
+; and those used in the supplementary data of the Trimmomatic paper (Bolger et al. 2014)
+sequencing_type			= PE					; PE=paired-end, SE=single-end
+seedMismatches			= 2
+palindromeClipThreshold	= 30
+simpleClipThreshold		= 12
+leading					= 3
+trailing				= 3
+minAdapterLength		= 1
+keepBothReads			= true
+minQual					= 3
+targetLength			= 40
+strictness				= 0.999
+minLength				= 36
+
+[tadbit]
+restriction_enzyme		= DpnII				; required if integrate_metadata=no, otherwise, retrieved from the metadata
+max_molecule_length		= 500
+max_frag_size			= 10000
+min_frag_size			= 50
+over_represented		= 0.005
+re_proximity			= 4
+reads_number_qc			= 100000
+genomic_coverage_resolution	= Mb
+frag_map				= True
+
+[downstream]
+flag_excluded			= 775
+flag_included			= 0
+flag_perzero			= 99
+resolution_tad			= 50000 				; in bp
+resolution_ab			= 100000				; in bp
+```
+
+
+## Execute the pipeline
+
+```
+pipelines/hic-16.03/hic_submit.sh <your_configuration_file>
+```
+
+Notes:
+- please use your configuration file
+- integration with metadata (i.e. access data from or add data to the metadata database only happens if `integrate_metadata=yes`
+- if metadata are integrated, these will be used to set some parameters values; otherwise, such values are used from the configuration file
+- the pipeline can be run in differents modes: `mode=full` executes all steps while `mode=<module_name> runs only that module`; note that running the *i*th step assumes the *i-n*th step has been already run
+
+
+## Test datasets
+
+### `TE_S_T`
+
+Sample to test the `io_mode=standard` and/or `integrate_metadata=yes`. 
+
+It consists of 1000 reads of the `MB_1_1` sample, generated with:
+```
+zcat sequencing/2015-04-28/MB_1_1_10082_CGATGT_read1.fastq.gz |head -n 4000 |gzip > sequencing/2015-01-01/TE_S_T_10082_CGATGT_read1.fastq.gz
+zcat sequencing/2015-04-28/MB_1_1_10082_CGATGT_read2.fastq.gz |head -n 4000 |gzip > sequencing/2015-01-01/TE_S_T_10082_CGATGT_read2.fastq.gz
+```
+
+### `test1` and `test2`
+
+Samples to test the `io_mode=custom` with `integrate_metadata=no`. 
+
+It consists of 1000 reads of the `MB_1_1` and `MB_1_2` samples, generated with:
+```
+zcat sequencing/2015-04-28/MB_1_1_10082_CGATGT_read1.fastq.gz |head -n 4000 |gzip > pipelines/hic-16.03/test/test1_read1.fastq.gz
+zcat sequencing/2015-04-28/MB_1_1_10082_CGATGT_read2.fastq.gz |head -n 4000 |gzip > pipelines/hic-16.03/test/test1_read2.fastq.gz
+zcat sequencing/2015-04-28/MB_1_2_10083_TGACCA_read1.fastq.gz |head -n 4000 |gzip > pipelines/hic-16.03/test/test2_read1.fastq.gz
+zcat sequencing/2015-04-28/MB_1_2_10083_TGACCA_read2.fastq.gz |head -n 4000 |gzip > pipelines/hic-16.03/test/test2_read2.fastq.gz
+```
+
+
+## TO-DO list
+- ...

@@ -1,0 +1,228 @@
+
+Traceback (most recent call last):
+  File "/users/project/4DGenome/utils/io_metadata.py", line 112, in <module>
+    input_metadata = db.load_table('input_metadata')
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/dataset/persistence/database.py", line 217, in load_table
+    schema=self.schema, autoload=True)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/schema.py", line 416, in __new__
+    metadata._remove_table(name, schema)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/util/langhelpers.py", line 60, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/schema.py", line 411, in __new__
+    table._init(name, metadata, *args, **kw)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/schema.py", line 484, in _init
+    self._autoload(metadata, autoload_with, include_columns)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/schema.py", line 508, in _autoload
+    self, include_columns, exclude_columns
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1972, in run_callable
+    return conn.run_callable(callable_, *args, **kwargs)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1477, in run_callable
+    return callable_(self, *args, **kwargs)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 364, in reflecttable
+    return insp.reflecttable(table, include_columns, exclude_columns)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/reflection.py", line 571, in reflecttable
+    raise exc.NoSuchTableError(table.name)
+sqlalchemy.exc.NoSuchTableError: input_metadata
+INFO 	2016-03-31 13:14:08 	[preliminary_checks] 	TE_S_T found in /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-03-31 13:14:08 	[preliminary_checks] 	data for TE_S_T will be stored at /users/project/4DGenome_no_backup/data/hic/samples/TE_S_T
+INFO 	2016-03-31 13:14:18 	[preliminary_checks] 	paths to read1 and read2 saved to metadata database
+Traceback (most recent call last):
+  File "/users/project/4DGenome/utils/io_metadata.py", line 76, in <module>
+    tab = db.load_table(table)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/dataset/persistence/database.py", line 217, in load_table
+    schema=self.schema, autoload=True)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/schema.py", line 416, in __new__
+    metadata._remove_table(name, schema)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/util/langhelpers.py", line 60, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/schema.py", line 411, in __new__
+    table._init(name, metadata, *args, **kw)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/schema.py", line 484, in _init
+    self._autoload(metadata, autoload_with, include_columns)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/schema.py", line 508, in _autoload
+    self, include_columns, exclude_columns
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1972, in run_callable
+    return conn.run_callable(callable_, *args, **kwargs)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1477, in run_callable
+    return callable_(self, *args, **kwargs)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 364, in reflecttable
+    return insp.reflecttable(table, include_columns, exclude_columns)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/reflection.py", line 571, in reflecttable
+    raise exc.NoSuchTableError(table.name)
+sqlalchemy.exc.NoSuchTableError: input_metadata
+WARN 	2016-03-31 13:14:19 	[preliminary_checks] 	Sequencing index added as part of the metadata does not agree with that observed in the FASTQ file
+Traceback (most recent call last):
+  File "/users/project/4DGenome/utils/io_metadata.py", line 76, in <module>
+    tab = db.load_table(table)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/dataset/persistence/database.py", line 217, in load_table
+    schema=self.schema, autoload=True)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/schema.py", line 416, in __new__
+    metadata._remove_table(name, schema)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/util/langhelpers.py", line 60, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/schema.py", line 411, in __new__
+    table._init(name, metadata, *args, **kw)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/schema.py", line 484, in _init
+    self._autoload(metadata, autoload_with, include_columns)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/schema.py", line 508, in _autoload
+    self, include_columns, exclude_columns
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1972, in run_callable
+    return conn.run_callable(callable_, *args, **kwargs)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1477, in run_callable
+    return callable_(self, *args, **kwargs)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 364, in reflecttable
+    return insp.reflecttable(table, include_columns, exclude_columns)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/reflection.py", line 571, in reflecttable
+    raise exc.NoSuchTableError(table.name)
+sqlalchemy.exc.NoSuchTableError: input_metadata
+WARN 	2016-03-31 13:14:20 	[preliminary_checks] 	read length obtained from the metadata ( bp) differs from that seen in the FASTQ (75 bp)
+WARN 	2016-03-31 13:14:20 	[preliminary_checks] 	the latter will be kept
+Traceback (most recent call last):
+  File "/users/project/4DGenome/utils/io_metadata.py", line 127, in <module>
+    input_metadata = db.load_table('input_metadata')
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/dataset/persistence/database.py", line 217, in load_table
+    schema=self.schema, autoload=True)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/schema.py", line 416, in __new__
+    metadata._remove_table(name, schema)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/util/langhelpers.py", line 60, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/schema.py", line 411, in __new__
+    table._init(name, metadata, *args, **kw)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/schema.py", line 484, in _init
+    self._autoload(metadata, autoload_with, include_columns)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/schema.py", line 508, in _autoload
+    self, include_columns, exclude_columns
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1972, in run_callable
+    return conn.run_callable(callable_, *args, **kwargs)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1477, in run_callable
+    return callable_(self, *args, **kwargs)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 364, in reflecttable
+    return insp.reflecttable(table, include_columns, exclude_columns)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/reflection.py", line 571, in reflecttable
+    raise exc.NoSuchTableError(table.name)
+sqlalchemy.exc.NoSuchTableError: input_metadata
+INFO 	2016-03-31 13:14:21 	[preliminary_checks] 	genome reference FASTA file found at /users/GR/mb/jquilez/assemblies/homo_sapiens/hg38_mmtv/ucsc/hg38_mmtv.fa
+INFO 	2016-03-31 13:15:00 	[preliminary_checks] 	paths to reference FASTA saved to metadata database
+TIME 	2016-03-31 13:15:00 	[preliminary_checks] 	step time for completion (seconds) = 53
+
+Traceback (most recent call last):
+  File "/users/project/4DGenome/utils/io_metadata.py", line 76, in <module>
+    tab = db.load_table(table)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/dataset/persistence/database.py", line 217, in load_table
+    schema=self.schema, autoload=True)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/schema.py", line 416, in __new__
+    metadata._remove_table(name, schema)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/util/langhelpers.py", line 60, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/schema.py", line 411, in __new__
+    table._init(name, metadata, *args, **kw)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/schema.py", line 484, in _init
+    self._autoload(metadata, autoload_with, include_columns)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/schema.py", line 508, in _autoload
+    self, include_columns, exclude_columns
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1972, in run_callable
+    return conn.run_callable(callable_, *args, **kwargs)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1477, in run_callable
+    return callable_(self, *args, **kwargs)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 364, in reflecttable
+    return insp.reflecttable(table, include_columns, exclude_columns)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/reflection.py", line 571, in reflecttable
+    raise exc.NoSuchTableError(table.name)
+sqlalchemy.exc.NoSuchTableError: input_metadata
+INFO 	2016-03-31 13:15:02 	[raw_fastqs_quality_plots] 	restriction enzyme = 
+INFO 	2016-03-31 13:15:02 	[raw_fastqs_quality_plots] 	a subset of 100000 reds will be used to generate the quality plots
+INFO 	2016-03-31 13:15:02 	[raw_fastqs_quality_plots] 	making quality plots of the raw FASTQ files... plots saved at /users/project/4DGenome_no_backup/data/hic/samples/TE_S_T/plots/raw_fastqs_quality_plots
+Traceback (most recent call last):
+  File "/users/project/4DGenome/pipelines/hic-16.03/scripts/fastqs_quality_plots.py", line 22, in <module>
+    restriction_enzyme = sys.argv[5]
+IndexError: list index out of range
+INFO 	2016-03-31 13:15:22 	[raw_fastqs_quality_plots] 	percentages of dangling ends and ligated sites in read1 and read2 saved to metadata database
+TIME 	2016-03-31 13:15:22 	[raw_fastqs_quality_plots] 	step time for completion (seconds) = 21
+
+INFO 	2016-03-31 13:15:23 	[trim_reads_trimmomatic] 	sequencing type = PE
+INFO 	2016-03-31 13:15:23 	[trim_reads_trimmomatic] 	trimming TruSeq3 adapter sequences for HiSeq, NextSeq or HiSeq
+INFO 	2016-03-31 13:15:23 	[trim_reads_trimmomatic] 	trimming low-quality reads ends using trimmomatic's recommended practices
+INFO 	2016-03-31 13:15:24 	[trim_reads_trimmomatic] 	parse step log to extract generated metadata
+INFO 	2016-03-31 13:15:24 	[trim_reads_trimmomatic] 	reads after trimming = 992
+INFO 	2016-03-31 13:15:36 	[trim_reads_trimmomatic] 	trimmomatic parameters and numbe of trimmed reads added to metadata
+INFO 	2016-03-31 13:15:36 	[trim_reads_trimmomatic] 	trimmed reads are in /users/project/4DGenome_no_backup/data/hic/samples/TE_S_T/fastqs_processed/trimmomatic/paired_end
+INFO 	2016-03-31 13:15:36 	[trim_reads_trimmomatic] 	unpaired reads are deleted
+TIME 	2016-03-31 13:15:36 	[trim_reads_trimmomatic] 	step time for completion (seconds) = 13
+
+Traceback (most recent call last):
+  File "/users/project/4DGenome/utils/io_metadata.py", line 76, in <module>
+    tab = db.load_table(table)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/dataset/persistence/database.py", line 217, in load_table
+    schema=self.schema, autoload=True)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/schema.py", line 416, in __new__
+    metadata._remove_table(name, schema)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/util/langhelpers.py", line 60, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/schema.py", line 411, in __new__
+    table._init(name, metadata, *args, **kw)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/schema.py", line 484, in _init
+    self._autoload(metadata, autoload_with, include_columns)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/schema.py", line 508, in _autoload
+    self, include_columns, exclude_columns
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1972, in run_callable
+    return conn.run_callable(callable_, *args, **kwargs)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1477, in run_callable
+    return callable_(self, *args, **kwargs)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 364, in reflecttable
+    return insp.reflecttable(table, include_columns, exclude_columns)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/reflection.py", line 571, in reflecttable
+    raise exc.NoSuchTableError(table.name)
+sqlalchemy.exc.NoSuchTableError: input_metadata
+Traceback (most recent call last):
+  File "/users/project/4DGenome/utils/io_metadata.py", line 76, in <module>
+    tab = db.load_table(table)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/dataset/persistence/database.py", line 217, in load_table
+    schema=self.schema, autoload=True)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/schema.py", line 416, in __new__
+    metadata._remove_table(name, schema)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/util/langhelpers.py", line 60, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/schema.py", line 411, in __new__
+    table._init(name, metadata, *args, **kw)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/schema.py", line 484, in _init
+    self._autoload(metadata, autoload_with, include_columns)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/schema.py", line 508, in _autoload
+    self, include_columns, exclude_columns
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1972, in run_callable
+    return conn.run_callable(callable_, *args, **kwargs)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1477, in run_callable
+    return callable_(self, *args, **kwargs)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 364, in reflecttable
+    return insp.reflecttable(table, include_columns, exclude_columns)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/reflection.py", line 571, in reflecttable
+    raise exc.NoSuchTableError(table.name)
+sqlalchemy.exc.NoSuchTableError: input_metadata
+Traceback (most recent call last):
+  File "/users/project/4DGenome/utils/io_metadata.py", line 76, in <module>
+    tab = db.load_table(table)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/dataset/persistence/database.py", line 217, in load_table
+    schema=self.schema, autoload=True)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/schema.py", line 416, in __new__
+    metadata._remove_table(name, schema)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/util/langhelpers.py", line 60, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/schema.py", line 411, in __new__
+    table._init(name, metadata, *args, **kw)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/schema.py", line 484, in _init
+    self._autoload(metadata, autoload_with, include_columns)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/schema.py", line 508, in _autoload
+    self, include_columns, exclude_columns
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1972, in run_callable
+    return conn.run_callable(callable_, *args, **kwargs)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1477, in run_callable
+    return callable_(self, *args, **kwargs)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 364, in reflecttable
+    return insp.reflecttable(table, include_columns, exclude_columns)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/reflection.py", line 571, in reflecttable
+    raise exc.NoSuchTableError(table.name)
+sqlalchemy.exc.NoSuchTableError: input_metadata
+INFO 	2016-03-31 13:15:39 	[align_and_merge] 	species = 
+INFO 	2016-03-31 13:15:39 	[align_and_merge] 	assembly version = hg38_mmtv
+INFO 	2016-03-31 13:15:39 	[align_and_merge] 	restriction enzyme = 
+INFO 	2016-03-31 13:15:39 	[align_and_merge] 	read length = 
+ERROR 	2016-03-31 13:15:39 	[align_and_merge] 	FASTA file /users/GR/mb/jquilez/assemblies//hg38_mmtv/ucsc/hg38_mmtv.fa does not exist! Exiting...

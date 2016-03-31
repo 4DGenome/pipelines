@@ -1,0 +1,24 @@
+
+INFO 	2016-03-29 16:22:11 	[processed_fastqs_quality_plots] 	restriction enzyme = DpnII
+INFO 	2016-03-29 16:22:11 	[processed_fastqs_quality_plots] 	a subset of 100000 reds will be used to generate the quality plots
+INFO 	2016-03-29 16:22:11 	[processed_fastqs_quality_plots] 	making quality plots of the processed FASTQ files... plots saved at /users/project/4DGenome_no_backup/data/hic/samples/TE_S_T/plots/processed_fastqs_quality_plots
+/users/project/4DGenome_no_backup/data/hic/samples/TE_S_T/fastqs_processed/trimmomatic/paired_end/TE_S_T_read1.fastq.gz
+/users/project/4DGenome_no_backup/data/hic/samples/TE_S_T/fastqs_processed/trimmomatic/paired_end/TE_S_T_read2.fastq.gz
+100000
+DpnII
+Traceback (most recent call last):
+  File "/users/project/4DGenome/pipelines/hic-16.03/scripts/fastqs_quality_plots.py", line 36, in <module>
+    a, b = quality_plot(infile, nreads=int(reads_nummber_qc), r_enz=restriction_enzyme, savefig=outfile)    
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/pytadbit/utils/fastq_utils.py", line 159, in quality_plot
+    yerr=errorquals, ecolor='orange')
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/matplotlib/__init__.py", line 1812, in inner
+    return func(ax, *args, **kwargs)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/matplotlib/axes/_axes.py", line 2976, in errorbar
+    xo, _ = xywhere(x, lower, noylims & everymask)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/matplotlib/axes/_axes.py", line 2861, in xywhere
+    assert len(xs) == len(ys)
+AssertionError
+1.5.1
+TIME 	2016-03-29 16:22:38 	[processed_fastqs_quality_plots] 	step time for completion (seconds) = 27
+
+

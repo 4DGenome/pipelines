@@ -9,8 +9,9 @@
 
 
 ## Modules
-1. `preliminary_checks`
-
-
-### `preliminary_checks`
-trim sequencing adapters and low-quality ends from the reads using [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic)
+1. preliminary_checks
+	- trim sequencing adapters and low-quality ends from the reads using [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic)
+	- if `integrate_metadata=yes`, check that a sample with the provided SAMPLE_ID exists
+	- check FASTQ files exist
+	- save a SHA checksums of the FASTQ files
+	- retrieve information from the sequencer  

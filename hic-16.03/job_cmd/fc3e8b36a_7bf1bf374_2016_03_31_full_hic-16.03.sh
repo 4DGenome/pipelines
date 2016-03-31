@@ -1,3 +1,66 @@
+#!/bin/bash
+#$ -N fc3e8b36a_7bf1bf374_2016_03_31_full_hic-16.03
+#$ -q long-sl65
+#$ -l virtual_free=100G
+#$ -l h_rt=100:00:00
+#$ -o /users/project/4DGenome/pipelines/hic-16.03/job_out/fc3e8b36a_7bf1bf374_2016_03_31_full_hic-16.03_$JOB_ID.out
+#$ -e /users/project/4DGenome/pipelines/hic-16.03/job_out/fc3e8b36a_7bf1bf374_2016_03_31_full_hic-16.03_$JOB_ID.err
+#$ -j y
+#$ -M javier.quilez@crg.eu
+#$ -m abe
+#$ -pe smp 10
+
+submitted_on=2016_03_31
+pipeline_version=16.03
+sample_id=fc3e8b36a_7bf1bf374
+data_type=hic
+pipeline_name=hic
+pipeline_version=16.03
+pipeline_run_mode=full
+io_mode=standard
+CUSTOM_IN=/users/project/4DGenome/pipelines/hic-16.03/test
+CUSTOM_OUT=/users/project/4DGenome/pipelines/hic-16.03/test
+sample_to_fastqs=sample_to_fastqs.txt
+submit_to_cluster=yes
+queue=long-sl65
+memory=100G
+max_time=100:00:00
+slots=10
+email=javier.quilez@crg.eu
+integrate_metadata=yes
+species=homo_sapiens
+version=hg38_mmtv
+read_length=50
+sequencing_type=PE
+seedMismatches=2
+palindromeClipThreshold=30
+simpleClipThreshold=12
+leading=3
+trailing=3
+minAdapterLength=1
+keepBothReads=true
+minQual=3
+targetLength=40
+strictness=0.999
+minLength=36
+restriction_enzyme=DpnII
+max_molecule_length=500
+max_frag_size=10000
+min_frag_size=50
+over_represented=0.005
+re_proximity=4
+reads_number_qc=100000
+genomic_coverage_resolution=Mb
+frag_map=True
+flag_excluded=775
+flag_included=0
+flag_perzero=99
+resolution_tad=50000
+resolution_ab=100000
+CUSTOM_OUT=/users/project/4DGenome/pipelines/hic-16.03/test
+PIPELINE=/users/project/4DGenome/pipelines/hic-16.03
+config=pipelines/hic-16.03/hic.config
+path_job_file=/users/project/4DGenome/pipelines/hic-16.03/job_cmd/fc3e8b36a_7bf1bf374_2016_03_31_full_hic-16.03.sh
 # additional variables
 time_start=$(date +"%s")
 run_date=`date +"%Y-%m-%d-%H-%M"`

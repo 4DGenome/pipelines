@@ -22,10 +22,6 @@ git push -u origin master
 ## Log
 ---------------------------------------------------------------------------------------------------
 
-**2016-03-04**
-- `chipseq-16.03` includes:
-	- both single- (`SE`) and paired-end (`PE`) data are accepted in `sequencing_type`
-	- when `io_mode=custom`, multiple samples are accepted in `samples`
-	- input metadata (e.g. `SAMPLE_ID`, `READ_LENGTH`) and output metrics from the pipeline (e.g. `N_UNIQUE_READS`, `N_PEAKS`) can be added to the `beato_lab_metadata.db` database if `integrate_metadata=yes`
-- `chipseq-16.02` is moved to `archived`
-
+**2016-03-31**
+- `hic-16.03` is released
+- `HiC_TADbit_pipeline` is moved to `archived`

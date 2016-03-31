@@ -31,7 +31,6 @@ self_circle = sys.argv[3]
 POSTFILTERING_PLOTS = sys.argv[4]
 COVERAGES = sys.argv[5]
 genomic_coverage_resolution = sys.argv[6]
-COMPARTMENTS = sys.argv[7]
 
 # Plotting parameters
 plt.rcParams['font.size'] = 20 
@@ -69,9 +68,3 @@ plt.rcParams['font.size'] = 20
 coverages = plot_genomic_distribution(self_circle, name='self_circle', savefig=outfile, resolution=genomic_coverage_resolution, pair_id=pair_id)
 outfile = '%s/%s_genomic_coverage_self_circle_%s.bed' % (COVERAGES, pair_id, genomic_coverage_resolution)
 coverages.to_csv(outfile, sep='\t', index=False)
-
-# Find A/B compartments
-#hic_data = load_hic_data_from_reads(filtered_reads, resolution = int(bin_size[genomic_coverage_resolution]))
-#outfile = '%s/%s_AB_compartments_filtered.txt' % (COMPARTMENTS, pair_id)
-#hic_data.find_compartments(savedata = outfile)
-

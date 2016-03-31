@@ -1,7 +1,7 @@
 #!/bin/bash
 #$ -N TE_S_T_2016_03_31_full_hic-16.03
 #$ -q short-sl65
-#$ -l virtual_free=10G
+#$ -l virtual_free=20G
 #$ -l h_rt=6:00:00
 #$ -o /users/project/4DGenome/pipelines/hic-16.03/job_out/TE_S_T_2016_03_31_full_hic-16.03_$JOB_ID.out
 #$ -e /users/project/4DGenome/pipelines/hic-16.03/job_out/TE_S_T_2016_03_31_full_hic-16.03_$JOB_ID.err
@@ -21,9 +21,9 @@ io_mode=standard
 CUSTOM_IN=/users/project/4DGenome/pipelines/hic-16.03/test
 CUSTOM_OUT=/users/project/4DGenome/pipelines/hic-16.03/test
 sample_to_fastqs=sample_to_fastqs.txt
-submit_to_cluster=no
+submit_to_cluster=yes
 queue=short-sl65
-memory=10G
+memory=20G
 max_time=6:00:00
 slots=1
 email=javier.quilez@crg.eu
@@ -659,7 +659,6 @@ post_filtering_statistics() {
 	message_info $step "- filtered reads: sequencing coverage along chromosomes, coverage values and interaction matrix"
 	message_info $step "- dangling ends: sequencing coverage along chromosomes and coverage values"
 	message_info $step "- self-circle ends: sequencing coverage along chromosomes and coverage values"
-	message_info $step "finding A/B compartments... saved at $COMPARTMENTS"
 	$python $SCRIPTS/filtered_descriptive_statistics.py $filtered_reads \
 													$dangling_ends \
 													$self_circle \
@@ -737,10 +736,11 @@ downstream_bam() {
 	# paths
 	ibam=$PROCESSED/*both_map.bam
 	mkdir -p $DOWNSTREAM
+	step_log=$LOGS/${sample_id}_${step}_paired_end.log
 
 	# perform several downstream analyses
 	message_info $step "perform several downstream analyses"
-	$python $SCRIPTS/tadbit_after_bam.py $ibam $flag_excluded $flag_included $flag_perzero $DOWNSTREAM/${sample_id}_ $slots $resolution_ab $resolution_tad
+	$python $SCRIPTS/tadbit_after_bam.py $ibam $flag_excluded $flag_included $flag_perzero $DOWNSTREAM/${sample_id}_ $slots $resolution_ab $resolution_tad &> $step_log
 
 	# update metadata
 	if [[ $integrate_metadata == "yes" ]]; then

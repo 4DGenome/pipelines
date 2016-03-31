@@ -596,7 +596,6 @@ post_filtering_statistics() {
 	message_info $step "- filtered reads: sequencing coverage along chromosomes, coverage values and interaction matrix"
 	message_info $step "- dangling ends: sequencing coverage along chromosomes and coverage values"
 	message_info $step "- self-circle ends: sequencing coverage along chromosomes and coverage values"
-	message_info $step "finding A/B compartments... saved at $COMPARTMENTS"
 	$python $SCRIPTS/filtered_descriptive_statistics.py $filtered_reads \
 													$dangling_ends \
 													$self_circle \
@@ -674,10 +673,11 @@ downstream_bam() {
 	# paths
 	ibam=$PROCESSED/*both_map.bam
 	mkdir -p $DOWNSTREAM
+	step_log=$LOGS/${sample_id}_${step}_paired_end.log
 
 	# perform several downstream analyses
 	message_info $step "perform several downstream analyses"
-	$python $SCRIPTS/tadbit_after_bam.py $ibam $flag_excluded $flag_included $flag_perzero $DOWNSTREAM/${sample_id}_ $slots $resolution_ab $resolution_tad
+	$python $SCRIPTS/tadbit_after_bam.py $ibam $flag_excluded $flag_included $flag_perzero $DOWNSTREAM/${sample_id}_ $slots $resolution_ab $resolution_tad &> $step_log
 
 	# update metadata
 	if [[ $integrate_metadata == "yes" ]]; then

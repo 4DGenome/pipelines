@@ -27,7 +27,7 @@ memory=10G
 max_time=6:00:00
 slots=1
 email=javier.quilez@crg.eu
-integrate_metadata=no
+integrate_metadata=yes
 species=homo_sapiens
 version=hg38_mmtv
 read_length=50
@@ -52,7 +52,7 @@ re_proximity=4
 reads_number_qc=100000
 genomic_coverage_resolution=Mb
 frag_map=True
-flag_excluded=391
+flag_excluded=775
 flag_included=0
 flag_perzero=99
 resolution_tad=50000
@@ -267,13 +267,15 @@ preliminary_checks() {
 	time0=$(date +"%s")
 
 	# Check that a sample with the provided SAMPLE_ID exists
-	sample_check=`$io_metadata -m check_sample -s $sample_id`
-	if [[ $sample_check == "no_sample" ]]; then
-		message_error $step "$sample_id not found in $metadata. Exiting..."
-	elif [[ $sample_check == "multiple_samples" ]]; then
-		message_error $step "$sample_id has multiple entries in $metadata. Exiting..."
-	else
-		message_info $step "$sample_id found in $metadata"
+	if [[ $integrate_metadata == "yes" ]]; then
+		sample_check=`$io_metadata -m check_sample -s $sample_id`
+		if [[ $sample_check == "no_sample" ]]; then
+			message_error $step "$sample_id not found in $metadata. Exiting..."
+		elif [[ $sample_check == "multiple_samples" ]]; then
+			message_error $step "$sample_id has multiple entries in $metadata. Exiting..."
+		else
+			message_info $step "$sample_id found in $metadata"
+		fi
 	fi
 	message_info $step "data for $sample_id will be stored at $SAMPLE"
 
@@ -481,7 +483,7 @@ align_and_merge() {
 	message_info $step "read length = $read_length"
 
 	# genome reference FASTA
-	fasta=/users/GR/mb/jquilez/assemblies/$species/$version/ucsc/$version.fa
+	fasta=/users/GR/mb/jquilez/assemblies/${species,,}/$version/ucsc/$version.fa
 	if ! [[ -f "$fasta" ]]; then
 		message_error $step "FASTA file $fasta does not exist! Exiting..."
 	else
@@ -657,7 +659,6 @@ post_filtering_statistics() {
 	message_info $step "- filtered reads: sequencing coverage along chromosomes, coverage values and interaction matrix"
 	message_info $step "- dangling ends: sequencing coverage along chromosomes and coverage values"
 	message_info $step "- self-circle ends: sequencing coverage along chromosomes and coverage values"
-	message_info $step "finding A/B compartments... saved at $COMPARTMENTS"
 	$python $SCRIPTS/filtered_descriptive_statistics.py $filtered_reads \
 													$dangling_ends \
 													$self_circle \
@@ -736,10 +737,9 @@ downstream_bam() {
 	ibam=$PROCESSED/*both_map.bam
 	mkdir -p $DOWNSTREAM
 
-	# 
-	message_info $step "..."
-	echo $SCRIPTS/tadbit_after_bam.py $ibam $flag_excluded $flag_included $flag_perzero $DOWNSTREAM/${sample_id}_ $slots $resolution_ab $resolution_tad
-	$SCRIPTS/tadbit_after_bam.py $ibam $flag_excluded $flag_included $flag_perzero $DOWNSTREAM/${sample_id}_ $slots $resolution_ab $resolution_tad
+	# perform several downstream analyses
+	message_info $step "perform several downstream analyses"
+	$python $SCRIPTS/tadbit_after_bam.py $ibam $flag_excluded $flag_included $flag_perzero $DOWNSTREAM/${sample_id}_ $slots $resolution_ab $resolution_tad
 
 	# update metadata
 	if [[ $integrate_metadata == "yes" ]]; then
@@ -753,11 +753,6 @@ downstream_bam() {
 	message_time_step $step $time0
 
 }
-
-
-
-
-#$SCRIPTS/tadbit_after_bam.sh 
 
 
 # ========================================================================================

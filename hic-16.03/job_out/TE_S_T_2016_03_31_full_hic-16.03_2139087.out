@@ -1,0 +1,32 @@
+
+INFO 	2016-03-31 15:07:57 	[preliminary_checks] 	TE_S_T found in /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-03-31 15:07:57 	[preliminary_checks] 	data for TE_S_T will be stored at /users/project/4DGenome_no_backup/data/hic/samples/TE_S_T
+INFO 	2016-03-31 15:08:09 	[preliminary_checks] 	paths to read1 and read2 saved to metadata database
+INFO 	2016-03-31 15:08:10 	[preliminary_checks] 	Sequencing index added as part of the metadata agrees with that observed in the FASTQ file
+INFO 	2016-03-31 15:08:11 	[preliminary_checks] 	read length added as part of the metadata agrees with that observed in the FASTQ file
+INFO 	2016-03-31 15:08:11 	[preliminary_checks] 	genome reference FASTA file found at /users/GR/mb/jquilez/assemblies/homo_sapiens/hg38_mmtv/ucsc/hg38_mmtv.fa
+INFO 	2016-03-31 15:08:54 	[preliminary_checks] 	paths to reference FASTA saved to metadata database
+TIME 	2016-03-31 15:08:54 	[preliminary_checks] 	step time for completion (seconds) = 58
+
+INFO 	2016-03-31 15:08:56 	[raw_fastqs_quality_plots] 	restriction enzyme = DpnII
+INFO 	2016-03-31 15:08:56 	[raw_fastqs_quality_plots] 	a subset of 100000 reds will be used to generate the quality plots
+INFO 	2016-03-31 15:08:56 	[raw_fastqs_quality_plots] 	making quality plots of the raw FASTQ files... plots saved at /users/project/4DGenome_no_backup/data/hic/samples/TE_S_T/plots/raw_fastqs_quality_plots
+INFO 	2016-03-31 15:09:19 	[raw_fastqs_quality_plots] 	percentages of dangling ends and ligated sites in read1 and read2 saved to metadata database
+TIME 	2016-03-31 15:09:19 	[raw_fastqs_quality_plots] 	step time for completion (seconds) = 24
+
+INFO 	2016-03-31 15:09:20 	[trim_reads_trimmomatic] 	sequencing type = PE
+INFO 	2016-03-31 15:09:20 	[trim_reads_trimmomatic] 	trimming TruSeq3 adapter sequences for HiSeq, NextSeq or HiSeq
+INFO 	2016-03-31 15:09:20 	[trim_reads_trimmomatic] 	trimming low-quality reads ends using trimmomatic's recommended practices
+INFO 	2016-03-31 15:09:21 	[trim_reads_trimmomatic] 	parse step log to extract generated metadata
+INFO 	2016-03-31 15:09:21 	[trim_reads_trimmomatic] 	reads after trimming = 992
+INFO 	2016-03-31 15:09:33 	[trim_reads_trimmomatic] 	trimmomatic parameters and numbe of trimmed reads added to metadata
+INFO 	2016-03-31 15:09:33 	[trim_reads_trimmomatic] 	trimmed reads are in /users/project/4DGenome_no_backup/data/hic/samples/TE_S_T/fastqs_processed/trimmomatic/paired_end
+INFO 	2016-03-31 15:09:33 	[trim_reads_trimmomatic] 	unpaired reads are deleted
+TIME 	2016-03-31 15:09:33 	[trim_reads_trimmomatic] 	step time for completion (seconds) = 13
+
+INFO 	2016-03-31 15:09:38 	[align_and_merge] 	species = Homo_sapiens
+INFO 	2016-03-31 15:09:38 	[align_and_merge] 	assembly version = hg38_mmtv
+INFO 	2016-03-31 15:09:38 	[align_and_merge] 	restriction enzyme = DpnII
+INFO 	2016-03-31 15:09:38 	[align_and_merge] 	read length = 75
+INFO 	2016-03-31 15:09:38 	[align_and_merge] 	genome reference FASTA file found at /users/GR/mb/jquilez/assemblies/homo_sapiens/hg38_mmtv/ucsc/hg38_mmtv.fa
+INFO 	2016-03-31 15:09:38 	[align_and_merge] 	mapping, processing reads according to restriction enzyme fragments and merging aligments for read1 and read2...

@@ -27,7 +27,7 @@ memory=10G
 max_time=6:00:00
 slots=1
 email=javier.quilez@crg.eu
-integrate_metadata=no
+integrate_metadata=yes
 species=homo_sapiens
 version=hg38_mmtv
 read_length=50
@@ -52,6 +52,11 @@ re_proximity=4
 reads_number_qc=100000
 genomic_coverage_resolution=Mb
 frag_map=True
+flag_excluded=775
+flag_included=0
+flag_perzero=99
+resolution_tad=50000
+resolution_ab=100000
 CUSTOM_OUT=/users/project/4DGenome/pipelines/hic-16.03/test
 PIPELINE=/users/project/4DGenome/pipelines/hic-16.03
 config=pipelines/hic-16.03/hic.config
@@ -112,14 +117,15 @@ PROCESSED=$SAMPLE/results/processed_reads
 POSTMAPPING_PLOTS=$SAMPLE/plots/post_mapping_statistics
 COVERAGES=$SAMPLE/results/genomic_coverages
 
-# filtered and excluded reads, post-filtering plots and find A/B compartments
+# filtered and excluded reads, post-filtering plots
 FILTERED=$SAMPLE/results/filtered_reads
 DANGLING=$SAMPLE/results/excluded_reads/dangling_ends
 SELF_CIRCLE=$SAMPLE/results/excluded_reads/self_circle
 SUMMARY_EXCLUDED=$SAMPLE/results/excluded_reads/summary_excluded_per_filter
 POSTFILTERING_PLOTS=$SAMPLE/plots/$step
-COMPARTMENTS=$SAMPLE/results/compartments
 
+# downstream analyses
+DOWNSTREAM=$SAMPLE/downstream
 
 
 # (2) Files
@@ -138,7 +144,7 @@ fi
 # tools
 python=`which python`
 trimmomatic=`which trimmomatic`
-
+samtools=/software/mb/el6.3/samtools-1.2/samtools
 
 
 # =================================================================================================
@@ -165,6 +171,13 @@ main() {
 		raw_fastqs_quality_plots
 		trim_reads_trimmomatic
 		align_and_merge
+		post_mapping_statistics
+		reads_filtering
+		post_filtering_statistics
+		index_contacts
+		map_to_bam
+		downstream_bam
+		#clean_up
 	elif [[ $pipeline_run_mode == 'preliminary_checks' ]]; then preliminary_checks
 	elif [[ $pipeline_run_mode == 'raw_fastqs_quality_plots' ]]; then raw_fastqs_quality_plots
 	elif [[ $pipeline_run_mode == 'trim_reads_trimmomatic' ]]; then trim_reads_trimmomatic
@@ -172,6 +185,10 @@ main() {
 	elif [[ $pipeline_run_mode == 'post_mapping_statistics' ]]; then post_mapping_statistics
 	elif [[ $pipeline_run_mode == 'reads_filtering' ]]; then reads_filtering
 	elif [[ $pipeline_run_mode == 'post_filtering_statistics' ]]; then post_filtering_statistics
+	elif [[ $pipeline_run_mode == 'index_contacts' ]]; then index_contacts
+	elif [[ $pipeline_run_mode == 'map_to_bam' ]]; then map_to_bam
+	elif [[ $pipeline_run_mode == 'downstream_bam' ]]; then downstream_bam
+	elif [[ $pipeline_run_mode == 'clean_up' ]]; then clean_up
 	fi
 	echo
 
@@ -250,13 +267,15 @@ preliminary_checks() {
 	time0=$(date +"%s")
 
 	# Check that a sample with the provided SAMPLE_ID exists
-	sample_check=`$io_metadata -m check_sample -s $sample_id`
-	if [[ $sample_check == "no_sample" ]]; then
-		message_error $step "$sample_id not found in $metadata. Exiting..."
-	elif [[ $sample_check == "multiple_samples" ]]; then
-		message_error $step "$sample_id has multiple entries in $metadata. Exiting..."
-	else
-		message_info $step "$sample_id found in $metadata"
+	if [[ $integrate_metadata == "yes" ]]; then
+		sample_check=`$io_metadata -m check_sample -s $sample_id`
+		if [[ $sample_check == "no_sample" ]]; then
+			message_error $step "$sample_id not found in $metadata. Exiting..."
+		elif [[ $sample_check == "multiple_samples" ]]; then
+			message_error $step "$sample_id has multiple entries in $metadata. Exiting..."
+		else
+			message_info $step "$sample_id found in $metadata"
+		fi
 	fi
 	message_info $step "data for $sample_id will be stored at $SAMPLE"
 
@@ -383,6 +402,7 @@ trim_reads_trimmomatic() {
 	mkdir -p $PAIRED
 	mkdir -p $UNPAIRED
 	mkdir -p $LOGS
+	mkdir -p $CHECKSUMS
 	step_log=$SAMPLE/logs/${sample_id}_${step}_paired_end.log
 	paired1=$PAIRED/${sample_id}_read1.fastq.gz
 	paired2=$PAIRED/${sample_id}_read2.fastq.gz
@@ -448,6 +468,9 @@ align_and_merge() {
 	step="align_and_merge"
 	time0=$(date +"%s")
 
+	# paths
+	mkdir -p $CHECKSUMS
+
 	# Get metadata
 	if [[ $integrate_metadata == "yes" ]]; then
 		restriction_enzyme=`$io_metadata -m get_from_metadata -s $sample_id -t input_metadata -a RESTRICTION_ENZYME`
@@ -460,7 +483,7 @@ align_and_merge() {
 	message_info $step "read length = $read_length"
 
 	# genome reference FASTA
-	fasta=/users/GR/mb/jquilez/assemblies/$species/$version/ucsc/$version.fa
+	fasta=/users/GR/mb/jquilez/assemblies/${species,,}/$version/ucsc/$version.fa
 	if ! [[ -f "$fasta" ]]; then
 		message_error $step "FASTA file $fasta does not exist! Exiting..."
 	else
@@ -573,6 +596,7 @@ reads_filtering() {
 	mkdir -p $DANGLING 
 	mkdir -p $SELF_CIRCLE
 	mkdir -p $SUMMARY_EXCLUDED
+	mkdir -p $CHECKSUMS
 
 	# Filter reads based on multiple quality parameters
 	message_info $step "filtering reads based on multiple quality parameters..."
@@ -606,6 +630,10 @@ reads_filtering() {
 	 	message_info $step "numbers and fractions of filtered and excluded reads added to the metadata"	
 	fi
 
+	# data integrity
+	filtered_reads=$FILTERED/*filtered_map.tsv
+	shasum $filtered_reads >> $checksums
+
 	message_time_step $step $time0
 
 }
@@ -625,11 +653,8 @@ post_filtering_statistics() {
 	dangling_ends=$DANGLING/*dangling_ends_map.tsv
 	self_circle=$SELF_CIRCLE/*self_circle_map.tsv
  	mkdir -p $POSTFILTERING_PLOTS
- 	mkdir -p $COMPARTMENTS
-#	step_log=$LOGS/${sample_id}_${step}_paired_end.log
-#	log_contacts_indexing=$SAMPLE/logs/contacts_indexing_${sample_id}.log
 
-	# Make plots and find A/B compartments
+	# Make plots
 	message_info $step "generating post filtering descriptive statistics plots... saved at $POSTFILTERING_PLOTS:"
 	message_info $step "- filtered reads: sequencing coverage along chromosomes, coverage values and interaction matrix"
 	message_info $step "- dangling ends: sequencing coverage along chromosomes and coverage values"
@@ -640,27 +665,115 @@ post_filtering_statistics() {
 													$self_circle \
 													$POSTFILTERING_PLOTS \
 													$COVERAGES \
-													$genomic_coverage_resolution \
-													$COMPARTMENTS
-
-	# # Index contacts
-	# tmp_basename=`basename $filtered_reads`
-	# $SCRIPTS/index_contacts_tadbit.sh $FILTERED/$tmp_basename $FILTERED/$tmp_basename.gz > $log_contacts_indexing
-	# message_info $step "indexing $filtered_reads"
-
-	# # Update metadata
-	# md5sum_filtered_reads=`md5sum $filtered_reads | sed "s/  /;/g"`
-	# md5sum_filtered_reads_indexed=`md5sum $FILTERED/$tmp_basename.gz.tbi | sed "s/  /;/g"`
-	# md5sum_log_contacts_indexing=`md5sum $log_contacts_indexing | sed "s/  /;/g"`
- # 	python $SCRIPTS/update_and_get_samples_metadata.py $metadata update_paths $sample_id 'FILTERED_READS' $md5sum_filtered_reads
- # 	python $SCRIPTS/update_and_get_samples_metadata.py $metadata update_paths $sample_id 'FILTERED_READS_INDEXED' $md5sum_filtered_reads_indexed
- # 	python $SCRIPTS/update_and_get_samples_metadata.py $metadata update_paths $sample_id 'LOG_CONTACTS_INDEXING' $md5sum_log_contacts_indexing
-	# message_update_metadata $step 'FILTERED_READS' $metadata
-	# message_update_metadata $step 'FILTERED_READS_INDEXED' $metadata
+													$genomic_coverage_resolution
 
 	message_time_step $step $time0
 
 }
+
+
+# ========================================================================================
+# Index contacts
+# ========================================================================================
+
+index_contacts() {
+
+	step="index_contacts"
+	time0=$(date +"%s")
+
+	# Paths
+	filtered_reads=$FILTERED/*filtered_map.tsv
+	step_log=$LOGS/${sample_id}_${step}_paired_end.log
+	mkdir -p $CHECKSUMS
+
+	# Index contacts
+	message_info $step "indexing $filtered_reads"
+	tmp_basename=`basename $filtered_reads`
+	$SCRIPTS/index_contacts_tadbit.sh $FILTERED/$tmp_basename $FILTERED/$tmp_basename.gz > $step_log
+
+	# data integrity
+	shasum $FILTERED/$tmp_basename.gz >> $checksums
+
+	message_time_step $step $time0
+
+}
+
+
+# ========================================================================================
+# Convert MAP to BAM
+# ========================================================================================
+
+map_to_bam() {
+
+	step="map_to_bam"
+	time0=$(date +"%s")
+
+	# paths
+	imap=$PROCESSED/*both_map.tsv
+	ODIR=/users/project/4DGenome/data/hic/samples/$sample_id/results/processed_reads
+	mkdir -p $ODIR
+	obam=$ODIR/$(basename $imap .tsv)
+
+	message_info $step "converting MAP to BAM"
+	$SCRIPTS/tadbit_map2sam_stdout_modified.py $imap | $samtools view -Su - | $samtools sort - $obam
+	$samtools index $obam.bam
+	ln -sf $obam.bam $PROCESSED/$(basename $obam).bam
+	ln -sf $obam.bam.bai $PROCESSED/$(basename $obam).bam.bai
+
+	message_time_step $step $time0
+
+}
+
+
+# ========================================================================================
+# Downstream BAM
+# ========================================================================================
+
+downstream_bam() {
+
+	step="downstream_bam"
+	time0=$(date +"%s")
+
+	# paths
+	ibam=$PROCESSED/*both_map.bam
+	mkdir -p $DOWNSTREAM
+
+	# perform several downstream analyses
+	message_info $step "perform several downstream analyses"
+	$python $SCRIPTS/tadbit_after_bam.py $ibam $flag_excluded $flag_included $flag_perzero $DOWNSTREAM/${sample_id}_ $slots $resolution_ab $resolution_tad
+
+	# update metadata
+	if [[ $integrate_metadata == "yes" ]]; then
+	 	$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a FLAG_EXCLUDED -v $flag_excluded
+	 	$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a FLAG_INCLUDED -v $flag_included
+	 	$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a FLAG_PERZERO -v $flag_perzero
+	 	$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a RESOLUTION_TAD -v $resolution_tad
+	 	$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a RESOLUTION_AB -v $resolution_ab
+	fi
+	
+	message_time_step $step $time0
+
+}
+
+
+# ========================================================================================
+# Deletes intermediate files
+# ========================================================================================
+
+clean_up() {
+
+	step="clean_up"
+	time0=$(date +"%s")
+
+	message_info $step "deleting the following intermediate files/directories:"
+	message_info $step "$SAMPLE/fastqs_processed"
+	message_info $step "$SAMPLE/mapped_reads"
+	rm -fR $SAMPLE/fastqs_processed
+	rm -fR $SAMPLE/mapped_reads
+	message_time_step $step $time0
+
+}
+
 
 # execute main function
 main

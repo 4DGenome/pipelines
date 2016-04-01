@@ -17,3 +17,15 @@ TIME 	2016-03-31 17:18:26 	[raw_fastqs_quality_plots] 	step time for completion 
 INFO 	2016-03-31 17:18:28 	[trim_reads_trimmomatic] 	sequencing type = PE
 INFO 	2016-03-31 17:18:28 	[trim_reads_trimmomatic] 	trimming TruSeq3 adapter sequences for HiSeq, NextSeq or HiSeq
 INFO 	2016-03-31 17:18:28 	[trim_reads_trimmomatic] 	trimming low-quality reads ends using trimmomatic's recommended practices
+INFO 	2016-03-31 19:16:26 	[trim_reads_trimmomatic] 	parse step log to extract generated metadata
+INFO 	2016-03-31 19:16:26 	[trim_reads_trimmomatic] 	reads after trimming = 323957748
+INFO 	2016-03-31 19:16:54 	[trim_reads_trimmomatic] 	trimmomatic parameters and numbe of trimmed reads added to metadata
+INFO 	2016-03-31 19:16:54 	[trim_reads_trimmomatic] 	trimmed reads are in /users/project/4DGenome_no_backup/data/hic/samples/fc3e8b36a_7bf1bf374/fastqs_processed/trimmomatic/paired_end
+INFO 	2016-03-31 19:16:54 	[trim_reads_trimmomatic] 	unpaired reads are deleted
+TIME 	2016-03-31 19:16:54 	[trim_reads_trimmomatic] 	step time for completion (seconds) = 7106
+
+INFO 	2016-03-31 19:16:59 	[align_and_merge] 	species = Mus_musculus
+INFO 	2016-03-31 19:16:59 	[align_and_merge] 	assembly version = hg38_mmtv
+INFO 	2016-03-31 19:16:59 	[align_and_merge] 	restriction enzyme = DpnII
+INFO 	2016-03-31 19:16:59 	[align_and_merge] 	read length = 75
+ERROR 	2016-03-31 19:16:59 	[align_and_merge] 	FASTA file /users/GR/mb/jquilez/assemblies/mus_musculus/hg38_mmtv/ucsc/hg38_mmtv.fa does not exist! Exiting...

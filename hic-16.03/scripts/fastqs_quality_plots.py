@@ -13,19 +13,11 @@ matplotlib.use('Agg') # Must be before importing matplotlib.pyplot or pylab!
 from matplotlib import pyplot as plt 
 from pytadbit.utils.fastq_utils import quality_plot
 
-print matplotlib.__version__
-
 QUALITY_PLOTS = sys.argv[1]
 paired1 = sys.argv[2]
 paired2 = sys.argv[3]
 reads_nummber_qc = sys.argv[4]
 restriction_enzyme = sys.argv[5]
-
-#print QUALITY_PLOTS
-#print paired1
-#print paired2
-#print reads_nummber_qc
-#print restriction_enzyme
 
 # Generate quality plots for each processed FASTQ
 # and print out the percentage of dangling-ends and ligated sites for each read

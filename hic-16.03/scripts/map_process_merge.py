@@ -22,6 +22,7 @@ restriction_enzyme = sys.argv[7]
 fasta = sys.argv[8]
 slots = sys.argv[9]
 frag_map = sys.argv[10]
+version = sys.argv[11]
 
 print gem_index
 print SAMPLE
@@ -44,7 +45,7 @@ if not os.path.isfile(gem_index):
     subprocess.call(["gemtools", "index", "-i", fasta, "-t", "8"])
 
 # Output directories
-MAP_DIR = '%s/mapped_reads' % SAMPLE
+MAP_DIR = '%s/mapped_reads/%s' % (SAMPLE, version)
 if not os.path.exists(MAP_DIR):
     os.makedirs(MAP_DIR)
 
@@ -87,7 +88,7 @@ from pytadbit.mapping        import get_intersection
 genome_seq = parse_fasta(fasta)
 
 # Output directory
-RESULTS = '%s/results/processed_reads' % SAMPLE
+RESULTS = '%s/results/%s/processed_reads' % (SAMPLE, version)
 if not os.path.exists(RESULTS):
     os.makedirs(RESULTS)
 

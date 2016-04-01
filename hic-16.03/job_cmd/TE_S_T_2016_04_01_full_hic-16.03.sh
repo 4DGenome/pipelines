@@ -21,7 +21,7 @@ io_mode=standard
 CUSTOM_IN=/users/project/4DGenome/pipelines/hic-16.03/test
 CUSTOM_OUT=/users/project/4DGenome/pipelines/hic-16.03/test
 sample_to_fastqs=sample_to_fastqs.txt
-submit_to_cluster=yes
+submit_to_cluster=no
 queue=short-sl65
 memory=20G
 max_time=6:00:00
@@ -376,7 +376,6 @@ raw_fastqs_quality_plots() {
   											$ifq2 \
   											$reads_number_qc \
   											$restriction_enzyme`
-  	echo $returned_values
 
  	# Extract the percentage of dangling-ends and ligated sites for read1 and read2
   	percentage_dangling_ends_read1=`echo $returned_values |cut -f1 -d';'`
@@ -533,13 +532,14 @@ align_and_merge() {
  			$restriction_enzyme \
 			$fasta \
 			$slots \
-			$frag_map > $step_log
+			$frag_map \
+			$version > $step_log
 	rm -fr $SAMPLE/mapped_reads/tmp_dir*
 	rm -fr $SAMPLE/results/processed_reads/tmp*
 	message_info $step "output saved in $step_log"
 
 	# data integrity
-	shasum $SAMPLE/results/processed_reads/${sample_id}*both_map.tsv >> $checksums
+	shasum $PROCESSED/${sample_id}*both_map.tsv >> $checksums
 
 	message_time_step $step $time0
 

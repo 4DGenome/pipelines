@@ -284,6 +284,8 @@ def write_correlation_matrix_tabix(hic_object, all_bins, outfile):
                     mat[i][j] = line[j] / hic_object.expected[abs(i - j)]
                     #mat[i][j] = line[j]
                 i += 1
+            if len(mat) == 1:
+                continue
             mat = numpy.corrcoef(mat)
             bins = {}
             j = 0

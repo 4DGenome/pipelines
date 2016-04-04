@@ -1,0 +1,8 @@
+/usr/share/univage/soldierantcluster/spool/node-hp0313/job_scripts/2164143: line 71: -m: command not found
+
+INFO 	2016-04-04 11:55:42 	[preliminary_checks] 	fc3e8b36a_7bf1bf374 found in /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-04-04 11:55:42 	[preliminary_checks] 	data for fc3e8b36a_7bf1bf374 will be stored at /users/project/4DGenome_no_backup/data/hic/samples/fc3e8b36a_7bf1bf374
+INFO 	2016-04-04 12:01:47 	[preliminary_checks] 	paths to read1 and read2 saved to metadata database
+INFO 	2016-04-04 12:01:47 	[preliminary_checks] 	Sequencing index added as part of the metadata agrees with that observed in the FASTQ file
+INFO 	2016-04-04 12:01:48 	[preliminary_checks] 	read length added as part of the metadata agrees with that observed in the FASTQ file
+ERROR 	2016-04-04 12:01:48 	[preliminary_checks] 	FASTA file /users/GR/mb/jquilez/assemblies//hg38_mmtv/ucsc/hg38_mmtv.fa does not exist! Exiting...

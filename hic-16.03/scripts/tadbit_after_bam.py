@@ -254,8 +254,8 @@ def write_raw_matrix_tabix(hic_object, bins, outfile):
                 out.write("\t".join((info_i[0], info_i[1], info_j[1], str(line[j]))) + "\n")
         i += 1
     out.close()
-    subprocess.check_call(["/software/mb/bin/bgzip", outfile])
-    subprocess.check_call(["/software/mb/bin/tabix", "-p", "bed", outfile + ".gz"])
+    subprocess.check_call(["/software/mb/bin/bgzip -f", outfile])
+    subprocess.check_call(["/software/mb/bin/tabix -f", "-p", "bed", outfile + ".gz"])
 
 def write_normalized_matrix_tabix(hic_object, bins, outfile):
     out = open(outfile, 'w')
@@ -270,8 +270,8 @@ def write_normalized_matrix_tabix(hic_object, bins, outfile):
                 out.write("\t".join((info_i[0], info_i[1], info_j[1], str(line[j]))) + "\n")
         i += 1
     out.close()
-    subprocess.check_call(["/software/mb/bin/bgzip", outfile])
-    subprocess.check_call(["/software/mb/bin/tabix", "-p", "bed", outfile + ".gz"])
+    subprocess.check_call(["/software/mb/bin/bgzip -f", outfile])
+    subprocess.check_call(["/software/mb/bin/tabix -f", "-p", "bed", outfile + ".gz"])
 
 def write_correlation_matrix_tabix(hic_object, all_bins, outfile):
     out = open(outfile, 'w')
@@ -299,8 +299,8 @@ def write_correlation_matrix_tabix(hic_object, all_bins, outfile):
                     info_j = re.split("-|\t", bins[j])
                     out.write("\t".join((info_i[0], info_i[1], info_j[1], str(mat[i, j]))) + "\n")
     out.close()
-    subprocess.check_call(["/software/mb/bin/bgzip", outfile])
-    subprocess.check_call(["/software/mb/bin/tabix", "-p", "bed", outfile + ".gz"])
+    subprocess.check_call(["/software/mb/bin/bgzip -f", outfile])
+    subprocess.check_call(["/software/mb/bin/tabix -f", "-p", "bed", outfile + ".gz"])
 
 def write_matrices(hic_data, outdir, reso):
 

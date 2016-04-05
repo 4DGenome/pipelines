@@ -55,3 +55,6 @@ INFO 	2016-04-05 09:29:17 	[post_filtering_statistics] 	- self-circle ends: sequ
 TIME 	2016-04-05 09:49:48 	[post_filtering_statistics] 	step time for completion (seconds) = 1231
 
 INFO 	2016-04-05 09:49:50 	[index_contacts] 	indexing /users/project/4DGenome_no_backup/data/hic/samples/a1e46328c_51720e9cf/results/hg38_mmtv/filtered_reads/*filtered_map.tsv
+TIME 	2016-04-05 10:28:55 	[index_contacts] 	step time for completion (seconds) = 2345
+
+INFO 	2016-04-05 10:29:01 	[map_to_bam] 	converting MAP to BAM

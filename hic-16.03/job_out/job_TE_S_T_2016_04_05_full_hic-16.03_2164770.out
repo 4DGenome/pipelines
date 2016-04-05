@@ -1,0 +1,13 @@
+
+INFO 	2016-04-05 11:14:09 	[preliminary_checks] 	TE_S_T found in /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-04-05 11:14:09 	[preliminary_checks] 	data for TE_S_T will be stored at /users/project/4DGenome_no_backup/data/hic/samples/TE_S_T
+INFO 	2016-04-05 11:14:17 	[preliminary_checks] 	paths to read1 and read2 saved to metadata database
+INFO 	2016-04-05 11:14:18 	[preliminary_checks] 	Sequencing index added as part of the metadata agrees with that observed in the FASTQ file
+INFO 	2016-04-05 11:14:19 	[preliminary_checks] 	read length added as part of the metadata agrees with that observed in the FASTQ file
+INFO 	2016-04-05 11:14:19 	[preliminary_checks] 	genome reference FASTA file found at /users/GR/mb/jquilez/assemblies/homo_sapiens/hg38_mmtv/ucsc/hg38_mmtv.fa
+INFO 	2016-04-05 11:14:32 	[preliminary_checks] 	paths to reference FASTA saved to metadata database
+TIME 	2016-04-05 11:14:32 	[preliminary_checks] 	step time for completion (seconds) = 24
+
+INFO 	2016-04-05 11:14:34 	[raw_fastqs_quality_plots] 	restriction enzyme = DpnII
+INFO 	2016-04-05 11:14:34 	[raw_fastqs_quality_plots] 	a subset of 100000 reds will be used to generate the quality plots
+INFO 	2016-04-05 11:14:34 	[raw_fastqs_quality_plots] 	making quality plots of the raw FASTQ files... plots saved at /users/project/4DGenome_no_backup/data/hic/samples/TE_S_T/plots/hg38_mmtv/raw_fastqs_quality_plots

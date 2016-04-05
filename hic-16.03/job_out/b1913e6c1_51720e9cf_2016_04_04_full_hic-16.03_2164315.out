@@ -30,3 +30,7 @@ INFO 	2016-04-05 05:49:43 	[align_and_merge] 	restriction enzyme = DpnII
 INFO 	2016-04-05 05:49:43 	[align_and_merge] 	read length = 75
 INFO 	2016-04-05 05:49:44 	[align_and_merge] 	genome reference FASTA file found at /users/GR/mb/jquilez/assemblies/homo_sapiens/hg38_mmtv/ucsc/hg38_mmtv.fa
 INFO 	2016-04-05 05:49:44 	[align_and_merge] 	mapping, processing reads according to restriction enzyme fragments and merging aligments for read1 and read2...
+INFO 	2016-04-05 11:03:46 	[align_and_merge] 	output saved in /users/project/4DGenome_no_backup/data/hic/samples/b1913e6c1_51720e9cf/logs/hg38_mmtv/b1913e6c1_51720e9cf_align_and_merge_paired_end.log
+TIME 	2016-04-05 11:04:50 	[align_and_merge] 	step time for completion (seconds) = 18910
+
+INFO 	2016-04-05 11:04:53 	[post_mapping_statistics] 	generating post mapping descriptive statistics plots...

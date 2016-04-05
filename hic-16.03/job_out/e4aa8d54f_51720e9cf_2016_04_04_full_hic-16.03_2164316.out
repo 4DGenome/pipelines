@@ -52,3 +52,13 @@ INFO 	2016-04-05 09:53:16 	[post_filtering_statistics] 	generating post filterin
 INFO 	2016-04-05 09:53:16 	[post_filtering_statistics] 	- filtered reads: sequencing coverage along chromosomes, coverage values and interaction matrix
 INFO 	2016-04-05 09:53:16 	[post_filtering_statistics] 	- dangling ends: sequencing coverage along chromosomes and coverage values
 INFO 	2016-04-05 09:53:16 	[post_filtering_statistics] 	- self-circle ends: sequencing coverage along chromosomes and coverage values
+TIME 	2016-04-05 10:03:27 	[post_filtering_statistics] 	step time for completion (seconds) = 611
+
+INFO 	2016-04-05 10:03:29 	[index_contacts] 	indexing /users/project/4DGenome_no_backup/data/hic/samples/e4aa8d54f_51720e9cf/results/hg38_mmtv/filtered_reads/*filtered_map.tsv
+TIME 	2016-04-05 10:18:53 	[index_contacts] 	step time for completion (seconds) = 924
+
+INFO 	2016-04-05 10:19:03 	[map_to_bam] 	converting MAP to BAM
+[bam_sort_core] merging from 29 files...
+TIME 	2016-04-05 10:56:10 	[map_to_bam] 	step time for completion (seconds) = 2227
+
+INFO 	2016-04-05 10:56:13 	[downstream_bam] 	perform several downstream analyses

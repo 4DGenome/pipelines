@@ -1,11 +1,9 @@
 # README
----------------------------------------------------------------------------------------------------
 
 Pipelines for the analysis of Hi-C data. Old versions of the pipelines are in `archived`. 
 
 
 ## GitHub repository
----------------------------------------------------------------------------------------------------
 
 This GitHub repository was created with:
 - created repository named `pipelines` at [https://github.com/4DGenome](https://github.com/4DGenome)
@@ -20,8 +18,8 @@ git push -u origin master
 ```
 
 ## Log
----------------------------------------------------------------------------------------------------
 
 **2016-03-31**
 - `hic-16.03` is released
 - `HiC_TADbit_pipeline` is moved to `archived`
+- `hisee-16.04` is released

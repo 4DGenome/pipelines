@@ -1,0 +1,32 @@
+
+INFO 	2016-04-13 15:39:51 	[preliminary_checks] 	b742f3789_d8fa94d88 found in /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-04-13 15:39:51 	[preliminary_checks] 	data for b742f3789_d8fa94d88 will be stored at /users/project/4DGenome_no_backup/data/hic/samples/b742f3789_d8fa94d88
+INFO 	2016-04-13 15:41:19 	[preliminary_checks] 	paths to read1 and read2 saved to metadata database
+INFO 	2016-04-13 15:41:21 	[preliminary_checks] 	Sequencing index added as part of the metadata agrees with that observed in the FASTQ file
+INFO 	2016-04-13 15:41:22 	[preliminary_checks] 	read length added as part of the metadata agrees with that observed in the FASTQ file
+INFO 	2016-04-13 15:41:22 	[preliminary_checks] 	genome reference FASTA file found at /users/GR/mb/jquilez/assemblies/mus_musculus/mm10/ucsc/mm10.fa
+INFO 	2016-04-13 15:42:02 	[preliminary_checks] 	paths to reference FASTA saved to metadata database
+TIME 	2016-04-13 15:42:02 	[preliminary_checks] 	step time for completion (seconds) = 132
+
+INFO 	2016-04-13 15:42:05 	[raw_fastqs_quality_plots] 	restriction enzyme = DpnII
+INFO 	2016-04-13 15:42:05 	[raw_fastqs_quality_plots] 	a subset of 100000 reds will be used to generate the quality plots
+INFO 	2016-04-13 15:42:05 	[raw_fastqs_quality_plots] 	making quality plots of the raw FASTQ files... plots saved at /users/project/4DGenome_no_backup/data/hic/samples/b742f3789_d8fa94d88/plots/mm10/raw_fastqs_quality_plots
+INFO 	2016-04-13 15:42:24 	[raw_fastqs_quality_plots] 	percentages of dangling ends and ligated sites in read1 and read2 saved to metadata database
+TIME 	2016-04-13 15:42:24 	[raw_fastqs_quality_plots] 	step time for completion (seconds) = 20
+
+INFO 	2016-04-13 15:42:26 	[trim_reads_trimmomatic] 	sequencing type = PE
+INFO 	2016-04-13 15:42:26 	[trim_reads_trimmomatic] 	trimming TruSeq3 adapter sequences for HiSeq, NextSeq or HiSeq
+INFO 	2016-04-13 15:42:26 	[trim_reads_trimmomatic] 	trimming low-quality reads ends using trimmomatic's recommended practices
+INFO 	2016-04-13 16:07:34 	[trim_reads_trimmomatic] 	parse step log to extract generated metadata
+INFO 	2016-04-13 16:07:34 	[trim_reads_trimmomatic] 	reads after trimming = 64419687
+INFO 	2016-04-13 16:07:56 	[trim_reads_trimmomatic] 	trimmomatic parameters and numbe of trimmed reads added to metadata
+INFO 	2016-04-13 16:07:56 	[trim_reads_trimmomatic] 	trimmed reads are in /users/project/4DGenome_no_backup/data/hic/samples/b742f3789_d8fa94d88/fastqs_processed/trimmomatic/paired_end
+INFO 	2016-04-13 16:07:56 	[trim_reads_trimmomatic] 	unpaired reads are deleted
+TIME 	2016-04-13 16:07:56 	[trim_reads_trimmomatic] 	step time for completion (seconds) = 1530
+
+INFO 	2016-04-13 16:08:01 	[align_and_merge] 	species = Mus_musculus
+INFO 	2016-04-13 16:08:01 	[align_and_merge] 	assembly version = mm10
+INFO 	2016-04-13 16:08:01 	[align_and_merge] 	restriction enzyme = DpnII
+INFO 	2016-04-13 16:08:01 	[align_and_merge] 	read length = 76
+INFO 	2016-04-13 16:08:01 	[align_and_merge] 	genome reference FASTA file found at /users/GR/mb/jquilez/assemblies/mus_musculus/mm10/ucsc/mm10.fa
+INFO 	2016-04-13 16:08:01 	[align_and_merge] 	mapping, processing reads according to restriction enzyme fragments and merging aligments for read1 and read2...

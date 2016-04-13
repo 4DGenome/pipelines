@@ -1,18 +1,18 @@
 #!/bin/bash
-#$ -N job_TE_S_T_2016_04_05_full_hic-16.03
-#$ -q short-sl65
-#$ -l virtual_free=20G
-#$ -l h_rt=6:00:00
-#$ -o /users/project/4DGenome/pipelines/hic-16.03/job_out/job_TE_S_T_2016_04_05_full_hic-16.03_$JOB_ID.out
-#$ -e /users/project/4DGenome/pipelines/hic-16.03/job_out/job_TE_S_T_2016_04_05_full_hic-16.03_$JOB_ID.err
+#$ -N job_ab7537068_51720e9cf_2016_04_05_full_hic-16.03
+#$ -q long-sl65
+#$ -l virtual_free=100G
+#$ -l h_rt=100:00:00
+#$ -o /users/project/4DGenome/pipelines/hic-16.03/job_out/job_ab7537068_51720e9cf_2016_04_05_full_hic-16.03_$JOB_ID.out
+#$ -e /users/project/4DGenome/pipelines/hic-16.03/job_out/job_ab7537068_51720e9cf_2016_04_05_full_hic-16.03_$JOB_ID.err
 #$ -j y
 #$ -M javier.quilez@crg.eu
 #$ -m abe
-#$ -pe smp 1
+#$ -pe smp 10
 
 submitted_on=2016_04_05
 pipeline_version=16.03
-sample_id=TE_S_T
+sample_id=ab7537068_51720e9cf
 data_type=hic
 pipeline_name=hic
 pipeline_version=16.03
@@ -21,13 +21,13 @@ io_mode=standard
 CUSTOM_IN=/users/project/4DGenome/pipelines/hic-16.03/test
 CUSTOM_OUT=/users/project/4DGenome/pipelines/hic-16.03/test
 sample_to_fastqs=sample_to_fastqs.txt
-submit_to_cluster=no
-queue=short-sl65
-memory=20G
-max_time=6:00:00
-slots=1
+submit_to_cluster=yes
+queue=long-sl65
+memory=100G
+max_time=100:00:00
+slots=10
 email=javier.quilez@crg.eu
-integrate_metadata=no
+integrate_metadata=yes
 species=homo_sapiens
 version=hg38_mmtv
 read_length=50
@@ -60,7 +60,7 @@ resolution_ab=100000
 CUSTOM_OUT=/users/project/4DGenome/pipelines/hic-16.03/test
 PIPELINE=/users/project/4DGenome/pipelines/hic-16.03
 config=pipelines/hic-16.03/hic.config
-path_job_file=/users/project/4DGenome/pipelines/hic-16.03/job_cmd/job_TE_S_T_2016_04_05_full_hic-16.03.sh
+path_job_file=/users/project/4DGenome/pipelines/hic-16.03/job_cmd/job_ab7537068_51720e9cf_2016_04_05_full_hic-16.03.sh
 # additional run variables
 time_start=$(date +"%s")
 run_date=`date +"%Y-%m-%d-%H-%M"`
@@ -158,11 +158,7 @@ samtools=/software/mb/el6.3/samtools-1.2/samtools
 
 # get TADbit and its dependencies versions
 tadbit_and_dependencies_versions=`$python $SCRIPTS/print_tadbit_and_dependencies_version.py`
-echo $tadbit_and_dependencies_versions
-#for f in `echo $tadbit_and_dependencies_versions |cut -f -d';'`; do
-#	echo $f
-#done
-exit
+
 
 
 # =================================================================================================

@@ -19,7 +19,10 @@ git push -u origin master
 
 ## Log
 
-**2016-03-31**
+2016-03-31
 - `hic-16.03` is released
 - `HiC_TADbit_pipeline` is moved to `archived`
 - `hisee-16.04` is released
+
+2016-04-08
+- `HiC_visualisation_app` is moved to `archived`

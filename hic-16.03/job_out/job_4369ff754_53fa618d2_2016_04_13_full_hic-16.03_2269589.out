@@ -62,3 +62,11 @@ INFO 	2016-04-13 16:11:43 	[map_to_bam] 	converting MAP to BAM
 TIME 	2016-04-13 16:26:23 	[map_to_bam] 	step time for completion (seconds) = 880
 
 INFO 	2016-04-13 16:26:26 	[downstream_bam] 	perform several downstream analyses
+TIME 	2016-04-13 17:47:15 	[downstream_bam] 	step time for completion (seconds) = 4849
+
+INFO 	2016-04-13 17:47:16 	[clean_up] 	deleting the following intermediate files/directories:
+INFO 	2016-04-13 17:47:16 	[clean_up] 	/users/project/4DGenome_no_backup/data/hic/samples/4369ff754_53fa618d2/fastqs_processed
+INFO 	2016-04-13 17:47:16 	[clean_up] 	/users/project/4DGenome_no_backup/data/hic/samples/4369ff754_53fa618d2/mapped_reads
+TIME 	2016-04-13 17:47:21 	[clean_up] 	step time for completion (seconds) = 5
+
+

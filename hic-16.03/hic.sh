@@ -129,7 +129,7 @@ main() {
 		index_contacts
 		map_to_bam
 		downstream_bam
-		clean_up
+		#clean_up
 	elif [[ $pipeline_run_mode == 'preliminary_checks' ]]; then preliminary_checks
 	elif [[ $pipeline_run_mode == 'raw_fastqs_quality_plots' ]]; then raw_fastqs_quality_plots
 	elif [[ $pipeline_run_mode == 'trim_reads_trimmomatic' ]]; then trim_reads_trimmomatic
@@ -363,12 +363,18 @@ trim_reads_trimmomatic() {
 	params="$ifq1 $ifq2 $paired1 $unpaired1 $paired2 $unpaired2"
 	ODIR=$PAIRED
 
+	# Get metadata
+	if [[ $integrate_metadata == "yes" ]]; then
+		read_length=`$io_metadata -m get_from_metadata -s $sample_id -t input_metadata -a READ_LENGTH`
+	fi
+
 	# adapter trimming: the trimmomatic program directory contains a folder with the adapter sequences for
 	# the Illumina sequencers in use. 'TruSeq3-PE.fa' is used, which contains the adapter sequences for the HiSeq
 	message_info $step "sequencing type = $sequencing_type" 
 	message_info $step "trimming TruSeq3 adapter sequences for HiSeq, NextSeq or HiSeq"
 	message_info $step "trimming low-quality reads ends using trimmomatic's recommended practices"
 	seqs=$ADAPTERS/TruSeq3-$sequencing_type.fa
+	targetLength=$read_length
 	$trimmomatic $sequencing_type \
  					$params \
  					ILLUMINACLIP:$seqs:$seedMismatches:$palindromeClipThreshold:$simpleClipThreshold:$minAdapterLength:$keepBothReads \

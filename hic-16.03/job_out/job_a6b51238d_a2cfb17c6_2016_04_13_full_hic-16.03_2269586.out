@@ -62,3 +62,12 @@ INFO 	2016-04-13 13:19:23 	[map_to_bam] 	converting MAP to BAM
 TIME 	2016-04-13 13:26:03 	[map_to_bam] 	step time for completion (seconds) = 400
 
 INFO 	2016-04-13 13:26:05 	[downstream_bam] 	perform several downstream analyses
+/usr/share/univage/soldierantcluster/spool/node-hp0307/job_scripts/2269586: line 747: 54748 Aborted                 (core dumped) $python $SCRIPTS/tadbit_after_bam.py $ibam $flag_excluded $flag_included $flag_perzero $DOWNSTREAM/${sample_id}_ $slots $resolution_ab $resolution_tad &>$step_log
+TIME 	2016-04-13 17:34:32 	[downstream_bam] 	step time for completion (seconds) = 14907
+
+INFO 	2016-04-13 17:34:34 	[clean_up] 	deleting the following intermediate files/directories:
+INFO 	2016-04-13 17:34:34 	[clean_up] 	/users/project/4DGenome_no_backup/data/hic/samples/a6b51238d_a2cfb17c6/fastqs_processed
+INFO 	2016-04-13 17:34:34 	[clean_up] 	/users/project/4DGenome_no_backup/data/hic/samples/a6b51238d_a2cfb17c6/mapped_reads
+TIME 	2016-04-13 17:34:37 	[clean_up] 	step time for completion (seconds) = 3
+
+

@@ -31,3 +31,43 @@ INFO 	2016-04-13 16:13:53 	[align_and_merge] 	restriction enzyme = DpnII
 INFO 	2016-04-13 16:13:53 	[align_and_merge] 	read length = 75
 INFO 	2016-04-13 16:13:53 	[align_and_merge] 	genome reference FASTA file found at /users/GR/mb/jquilez/assemblies/homo_sapiens/hg38_mmtv/ucsc/hg38_mmtv.fa
 INFO 	2016-04-13 16:13:53 	[align_and_merge] 	mapping, processing reads according to restriction enzyme fragments and merging aligments for read1 and read2...
+INFO 	2016-04-14 00:00:56 	[align_and_merge] 	output saved in /users/project/4DGenome_no_backup/data/hic/samples/a1e46328c_db4f304ee/logs/hg38_mmtv/a1e46328c_db4f304ee_align_and_merge_paired_end.log
+TIME 	2016-04-14 00:03:05 	[align_and_merge] 	step time for completion (seconds) = 28156
+
+INFO 	2016-04-14 00:03:20 	[post_mapping_statistics] 	generating post mapping descriptive statistics plots...
+INFO 	2016-04-14 00:38:44 	[post_mapping_statistics] 	fraction of reads mapped read1 = 0.891405180065
+INFO 	2016-04-14 00:38:44 	[post_mapping_statistics] 	fraction of reads mapped read2 = 0.851623013843
+INFO 	2016-04-14 00:38:44 	[post_mapping_statistics] 	number of pairs in which both read1 and read2 are mapped = 120953719
+INFO 	2016-04-14 00:38:44 	[post_mapping_statistics] 	counts-to-distance slope = -1.2526118186
+TIME 	2016-04-14 00:38:51 	[post_mapping_statistics] 	step time for completion (seconds) = 2131
+
+INFO 	2016-04-14 00:39:12 	[reads_filtering] 	filtering reads based on multiple quality parameters...
+INFO 	2016-04-14 00:39:12 	[reads_filtering] 	filtered reads to be used for subsequent analyses are at /users/project/4DGenome_no_backup/data/hic/samples/a1e46328c_db4f304ee/results/hg38_mmtv/filtered_reads
+INFO 	2016-04-14 00:39:12 	[reads_filtering] 	excluded reads due to dangling ends are at /users/project/4DGenome_no_backup/data/hic/samples/a1e46328c_db4f304ee/results/hg38_mmtv/excluded_reads/dangling_ends
+INFO 	2016-04-14 00:39:12 	[reads_filtering] 	excluded reads due to self circle are at /users/project/4DGenome_no_backup/data/hic/samples/a1e46328c_db4f304ee/results/hg38_mmtv/excluded_reads/self_circle
+INFO 	2016-04-14 00:39:12 	[reads_filtering] 	summary of excluded reads at /users/project/4DGenome_no_backup/data/hic/samples/a1e46328c_db4f304ee/results/hg38_mmtv/excluded_reads/summary_excluded_per_filter
+INFO 	2016-04-14 00:58:08 	[reads_filtering] 	numbers and fractions of filtered and excluded reads added to the metadata
+TIME 	2016-04-14 01:00:23 	[reads_filtering] 	step time for completion (seconds) = 1291
+
+INFO 	2016-04-14 01:00:25 	[post_filtering_statistics] 	generating post filtering descriptive statistics plots... saved at /users/project/4DGenome_no_backup/data/hic/samples/a1e46328c_db4f304ee/plots/hg38_mmtv/post_filtering_statistics:
+INFO 	2016-04-14 01:00:25 	[post_filtering_statistics] 	- filtered reads: sequencing coverage along chromosomes, coverage values and interaction matrix
+INFO 	2016-04-14 01:00:25 	[post_filtering_statistics] 	- dangling ends: sequencing coverage along chromosomes and coverage values
+INFO 	2016-04-14 01:00:25 	[post_filtering_statistics] 	- self-circle ends: sequencing coverage along chromosomes and coverage values
+TIME 	2016-04-14 01:22:48 	[post_filtering_statistics] 	step time for completion (seconds) = 1343
+
+INFO 	2016-04-14 01:22:50 	[index_contacts] 	indexing /users/project/4DGenome_no_backup/data/hic/samples/a1e46328c_db4f304ee/results/hg38_mmtv/filtered_reads/*filtered_map.tsv
+TIME 	2016-04-14 02:01:48 	[index_contacts] 	step time for completion (seconds) = 2338
+
+INFO 	2016-04-14 02:02:00 	[map_to_bam] 	converting MAP to BAM
+[bam_sort_core] merging from 69 files...
+TIME 	2016-04-14 03:32:49 	[map_to_bam] 	step time for completion (seconds) = 5449
+
+INFO 	2016-04-14 03:33:01 	[downstream_bam] 	perform several downstream analyses
+TIME 	2016-04-14 15:22:16 	[downstream_bam] 	step time for completion (seconds) = 42555
+
+INFO 	2016-04-14 15:22:17 	[clean_up] 	deleting the following intermediate files/directories:
+INFO 	2016-04-14 15:22:17 	[clean_up] 	/users/project/4DGenome_no_backup/data/hic/samples/a1e46328c_db4f304ee/fastqs_processed
+INFO 	2016-04-14 15:22:17 	[clean_up] 	/users/project/4DGenome_no_backup/data/hic/samples/a1e46328c_db4f304ee/mapped_reads
+TIME 	2016-04-14 15:22:18 	[clean_up] 	step time for completion (seconds) = 1
+
+

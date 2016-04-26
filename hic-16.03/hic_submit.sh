@@ -111,6 +111,8 @@ for s in $samples; do
 	chmod a+x $job_file
 	if [[ $submit_to_cluster == "yes" ]]; then
 		qsub < $job_file
+		#echo "job not submitted"
+		#ls $job_file
 	else
 		chmod a+x $job_file
 		$job_file

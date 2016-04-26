@@ -62,3 +62,12 @@ INFO 	2016-04-13 13:09:44 	[map_to_bam] 	converting MAP to BAM
 TIME 	2016-04-13 13:16:46 	[map_to_bam] 	step time for completion (seconds) = 422
 
 INFO 	2016-04-13 13:16:48 	[downstream_bam] 	perform several downstream analyses
+/usr/share/univage/soldierantcluster/spool/node-hp0207/job_scripts/2269585: line 747:  2494 Segmentation fault      (core dumped) $python $SCRIPTS/tadbit_after_bam.py $ibam $flag_excluded $flag_included $flag_perzero $DOWNSTREAM/${sample_id}_ $slots $resolution_ab $resolution_tad &>$step_log
+TIME 	2016-04-13 17:20:55 	[downstream_bam] 	step time for completion (seconds) = 14647
+
+INFO 	2016-04-13 17:20:57 	[clean_up] 	deleting the following intermediate files/directories:
+INFO 	2016-04-13 17:20:57 	[clean_up] 	/users/project/4DGenome_no_backup/data/hic/samples/cedbf7bbd_a2cfb17c6/fastqs_processed
+INFO 	2016-04-13 17:20:57 	[clean_up] 	/users/project/4DGenome_no_backup/data/hic/samples/cedbf7bbd_a2cfb17c6/mapped_reads
+TIME 	2016-04-13 17:21:00 	[clean_up] 	step time for completion (seconds) = 3
+
+

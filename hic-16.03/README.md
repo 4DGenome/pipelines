@@ -3,6 +3,9 @@
 
 **Pipeline to process HiC data using TADbit**
 
+## bugs fixed
+- 2016-04-25: Trimmomatic's `targetLength` is now set equal to `read_length`; keep in mind the second is specified in the metadata database or in the configuration file if run in `mode=custom`. Also, `targetLength` has been removed from the configuration file to avoid confusion/redundance
+
 
 ## Modules
 

@@ -1,101 +1,65 @@
-# additional run variables
-time_start=$(date +"%s")
-run_date=`date +"%Y-%m-%d-%H-%M"`
-job_name=$pipeline_name-$pipeline_version
+#!/bin/bash
+#$ -N job_test1_2016_05_10_full_hic-16.05
+#$ -q long-sl65
+#$ -l virtual_free=100G
+#$ -l h_rt=100:00:00
+#$ -o /users/project/4DGenome/pipelines/hic-16.05/test/job_out/job_test1_2016_05_10_full_hic-16.05_$JOB_ID.out
+#$ -e /users/project/4DGenome/pipelines/hic-16.05/test/job_out/job_test1_2016_05_10_full_hic-16.05_$JOB_ID.err
+#$ -j y
+#$ -M javier.quilez@crg.eu
+#$ -m abe
+#$ -pe smp 10
 
-# script to in/out data from metadata
-io_metadata=/users/project/4DGenome/utils/io_metadata.sh
-metadata=/users/project/4DGenome/data/4DGenome_metadata.db
-
-# get species and assembly version from the metadata
-if [[ $integrate_metadata == "yes" ]]; then
-	species=`$io_metadata -m get_from_metadata -s $sample_id -t input_metadata -a 'SPECIES'`
-	if [[ ${species,,} == 'homo_sapiens' ]]; then
-		version=hg38_mmtv
-	elif [[ ${species,,} == 'mus_musculus' ]]; then
-		version=mm10
-	fi
-fi
-
-# makes that the job uses this python/tadbit
-export PATH="/software/mb/el6.3/Conda/bin:$PATH"
-
-
-
-#==================================================================================================
-# PATHS
-#==================================================================================================
-
-
-# (1) Directories
-
-# pipeline scripts
-SCRIPTS=$PIPELINE/scripts
-
-# Primary output directory
-if [[ $io_mode == "custom" ]]; then
-	SAMPLE=$CUSTOM_OUT/$sample_id
-	echo $SAMPLE
-else
-	SAMPLE=/users/project/4DGenome_no_backup/data/$data_type/samples/$sample_id
-fi
-
-# sequencing data
-SEQ_DATA=/users/project/4DGenome/sequencing
-
-# Logs
-LOGS=$SAMPLE/logs/$version
-
-# Trim reads
-TRIMMED=$SAMPLE/fastqs_processed/trimmomatic
-PAIRED=$TRIMMED/paired_end
-UNPAIRED=$TRIMMED/unpaired_reads
-ADAPTERS=/software/mb/el6.3/Trimmomatic-0.33/adapters
-
-# SHA cheksums
-CHECKSUMS=$SAMPLE/checksums/$version/$run_date
-checksums=$CHECKSUMS/files_checksums.sha
-
-# quality plots of raw reads
-QUALITY_PLOTS=$SAMPLE/plots/$version/raw_fastqs_quality_plots
-
-# aligned, processed and merged reads and post-mapping quality plots
-PROCESSED=$SAMPLE/results/$version/processed_reads
-POSTMAPPING_PLOTS=$SAMPLE/plots/$version/post_mapping_statistics
-COVERAGES=$SAMPLE/results/$version/genomic_coverages
-
-# filtered and excluded reads, post-filtering plots
-FILTERED=$SAMPLE/results/$version/filtered_reads
-DANGLING=$SAMPLE/results/$version/excluded_reads/dangling_ends
-SELF_CIRCLE=$SAMPLE/results/$version/excluded_reads/self_circle
-SUMMARY_EXCLUDED=$SAMPLE/results/$version/excluded_reads/summary_excluded_per_filter
-POSTFILTERING_PLOTS=$SAMPLE/plots/$version/post_filtering_statistics
-
-# downstream analyses
-DOWNSTREAM=$SAMPLE/downstream/$version
-
-
-# (2) Files
-
-# input FASTQ
-if [[ $io_mode == "custom" ]]; then
-	ifq1_name=`grep -w $sample_id $CUSTOM_IN/sample_to_fastqs.txt |cut -f2`
-	ifq2_name=`grep -w $sample_id $CUSTOM_IN/sample_to_fastqs.txt |cut -f3`
-	ifq1=$CUSTOM_IN/$ifq1_name
-	ifq2=$CUSTOM_IN/$ifq2_name
-else
-	ifq1=$SEQ_DATA/*/${sample_id}*read1.fastq.gz
-	ifq2=$SEQ_DATA/*/${sample_id}*read2.fastq.gz
-fi
-
-# tools
-python=`which python`
-trimmomatic=`which trimmomatic`
-samtools=/software/mb/el6.3/samtools-1.2/samtools
-
-# get TADbit and its dependencies versions
-tadbit_and_dependencies_versions=`$python $SCRIPTS/print_tadbit_and_dependencies_version.py`
-
+submitted_on=2016_05_10
+pipeline_version=16.05
+sample_id=test1
+data_type=hic
+pipeline_name=hic
+pipeline_version=16.05
+pipeline_run_mode=full
+io_mode=custom
+CUSTOM_IN=/users/project/4DGenome/pipelines/hic-16.05/test
+CUSTOM_OUT=/users/project/4DGenome/pipelines/hic-16.05/test
+sample_to_fastqs=sample_to_fastqs.txt
+submit_to_cluster=no
+queue=long-sl65
+memory=100G
+max_time=100:00:00
+slots=10
+email=javier.quilez@crg.eu
+integrate_metadata=no
+species=homo_sapiens
+version=hg38_mmtv
+read_length=50
+sequencing_type=PE
+seedMismatches=2
+palindromeClipThreshold=30
+simpleClipThreshold=12
+leading=3
+trailing=3
+minAdapterLength=1
+keepBothReads=true
+minQual=3
+strictness=0.999
+minLength=36
+restriction_enzyme=DpnII
+max_molecule_length=500
+max_frag_size=10000
+min_frag_size=50
+over_represented=0.005
+re_proximity=4
+reads_number_qc=100000
+genomic_coverage_resolution=Mb
+frag_map=True
+flag_excluded=775
+flag_included=0
+flag_perzero=99
+resolution_tad=50000
+resolution_ab=100000
+CUSTOM_OUT=/users/project/4DGenome/pipelines/hic-16.05/test
+PIPELINE=/users/project/4DGenome/pipelines/hic-16.05
+config=pipelines/hic-16.05/hic.config
+path_job_file=/users/project/4DGenome/pipelines/hic-16.05/test/job_cmd/job_test1_2016_05_10_full_hic-16.05.sh
 
 
 # =================================================================================================
@@ -105,6 +69,114 @@ tadbit_and_dependencies_versions=`$python $SCRIPTS/print_tadbit_and_dependencies
 main() {
 
 	echo
+
+	#==================================================================================================
+	# Configuration
+	#==================================================================================================
+
+	# additional run variables
+	time_start=$(date +"%s")
+	run_date=`date +"%Y-%m-%d-%H-%M"`
+	job_name=$pipeline_name-$pipeline_version
+
+	# makes that the job uses this python/tadbit
+	export PATH="/software/mb/el6.3/Conda/bin:$PATH"
+
+	# Settings based on the io_mode parameter
+	if [[ $io_mode == "custom" ]]; then
+		message_info "configuration" "running $job_name with io_mode=custom, which implies:"
+		message_info "configuration" "integrate_metadata=no (value given in the *.config file is overwritten)"
+		message_info "configuration" "all parameter values are taken from the *.config file and used for all samples"
+		integrate_metadata=no
+		# output directory
+		SAMPLE=$CUSTOM_OUT/$sample_id
+		message_info "configuration" "data for $sample_id will be stored at $SAMPLE"
+		# input FASTQ files
+		ifq1_name=`grep -w $sample_id $CUSTOM_IN/sample_to_fastqs.txt |cut -f2`
+	 	ifq2_name=`grep -w $sample_id $CUSTOM_IN/sample_to_fastqs.txt |cut -f3`
+	 	ifq1=$CUSTOM_IN/$ifq1_name
+	 	ifq2=$CUSTOM_IN/$ifq2_name
+	 	message_info "configuration" "paths to input FASTQ files extracted from $CUSTOM_IN/sample_to_fastqs.txt"
+		message_info "configuration" "species ($species) and assembly version ($version) extracted from the metadata"
+		if [[ $species == 'homo_sapiens' ]]; then
+			fasta=/users/GR/mb/jquilez/assemblies/$species/$version/ucsc/${version}_chr1-22XYM.fa
+		elif [[ $species == 'mus_musculus' ]]; then
+			fasta=/users/GR/mb/jquilez/assemblies/$species/$version/ucsc/${version}_chr1-19XYM.fa
+		fi
+	elif [[ $io_mode == "standard" ]]; then
+		# script to in/out data from metadata
+		io_metadata=/users/project/4DGenome/utils/io_metadata.sh
+		metadata=/users/project/4DGenome/data/4DGenome_metadata.db
+		message_info "configuration" "script to access/write from/to metadata: $io_metadata"
+		message_info "configuration" "metadata database: $metadata"
+		# output directory
+		SAMPLE=/users/project/4DGenome_no_backup/data/$data_type/samples/$sample_id
+		message_info "configuration" "data for $sample_id will be stored at $SAMPLE"
+		# input FASTQ files
+		ifq1=$SEQ_DATA/*/${sample_id}*read1.fastq.gz
+		ifq2=$SEQ_DATA/*/${sample_id}*read2.fastq.gz
+		message_info "configuration" "paths to input FASTQ files extracted from the metadata"
+		# get species and assembly version from the metadata
+		if [[ $integrate_metadata == "yes" ]]; then
+			species=`$io_metadata -m get_from_metadata -s $sample_id -t input_metadata -a 'SPECIES'`
+			restriction_enzyme=`$io_metadata -m get_from_metadata -s $sample_id -t input_metadata -a RESTRICTION_ENZYME`
+			read_length=`$io_metadata -m get_from_metadata -s $sample_id -t input_metadata -a READ_LENGTH`
+			if [[ ${species,,} == 'homo_sapiens' ]]; then
+				version=hg38_mmtv
+				fasta=/users/GR/mb/jquilez/assemblies/${species,,}/$version/ucsc/${version}_chr1-22XYM.fa
+			elif [[ ${species,,} == 'mus_musculus' ]]; then
+				version=mm10
+				fasta=/users/GR/mb/jquilez/assemblies/${species,,}/$version/ucsc/${version}_chr1-19XYM.fa
+			fi
+		fi
+		message_info "configuration" "species ($species) and assembly version ($version) extracted from the metadata"
+	fi
+
+	# pipeline scripts
+	SCRIPTS=$PIPELINE/scripts
+
+	# sequencing data
+	SEQ_DATA=/users/project/4DGenome/sequencing
+
+	# Logs
+	LOGS=$SAMPLE/logs/$version
+
+	# Trim reads
+	TRIMMED=$SAMPLE/fastqs_processed/trimmomatic
+	PAIRED=$TRIMMED/paired_end
+	UNPAIRED=$TRIMMED/unpaired_reads
+	ADAPTERS=/software/mb/el6.3/Trimmomatic-0.33/adapters
+
+	# SHA cheksums
+	CHECKSUMS=$SAMPLE/checksums/$version/$run_date
+	checksums=$CHECKSUMS/files_checksums.sha
+
+	# quality plots of raw reads
+	QUALITY_PLOTS=$SAMPLE/plots/$version/raw_fastqs_quality_plots
+
+	# aligned, processed and merged reads and post-mapping quality plots
+	PROCESSED=$SAMPLE/results/$version/processed_reads
+	POSTMAPPING_PLOTS=$SAMPLE/plots/$version/post_mapping_statistics
+	COVERAGES=$SAMPLE/results/$version/genomic_coverages
+
+	# filtered and excluded reads, post-filtering plots
+	FILTERED=$SAMPLE/results/$version/filtered_reads
+	DANGLING=$SAMPLE/results/$version/excluded_reads/dangling_ends
+	SELF_CIRCLE=$SAMPLE/results/$version/excluded_reads/self_circle
+	SUMMARY_EXCLUDED=$SAMPLE/results/$version/excluded_reads/summary_excluded_per_filter
+	POSTFILTERING_PLOTS=$SAMPLE/plots/$version/post_filtering_statistics
+
+	# downstream analyses
+	DOWNSTREAM=$SAMPLE/downstream/$version
+
+	# tools
+	python=`which python`
+	trimmomatic=`which trimmomatic`
+	samtools=/software/mb/el6.3/samtools-1.2/samtools
+
+	# get TADbit and its dependencies versions
+	tadbit_and_dependencies_versions=`$python $SCRIPTS/print_tadbit_and_dependencies_version.py`
+
 	# store general parameters into the metadata
 	if [[ $integrate_metadata == "yes" ]]; then
 		$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a PIPELINE_RUN_MODE -v $pipeline_run_mode
@@ -118,17 +190,23 @@ main() {
 		$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a TADBIT_AND_DEPENDENCIES_VERSIONS -v $tadbit_and_dependencies_versions		
 	fi
 
+	echo
+
+	#==================================================================================================
+	# Execute modules
+	#==================================================================================================
+
 	if [[ $pipeline_run_mode == 'full' ]]; then
-		preliminary_checks
-		raw_fastqs_quality_plots
-		trim_reads_trimmomatic
-		align_and_merge
-		post_mapping_statistics
-		reads_filtering
-		post_filtering_statistics
-		index_contacts
-		map_to_bam
-		downstream_bam
+		#preliminary_checks
+		#raw_fastqs_quality_plots
+		#trim_reads_trimmomatic
+		#align_and_merge
+		#post_mapping_statistics
+		#reads_filtering
+		#post_filtering_statistics
+		#index_contacts
+		#map_to_bam
+		#downstream_bam
 		clean_up
 	elif [[ $pipeline_run_mode == 'preliminary_checks' ]]; then preliminary_checks
 	elif [[ $pipeline_run_mode == 'raw_fastqs_quality_plots' ]]; then raw_fastqs_quality_plots
@@ -233,15 +311,23 @@ preliminary_checks() {
 			message_info $step "$sample_id found in $metadata"
 		fi
 	fi
-	message_info $step "data for $sample_id will be stored at $SAMPLE"
 
 	# check FASTQ files exist
 	if [ -f $ifq1 ] && [ -f $ifq2 ]; then
 		mkdir -p $SAMPLE
 		mkdir -p $CHECKSUMS
 		# save a SHA checksums of the FASTQ files
+		# because different compressions would then have different checksums, checksums are generated on the uncompressed FASTQ
+		# after checksums are generated, the uncompressed file is deleted for the sake of space
+		tfq1=`echo $ifq1 | sed "s/\.gz//g"`
+		tfq2=`echo $ifq2 | sed "s/\.gz//g"`
+		zcat $ifq1 > $tfq1
+		zcat $ifq2 > $tfq2
 		shasum $ifq1 >> $checksums
+		shasum $tfq1 >> $checksums
 		shasum $ifq2 >> $checksums
+		shasum $tfq2 >> $checksums
+		rm -f $tfq1 $tfq2
 		# Get sequencing information from the header of the FASTQ reads (some fields should be shared across all reads)
 		fq_header=`zcat $ifq1 | head -n 1 | sed s'/ /:/g'`
 		sequencing_instrument_name=`echo $fq_header | cut -f1 -d':'`
@@ -280,7 +366,6 @@ preliminary_checks() {
 			fi
 		fi
 		# Check that FASTQ for the reference genome sequence exists
-		fasta=/users/GR/mb/jquilez/assemblies/${species,,}/$version/ucsc/$version.fa
 		if ! [[ -f "$fasta" ]]; then
 			message_error $step "FASTA file $fasta does not exist! Exiting..."
 		else
@@ -309,10 +394,6 @@ raw_fastqs_quality_plots() {
 	step="raw_fastqs_quality_plots"
 	time0=$(date +"%s")
 
-	# Get metadata
-	if [[ $integrate_metadata == "yes" ]]; then
-		restriction_enzyme=`$io_metadata -m get_from_metadata -s $sample_id -t input_metadata -a RESTRICTION_ENZYME`
-	fi
 	message_info $step "restriction enzyme = $restriction_enzyme"
 	message_info $step "a subset of $reads_number_qc reds will be used to generate the quality plots"
 	
@@ -368,9 +449,9 @@ trim_reads_trimmomatic() {
 	ODIR=$PAIRED
 
 	# Get metadata
-	if [[ $integrate_metadata == "yes" ]]; then
-		read_length=`$io_metadata -m get_from_metadata -s $sample_id -t input_metadata -a READ_LENGTH`
-	fi
+	#if [[ $integrate_metadata == "yes" ]]; then
+	#	read_length=`$io_metadata -m get_from_metadata -s $sample_id -t input_metadata -a READ_LENGTH`
+	#fi
 
 	# adapter trimming: the trimmomatic program directory contains a folder with the adapter sequences for
 	# the Illumina sequencers in use. 'TruSeq3-PE.fa' is used, which contains the adapter sequences for the HiSeq
@@ -434,18 +515,18 @@ align_and_merge() {
 	mkdir -p $CHECKSUMS
 
 	# Get metadata
-	if [[ $integrate_metadata == "yes" ]]; then
-		restriction_enzyme=`$io_metadata -m get_from_metadata -s $sample_id -t input_metadata -a RESTRICTION_ENZYME`
-		species=`$io_metadata -m get_from_metadata -s $sample_id -t input_metadata -a SPECIES`
-		read_length=`$io_metadata -m get_from_metadata -s $sample_id -t input_metadata -a READ_LENGTH`
-	fi
+	#if [[ $integrate_metadata == "yes" ]]; then
+	#	restriction_enzyme=`$io_metadata -m get_from_metadata -s $sample_id -t input_metadata -a RESTRICTION_ENZYME`
+	#	species=`$io_metadata -m get_from_metadata -s $sample_id -t input_metadata -a SPECIES`
+	#	read_length=`$io_metadata -m get_from_metadata -s $sample_id -t input_metadata -a READ_LENGTH`
+	#fi
 	message_info $step "species = $species"
 	message_info $step "assembly version = $version"
 	message_info $step "restriction enzyme = $restriction_enzyme"
 	message_info $step "read length = $read_length"
 
 	# genome reference FASTA
-	fasta=/users/GR/mb/jquilez/assemblies/${species,,}/$version/ucsc/$version.fa
+	#fasta=/users/GR/mb/jquilez/assemblies/${species,,}/$version/ucsc/$version.fa
 	if ! [[ -f "$fasta" ]]; then
 		message_error $step "FASTA file $fasta does not exist! Exiting..."
 	else
@@ -670,17 +751,32 @@ map_to_bam() {
 	step="map_to_bam"
 	time0=$(date +"%s")
 
-	# paths
-	imap=$PROCESSED/*both_map.tsv
-	ODIR=/users/project/4DGenome/data/hic/samples/$sample_id/results/$version/processed_reads
-	mkdir -p $ODIR
-	obam=$ODIR/$(basename $imap .tsv)
-
+	mkdir -p $CHECKSUMS
 	message_info $step "converting MAP to BAM"
-	$python $SCRIPTS/tadbit_map2sam_stdout_modified.py $imap | $samtools view -Su - | $samtools sort - $obam
-	$samtools index $obam.bam
-	ln -sf $obam.bam $PROCESSED/$(basename $obam).bam
-	ln -sf $obam.bam.bai $PROCESSED/$(basename $obam).bam.bai
+	imap=$PROCESSED/*both_map.tsv
+
+	if [[ $io_mode == "custom" ]]; then
+		ODIR=$PROCESSED
+		obam=$ODIR/$(basename $imap .tsv)
+		$python $SCRIPTS/tadbit_map2sam_stdout_modified.py $imap | $samtools view -Su - | $samtools sort - $obam
+		$samtools index $obam.bam
+	elif [[ $io_mode == "standard" ]]; then
+		ODIR=/users/project/4DGenome/data/hic/samples/$sample_id/results/$version/processed_reads
+		mkdir -p $ODIR
+		obam=$ODIR/$(basename $imap .tsv)
+		$python $SCRIPTS/tadbit_map2sam_stdout_modified.py $imap | $samtools view -Su - | $samtools sort - $obam
+		$samtools index $obam.bam
+		ln -sf $obam.bam $PROCESSED/$(basename $obam).bam
+		ln -sf $obam.bam.bai $PROCESSED/$(basename $obam).bam.bai
+	fi
+
+	# save a SHA checksums of the alignment file BAM
+	# because different compressions would then have different checksums, checksums are generated on the uncompressed BAM (i.e. SAM)
+	# after checksums are generated, the uncompressed file is deleted for the sake of space
+	$samtools view -h $obam.bam > $obam.sam
+	shasum $obam.bam >> $checksums
+	shasum $obam.sam >> $checksums
+	rm -f $obam.map
 
 	message_time_step $step $time0
 

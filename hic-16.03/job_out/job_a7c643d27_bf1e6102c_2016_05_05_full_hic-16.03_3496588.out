@@ -1,0 +1,103 @@
+
+INFO 	2016-05-05 13:04:44 	[preliminary_checks] 	a7c643d27_bf1e6102c found in /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-05-05 13:04:44 	[preliminary_checks] 	data for a7c643d27_bf1e6102c will be stored at /users/project/4DGenome_no_backup/data/hic/samples/a7c643d27_bf1e6102c
+INFO 	2016-05-05 13:08:42 	[preliminary_checks] 	paths to read1 and read2 saved to metadata database
+INFO 	2016-05-05 13:08:43 	[preliminary_checks] 	Sequencing index added as part of the metadata agrees with that observed in the FASTQ file
+WARN 	2016-05-05 13:08:45 	[preliminary_checks] 	read length obtained from the metadata (75 bp) differs from that seen in the FASTQ (76 bp)
+WARN 	2016-05-05 13:08:45 	[preliminary_checks] 	the latter will be kept
+INFO 	2016-05-05 13:08:46 	[preliminary_checks] 	genome reference FASTA file found at /users/GR/mb/jquilez/assemblies/mus_musculus/mm10/ucsc/mm10.fa
+INFO 	2016-05-05 13:09:08 	[preliminary_checks] 	paths to reference FASTA saved to metadata database
+TIME 	2016-05-05 13:09:08 	[preliminary_checks] 	step time for completion (seconds) = 266
+
+INFO 	2016-05-05 13:09:11 	[raw_fastqs_quality_plots] 	restriction enzyme = DpnII
+INFO 	2016-05-05 13:09:11 	[raw_fastqs_quality_plots] 	a subset of 100000 reds will be used to generate the quality plots
+INFO 	2016-05-05 13:09:11 	[raw_fastqs_quality_plots] 	making quality plots of the raw FASTQ files... plots saved at /users/project/4DGenome_no_backup/data/hic/samples/a7c643d27_bf1e6102c/plots/mm10/raw_fastqs_quality_plots
+INFO 	2016-05-05 13:09:39 	[raw_fastqs_quality_plots] 	percentages of dangling ends and ligated sites in read1 and read2 saved to metadata database
+TIME 	2016-05-05 13:09:39 	[raw_fastqs_quality_plots] 	step time for completion (seconds) = 30
+
+INFO 	2016-05-05 13:09:43 	[trim_reads_trimmomatic] 	sequencing type = PE
+INFO 	2016-05-05 13:09:43 	[trim_reads_trimmomatic] 	trimming TruSeq3 adapter sequences for HiSeq, NextSeq or HiSeq
+INFO 	2016-05-05 13:09:43 	[trim_reads_trimmomatic] 	trimming low-quality reads ends using trimmomatic's recommended practices
+INFO 	2016-05-05 15:07:12 	[trim_reads_trimmomatic] 	parse step log to extract generated metadata
+INFO 	2016-05-05 15:07:12 	[trim_reads_trimmomatic] 	reads after trimming = 257590531
+INFO 	2016-05-05 15:07:33 	[trim_reads_trimmomatic] 	trimmomatic parameters and numbe of trimmed reads added to metadata
+INFO 	2016-05-05 15:07:33 	[trim_reads_trimmomatic] 	trimmed reads are in /users/project/4DGenome_no_backup/data/hic/samples/a7c643d27_bf1e6102c/fastqs_processed/trimmomatic/paired_end
+INFO 	2016-05-05 15:07:33 	[trim_reads_trimmomatic] 	unpaired reads are deleted
+TIME 	2016-05-05 15:07:33 	[trim_reads_trimmomatic] 	step time for completion (seconds) = 7072
+
+INFO 	2016-05-05 15:07:39 	[align_and_merge] 	species = Mus_musculus
+INFO 	2016-05-05 15:07:39 	[align_and_merge] 	assembly version = mm10
+INFO 	2016-05-05 15:07:39 	[align_and_merge] 	restriction enzyme = DpnII
+INFO 	2016-05-05 15:07:39 	[align_and_merge] 	read length = 76
+INFO 	2016-05-05 15:07:39 	[align_and_merge] 	genome reference FASTA file found at /users/GR/mb/jquilez/assemblies/mus_musculus/mm10/ucsc/mm10.fa
+INFO 	2016-05-05 15:07:40 	[align_and_merge] 	mapping, processing reads according to restriction enzyme fragments and merging aligments for read1 and read2...
+INFO 	2016-05-06 04:13:08 	[align_and_merge] 	output saved in /users/project/4DGenome_no_backup/data/hic/samples/a7c643d27_bf1e6102c/logs/mm10/a7c643d27_bf1e6102c_align_and_merge_paired_end.log
+TIME 	2016-05-06 04:16:22 	[align_and_merge] 	step time for completion (seconds) = 47327
+
+INFO 	2016-05-06 04:16:35 	[post_mapping_statistics] 	generating post mapping descriptive statistics plots...
+INFO 	2016-05-06 05:19:19 	[post_mapping_statistics] 	fraction of reads mapped read1 = 0.979230269144
+INFO 	2016-05-06 05:19:19 	[post_mapping_statistics] 	fraction of reads mapped read2 = 0.974654965093
+INFO 	2016-05-06 05:19:19 	[post_mapping_statistics] 	number of pairs in which both read1 and read2 are mapped = 173939692
+INFO 	2016-05-06 05:19:19 	[post_mapping_statistics] 	counts-to-distance slope = -1.06025169477
+TIME 	2016-05-06 05:19:29 	[post_mapping_statistics] 	step time for completion (seconds) = 3774
+
+INFO 	2016-05-06 05:20:06 	[reads_filtering] 	filtering reads based on multiple quality parameters...
+INFO 	2016-05-06 05:20:06 	[reads_filtering] 	filtered reads to be used for subsequent analyses are at /users/project/4DGenome_no_backup/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/filtered_reads
+INFO 	2016-05-06 05:20:06 	[reads_filtering] 	excluded reads due to dangling ends are at /users/project/4DGenome_no_backup/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/excluded_reads/dangling_ends
+INFO 	2016-05-06 05:20:06 	[reads_filtering] 	excluded reads due to self circle are at /users/project/4DGenome_no_backup/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/excluded_reads/self_circle
+INFO 	2016-05-06 05:20:06 	[reads_filtering] 	summary of excluded reads at /users/project/4DGenome_no_backup/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/excluded_reads/summary_excluded_per_filter
+INFO 	2016-05-06 05:53:24 	[reads_filtering] 	numbers and fractions of filtered and excluded reads added to the metadata
+TIME 	2016-05-06 05:56:41 	[reads_filtering] 	step time for completion (seconds) = 2230
+
+INFO 	2016-05-06 05:56:44 	[post_filtering_statistics] 	generating post filtering descriptive statistics plots... saved at /users/project/4DGenome_no_backup/data/hic/samples/a7c643d27_bf1e6102c/plots/mm10/post_filtering_statistics:
+INFO 	2016-05-06 05:56:44 	[post_filtering_statistics] 	- filtered reads: sequencing coverage along chromosomes, coverage values and interaction matrix
+INFO 	2016-05-06 05:56:44 	[post_filtering_statistics] 	- dangling ends: sequencing coverage along chromosomes and coverage values
+INFO 	2016-05-06 05:56:44 	[post_filtering_statistics] 	- self-circle ends: sequencing coverage along chromosomes and coverage values
+TIME 	2016-05-06 06:40:28 	[post_filtering_statistics] 	step time for completion (seconds) = 2624
+
+INFO 	2016-05-06 06:40:36 	[index_contacts] 	indexing /users/project/4DGenome_no_backup/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/filtered_reads/*filtered_map.tsv
+TIME 	2016-05-06 07:57:45 	[index_contacts] 	step time for completion (seconds) = 4628
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/processed_reads/a7c643d27_bf1e6102c_both_map.0000.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/processed_reads/a7c643d27_bf1e6102c_both_map.0001.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/processed_reads/a7c643d27_bf1e6102c_both_map.0002.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/processed_reads/a7c643d27_bf1e6102c_both_map.0003.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/processed_reads/a7c643d27_bf1e6102c_both_map.0004.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/processed_reads/a7c643d27_bf1e6102c_both_map.0005.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/processed_reads/a7c643d27_bf1e6102c_both_map.0006.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/processed_reads/a7c643d27_bf1e6102c_both_map.0007.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/processed_reads/a7c643d27_bf1e6102c_both_map.0008.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/processed_reads/a7c643d27_bf1e6102c_both_map.0009.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/processed_reads/a7c643d27_bf1e6102c_both_map.0010.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/processed_reads/a7c643d27_bf1e6102c_both_map.0111.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/processed_reads/a7c643d27_bf1e6102c_both_map.0112.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/processed_reads/a7c643d27_bf1e6102c_both_map.0113.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/processed_reads/a7c643d27_bf1e6102c_both_map.0114.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/processed_reads/a7c643d27_bf1e6102c_both_map.0115.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/processed_reads/a7c643d27_bf1e6102c_both_map.0116.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/processed_reads/a7c643d27_bf1e6102c_both_map.0117.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/processed_reads/a7c643d27_bf1e6102c_both_map.0118.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/processed_reads/a7c643d27_bf1e6102c_both_map.0119.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/processed_reads/a7c643d27_bf1e6102c_both_map.0120.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/processed_reads/a7c643d27_bf1e6102c_both_map.0121.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/processed_reads/a7c643d27_bf1e6102c_both_map.0122.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/processed_reads/a7c643d27_bf1e6102c_both_map.0123.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/processed_reads/a7c643d27_bf1e6102c_both_map.0124.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/processed_reads/a7c643d27_bf1e6102c_both_map.0125.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/processed_reads/a7c643d27_bf1e6102c_both_map.0126.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/processed_reads/a7c643d27_bf1e6102c_both_map.0127.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/processed_reads/a7c643d27_bf1e6102c_both_map.0128.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/processed_reads/a7c643d27_bf1e6102c_both_map.0129.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/processed_reads/a7c643d27_bf1e6102c_both_map.0130.bam'
+[bam_sort_core] merging from 131 files...
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/processed_reads/a7c643d27_bf1e6102c_both_map.0000.bam'
+[bam_merge_core] fail to open file /users/project/4DGenome/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/processed_reads/a7c643d27_bf1e6102c_both_map.0000.bam
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/a7c643d27_bf1e6102c/results/mm10/processed_reads/a7c643d27_bf1e6102c_both_map.bam'
+TIME 	2016-05-06 09:30:28 	[map_to_bam] 	step time for completion (seconds) = 5543
+
+INFO 	2016-05-06 09:30:36 	[downstream_bam] 	perform several downstream analyses
+TIME 	2016-05-06 09:30:57 	[downstream_bam] 	step time for completion (seconds) = 21
+
+
+INFO 	2016-05-06 09:30:59 	[pipeline] 	completed successfully
+TIME 	2016-05-06 09:30:59 	[pipeline] 	total time for completion (seconds) = 73610
+

@@ -1,0 +1,200 @@
+
+INFO 	2016-05-05 13:17:53 	[preliminary_checks] 	b742f3789_b84d076d6 found in /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-05-05 13:17:53 	[preliminary_checks] 	data for b742f3789_b84d076d6 will be stored at /users/project/4DGenome_no_backup/data/hic/samples/b742f3789_b84d076d6
+INFO 	2016-05-05 13:21:32 	[preliminary_checks] 	paths to read1 and read2 saved to metadata database
+INFO 	2016-05-05 13:21:34 	[preliminary_checks] 	Sequencing index added as part of the metadata agrees with that observed in the FASTQ file
+WARN 	2016-05-05 13:21:35 	[preliminary_checks] 	read length obtained from the metadata (75 bp) differs from that seen in the FASTQ (76 bp)
+WARN 	2016-05-05 13:21:35 	[preliminary_checks] 	the latter will be kept
+INFO 	2016-05-05 13:21:36 	[preliminary_checks] 	genome reference FASTA file found at /users/GR/mb/jquilez/assemblies/mus_musculus/mm10/ucsc/mm10.fa
+INFO 	2016-05-05 13:21:59 	[preliminary_checks] 	paths to reference FASTA saved to metadata database
+TIME 	2016-05-05 13:21:59 	[preliminary_checks] 	step time for completion (seconds) = 247
+
+INFO 	2016-05-05 13:22:02 	[raw_fastqs_quality_plots] 	restriction enzyme = DpnII
+INFO 	2016-05-05 13:22:02 	[raw_fastqs_quality_plots] 	a subset of 100000 reds will be used to generate the quality plots
+INFO 	2016-05-05 13:22:02 	[raw_fastqs_quality_plots] 	making quality plots of the raw FASTQ files... plots saved at /users/project/4DGenome_no_backup/data/hic/samples/b742f3789_b84d076d6/plots/mm10/raw_fastqs_quality_plots
+INFO 	2016-05-05 13:22:20 	[raw_fastqs_quality_plots] 	percentages of dangling ends and ligated sites in read1 and read2 saved to metadata database
+TIME 	2016-05-05 13:22:20 	[raw_fastqs_quality_plots] 	step time for completion (seconds) = 19
+
+INFO 	2016-05-05 13:22:23 	[trim_reads_trimmomatic] 	sequencing type = PE
+INFO 	2016-05-05 13:22:23 	[trim_reads_trimmomatic] 	trimming TruSeq3 adapter sequences for HiSeq, NextSeq or HiSeq
+INFO 	2016-05-05 13:22:23 	[trim_reads_trimmomatic] 	trimming low-quality reads ends using trimmomatic's recommended practices
+INFO 	2016-05-05 15:25:43 	[trim_reads_trimmomatic] 	parse step log to extract generated metadata
+INFO 	2016-05-05 15:25:43 	[trim_reads_trimmomatic] 	reads after trimming = 245327230
+INFO 	2016-05-05 15:26:06 	[trim_reads_trimmomatic] 	trimmomatic parameters and numbe of trimmed reads added to metadata
+INFO 	2016-05-05 15:26:06 	[trim_reads_trimmomatic] 	trimmed reads are in /users/project/4DGenome_no_backup/data/hic/samples/b742f3789_b84d076d6/fastqs_processed/trimmomatic/paired_end
+INFO 	2016-05-05 15:26:06 	[trim_reads_trimmomatic] 	unpaired reads are deleted
+TIME 	2016-05-05 15:26:06 	[trim_reads_trimmomatic] 	step time for completion (seconds) = 7424
+
+INFO 	2016-05-05 15:26:12 	[align_and_merge] 	species = Mus_musculus
+INFO 	2016-05-05 15:26:12 	[align_and_merge] 	assembly version = mm10
+INFO 	2016-05-05 15:26:12 	[align_and_merge] 	restriction enzyme = DpnII
+INFO 	2016-05-05 15:26:12 	[align_and_merge] 	read length = 76
+INFO 	2016-05-05 15:26:12 	[align_and_merge] 	genome reference FASTA file found at /users/GR/mb/jquilez/assemblies/mus_musculus/mm10/ucsc/mm10.fa
+INFO 	2016-05-05 15:26:12 	[align_and_merge] 	mapping, processing reads according to restriction enzyme fragments and merging aligments for read1 and read2...
+INFO 	2016-05-06 03:47:04 	[align_and_merge] 	output saved in /users/project/4DGenome_no_backup/data/hic/samples/b742f3789_b84d076d6/logs/mm10/b742f3789_b84d076d6_align_and_merge_paired_end.log
+TIME 	2016-05-06 03:50:47 	[align_and_merge] 	step time for completion (seconds) = 44680
+
+INFO 	2016-05-06 03:50:56 	[post_mapping_statistics] 	generating post mapping descriptive statistics plots...
+INFO 	2016-05-06 04:53:50 	[post_mapping_statistics] 	fraction of reads mapped read1 = 0.98073662675
+INFO 	2016-05-06 04:53:50 	[post_mapping_statistics] 	fraction of reads mapped read2 = 0.97631432108
+INFO 	2016-05-06 04:53:50 	[post_mapping_statistics] 	number of pairs in which both read1 and read2 are mapped = 165513200
+INFO 	2016-05-06 04:53:50 	[post_mapping_statistics] 	counts-to-distance slope = -1.08602795211
+TIME 	2016-05-06 04:53:57 	[post_mapping_statistics] 	step time for completion (seconds) = 3780
+
+INFO 	2016-05-06 04:54:33 	[reads_filtering] 	filtering reads based on multiple quality parameters...
+INFO 	2016-05-06 04:54:33 	[reads_filtering] 	filtered reads to be used for subsequent analyses are at /users/project/4DGenome_no_backup/data/hic/samples/b742f3789_b84d076d6/results/mm10/filtered_reads
+INFO 	2016-05-06 04:54:33 	[reads_filtering] 	excluded reads due to dangling ends are at /users/project/4DGenome_no_backup/data/hic/samples/b742f3789_b84d076d6/results/mm10/excluded_reads/dangling_ends
+INFO 	2016-05-06 04:54:33 	[reads_filtering] 	excluded reads due to self circle are at /users/project/4DGenome_no_backup/data/hic/samples/b742f3789_b84d076d6/results/mm10/excluded_reads/self_circle
+INFO 	2016-05-06 04:54:33 	[reads_filtering] 	summary of excluded reads at /users/project/4DGenome_no_backup/data/hic/samples/b742f3789_b84d076d6/results/mm10/excluded_reads/summary_excluded_per_filter
+INFO 	2016-05-06 05:28:49 	[reads_filtering] 	numbers and fractions of filtered and excluded reads added to the metadata
+TIME 	2016-05-06 05:33:14 	[reads_filtering] 	step time for completion (seconds) = 2356
+
+INFO 	2016-05-06 05:33:17 	[post_filtering_statistics] 	generating post filtering descriptive statistics plots... saved at /users/project/4DGenome_no_backup/data/hic/samples/b742f3789_b84d076d6/plots/mm10/post_filtering_statistics:
+INFO 	2016-05-06 05:33:17 	[post_filtering_statistics] 	- filtered reads: sequencing coverage along chromosomes, coverage values and interaction matrix
+INFO 	2016-05-06 05:33:17 	[post_filtering_statistics] 	- dangling ends: sequencing coverage along chromosomes and coverage values
+INFO 	2016-05-06 05:33:17 	[post_filtering_statistics] 	- self-circle ends: sequencing coverage along chromosomes and coverage values
+TIME 	2016-05-06 06:14:52 	[post_filtering_statistics] 	step time for completion (seconds) = 2495
+
+INFO 	2016-05-06 06:14:54 	[index_contacts] 	indexing /users/project/4DGenome_no_backup/data/hic/samples/b742f3789_b84d076d6/results/mm10/filtered_reads/*filtered_map.tsv
+TIME 	2016-05-06 09:08:12 	[index_contacts] 	step time for completion (seconds) = 10398
+mkdir: cannot create directory `/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6': Disk quota exceeded
+INFO 	2016-05-06 09:09:48 	[map_to_bam] 	converting MAP to BAM
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0000.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0001.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0002.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0003.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0004.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0005.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0006.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0007.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0008.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0009.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0010.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0011.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0012.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0013.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0014.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0015.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0016.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0017.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0018.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0019.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0020.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0021.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0022.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0023.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0024.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0025.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0026.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0027.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0028.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0029.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0030.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0031.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0032.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0033.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0034.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0035.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0036.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0037.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0038.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0039.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0040.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0041.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0042.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0043.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0044.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0045.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0046.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0047.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0048.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0049.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0050.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0051.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0052.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0053.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0054.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0055.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0056.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0057.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0058.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0059.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0060.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0061.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0062.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0063.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0064.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0065.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0066.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0067.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0068.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0069.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0070.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0071.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0072.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0073.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0074.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0075.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0076.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0077.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0078.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0079.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0080.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0081.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0082.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0083.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0084.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0085.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0086.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0087.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0088.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0089.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0090.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0091.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0092.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0093.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0094.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0095.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0096.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0097.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0098.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0099.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0100.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0101.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0102.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0103.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0104.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0105.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0106.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0107.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0108.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0109.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0110.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0111.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0112.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0113.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0114.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0115.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0116.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0117.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0118.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0119.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0120.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0121.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0122.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0123.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0124.bam'
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0125.bam'
+[bam_sort_core] merging from 126 files...
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0000.bam'
+[bam_merge_core] fail to open file /users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.0000.bam
+[E::hts_open] fail to open file '/users/project/4DGenome/data/hic/samples/b742f3789_b84d076d6/results/mm10/processed_reads/b742f3789_b84d076d6_both_map.bam'
+TIME 	2016-05-06 10:43:35 	[map_to_bam] 	step time for completion (seconds) = 5642
+
+INFO 	2016-05-06 10:43:37 	[downstream_bam] 	perform several downstream analyses
+TIME 	2016-05-06 10:43:54 	[downstream_bam] 	step time for completion (seconds) = 17
+
+
+INFO 	2016-05-06 10:43:55 	[pipeline] 	completed successfully
+TIME 	2016-05-06 10:43:55 	[pipeline] 	total time for completion (seconds) = 77214
+

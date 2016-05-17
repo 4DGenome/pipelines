@@ -15,6 +15,7 @@
 - 2016-05-17:
 	- checksums of the uncompressed FASTQs are generated on the fly (faster than writting reads to file)
 	- checksums of the uncompressed BAM (i.e. SAM) is generated on the fly
+	- extra dangling-ends filter is now also applied
 
 
 ## Dependencies **not provided**:

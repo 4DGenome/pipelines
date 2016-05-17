@@ -12,6 +12,9 @@
 	- `itegrate_metadata` is set to `no` if `io_mode=custom`
 	- checksums are also generated for the uncompressed input FASTQ files (previously we did it for the compressed files but different compressions will generate different checksums); uncompressed FASTQs are deleted after the checksum generation
 	- checksums are generated for the BAM file storing contacts (as well as for the uncompressed SAM, but such SAM is deleted after the generation of the checksum for the sake of space)
+- 2016-05-17:
+	- checksums of the uncompressed FASTQs are generated on the fly (faster than writting reads to file)
+	- checksums of the uncompressed BAM (i.e. SAM) is generated on the fly
 
 
 ## Dependencies **not provided**:
@@ -46,13 +49,11 @@
 	- save a SHA checksums of the filtered alignments (*tsv file)
 7. post_filtering_statistics
 	- generate plots after filtering reads: genomic coverage and interaction matrix of filtered reads in 1-Mb; also, 1-Mb genomic coverage of dangling ends and self circle reads
-8. index_contacts
-	- index and compress contacts to enable quick generation of interaction matrices of different regions and at different resolutions
-9. map_to_bam:
+8. map_to_bam:
 	- convert MAP file with the alignments to BAM format
-10. downstream_bam
+9. downstream_bam
 	- perform several downstream analysis using the generated BAM (e.g. add SAM-like flags, find TADs and A/B compartments)
-11. clean_up
+10. clean_up
 	- delete (relatively large) intermediate files
 
 

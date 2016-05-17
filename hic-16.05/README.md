@@ -45,7 +45,7 @@
 	- generate plots from the alignments: decay of interaction counts with genomic distance, distribution of dangling ends lengths, genomic covarage and interaction matrix of mapped reads in 1-Mb bins and proportion of mapped reads
 	- extract metrics: fraction of read1 and read2 alignments, fraction of reads in which both read1 and read2 are mapped and the counts-to-distance slope
 6. reads_filtering
-	- filter reads based on multiple quality parameters; as of 2016-03-31 reads that meet these filters are excluded: self-circle, dangling-end, error, duplicated and random breaks (for more info see [TADbit](http://3dgenomes.github.io/TADbit/tutorial/tutorial_0_mapping.html))
+	- filter reads based on multiple quality parameters; as of 2016-05-17 reads that meet these filters are excluded: self-circle, dangling-end, error, extra dangling-ends, duplicated and random breaks (for more info see [TADbit](http://3dgenomes.github.io/TADbit/tutorial/tutorial_0_mapping.html))
 	- save a SHA checksums of the filtered alignments (*tsv file)
 7. post_filtering_statistics
 	- generate plots after filtering reads: genomic coverage and interaction matrix of filtered reads in 1-Mb; also, 1-Mb genomic coverage of dangling ends and self circle reads

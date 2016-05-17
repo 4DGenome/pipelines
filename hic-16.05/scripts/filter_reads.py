@@ -35,7 +35,7 @@ masked = filter_reads(infile, max_molecule_length=max_molecule_length,
                                     max_frag_size=max_frag_size,
                                     re_proximity=re_proximity,
                                     verbose=False)
-filters_applied_numeric = [1,2,3,9,10]
+filters_applied_numeric = [1,2,3,4,9,10]
 is_applied = []
 my_columns = ['filter_index', 'exclusion', 'reads_number', 'reads_fraction']
 excluded = pd.DataFrame(columns=my_columns)

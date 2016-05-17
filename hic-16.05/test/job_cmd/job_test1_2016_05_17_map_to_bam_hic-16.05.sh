@@ -1,3 +1,65 @@
+#!/bin/bash
+#$ -N job_test1_2016_05_17_map_to_bam_hic-16.05
+#$ -q short-sl65
+#$ -l virtual_free=40G
+#$ -l h_rt=6:00:00
+#$ -o /users/project/4DGenome/pipelines/hic-16.05/test/job_out/job_test1_2016_05_17_map_to_bam_hic-16.05_$JOB_ID.out
+#$ -e /users/project/4DGenome/pipelines/hic-16.05/test/job_out/job_test1_2016_05_17_map_to_bam_hic-16.05_$JOB_ID.err
+#$ -j y
+#$ -M javier.quilez@crg.eu
+#$ -m abe
+#$ -pe smp 1
+
+submitted_on=2016_05_17
+pipeline_version=16.05
+sample_id=test1
+data_type=hic
+pipeline_name=hic
+pipeline_version=16.05
+pipeline_run_mode=map_to_bam
+io_mode=custom
+CUSTOM_IN=/users/project/4DGenome/pipelines/hic-16.05/test
+CUSTOM_OUT=/users/project/4DGenome/pipelines/hic-16.05/test
+sample_to_fastqs=sample_to_fastqs.txt
+submit_to_cluster=no
+queue=short-sl65
+memory=40G
+max_time=6:00:00
+slots=1
+email=javier.quilez@crg.eu
+integrate_metadata=no
+species=homo_sapiens
+version=hg38_mmtv
+read_length=50
+sequencing_type=PE
+seedMismatches=2
+palindromeClipThreshold=30
+simpleClipThreshold=12
+leading=3
+trailing=3
+minAdapterLength=1
+keepBothReads=true
+minQual=3
+strictness=0.999
+minLength=36
+restriction_enzyme=DpnII
+max_molecule_length=500
+max_frag_size=10000
+min_frag_size=50
+over_represented=0.005
+re_proximity=4
+reads_number_qc=100000
+genomic_coverage_resolution=Mb
+frag_map=True
+flag_excluded=783
+flag_included=0
+flag_perzero=99
+resolution_tad=50000
+resolution_ab=100000
+CUSTOM_OUT=/users/project/4DGenome/pipelines/hic-16.05/test
+PIPELINE=/users/project/4DGenome/pipelines/hic-16.05
+config=pipelines/hic-16.05/hic.config
+path_job_file=/users/project/4DGenome/pipelines/hic-16.05/test/job_cmd/job_test1_2016_05_17_map_to_bam_hic-16.05.sh
 
 
 # =================================================================================================

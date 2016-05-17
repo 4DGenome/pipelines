@@ -16,6 +16,7 @@ from pytadbit                     import HiC_data
 from os                           import path, system
 import subprocess, sys, os, re, numpy, math, pysam, datetime, time
 from collections import OrderedDict
+from itertools import izip
 
 # reopen stdout file descriptor with write mode 
 # and 0 as the buffer size (unbuffered) 
@@ -40,7 +41,7 @@ def main():
 
     # create dir
 
-    mkdir(outdir)
+    # mkdir(outdir)
 
     # info message
 
@@ -255,86 +256,59 @@ def bam_to_hic_data(inbam, resolution_list, filter_exclude, filter_include):
 
 # functions to write raw/normalized/correlation matrices as compressed and indexed bed file
 
-def write_raw_matrix_tabix(hic_object, bins, outfile):
+def write_matrix_tabix(hic_object, norm, outfile, reso):
     out = open(outfile, 'w')
-    mat = hic_object.yield_matrix()
-    i = 0
-    for line in mat:
-        info_i = re.split("-|\t", bins[i])
-        for j in xrange(i, len(line)):
-            info_j = re.split("-|\t", bins[j])
-            if(info_i[0] == info_j[0]):
-                out.write("\t".join((info_i[0], info_i[1], info_j[1], str(line[j]))) + "\n")
-        i += 1
+    for sec in hic_object.chromosomes:
+        lline = (hic_object.section_pos[sec][1] - hic_object.section_pos[sec][0]) * reso
+        out.write(''.join([''.join(
+            ['{}\t{}\t{}\t{}\n'.format(sec, i, j, val)
+             for j, val in izip(xrange(i, lline, reso), line[i/reso:]) if val])
+                           for i, line in izip(xrange(0, lline, reso),
+                                               hic_object.yield_matrix(
+                                                   focus=sec, normalized=norm))]))
     out.close()
     subprocess.check_call(["/software/mb/bin/bgzip", "-f", outfile])
     subprocess.check_call(["/software/mb/bin/tabix", "-f", "-p", "bed", outfile + ".gz"])
 
-def write_normalized_matrix_tabix(hic_object, bins, outfile):
-    out = open(outfile, 'w')
-    mat = hic_object.yield_matrix(normalized = True)
-    i = 0
-    for line in mat:
-        info_i = re.split("-|\t", bins[i])
-        for j in xrange(i, len(line)):
-            info_j = re.split("-|\t", bins[j])
-            if(info_i[0] == info_j[0]):
-                #out.write("\t".join((info_i[0], info_i[1], info_j[1], str(line[j] / hic_object.expected[abs(i - j)]))) + "\n")
-                out.write("\t".join((info_i[0], info_i[1], info_j[1], str(line[j]))) + "\n")
-        i += 1
-    out.close()
-    subprocess.check_call(["/software/mb/bin/bgzip", "-f", outfile])
-    subprocess.check_call(["/software/mb/bin/tabix", "-f", "-p", "bed", outfile + ".gz"])
 
-def write_correlation_matrix_tabix(hic_object, all_bins, outfile):
+def write_correlation_matrix_tabix(hic_object, outfile, reso):
+
     out = open(outfile, 'w')
     for chromosome in hic_object.chromosomes.keys():
-        if chromosome != "chrM":
-            mat = hic_object.get_matrix(normalized = True, focus = chromosome)
-            i = 0
-            for line in hic_object.yield_matrix(normalized = True, focus = chromosome):
-                for j in xrange(0, len(line)):
-                    mat[i][j] = line[j] / hic_object.expected[abs(i - j)]
-                    #mat[i][j] = line[j]
-                i += 1
-            if len(mat) == 1:
-                continue
-            mat = numpy.corrcoef(mat)
-            bins = {}
-            j = 0
-            for i in all_bins:
-                if not re.search(chromosome + "\t", i) is None:
-                    bins[j] = i
-                    j += 1
-            for i in xrange(0, len(mat)):
-                info_i = re.split("-|\t", bins[i])
-                for j in xrange(i, len(mat)):
-                    info_j = re.split("-|\t", bins[j])
-                    out.write("\t".join((info_i[0], info_i[1], info_j[1], str(mat[i, j]))) + "\n")
+        if "M" in chromosome:
+            continue
+        mat = [[v / hic_object.expected[abs(i - j)] for j, v in enumerate(line)]
+               for i, line in enumerate(hic_object.yield_matrix(normalized=True,
+                                                                focus=chromosome))]
+        if len(mat) == 1:
+            continue
+        mat = numpy.corrcoef(mat)
+
+        lline = (hic_object.section_pos[chromosome][1] -
+                 hic_object.section_pos[chromosome][0]) * reso
+        out.write(''.join([''.join(
+            ['{}\t{}\t{}\t{}\n'.format(chromosome, i, j, v)
+             for j, v in izip(xrange(i, lline, reso), line[i/reso:])])
+                           for i, line in izip(xrange(0, lline, reso), mat)]))
     out.close()
+
     subprocess.check_call(["/software/mb/bin/bgzip", "-f", outfile])
     subprocess.check_call(["/software/mb/bin/tabix", "-f", "-p", "bed", outfile + ".gz"])
+
 
 def write_matrices(hic_data, outdir, reso):
 
     # Store matrices
     start = 0
     end = len(hic_data)
-    rownam = ['%s\t%d-%d' % (k[0],
-                             k[1] * hic_data.resolution,
-                             (k[1] + 1) * hic_data.resolution)
-              for k in sorted(hic_data.sections,
-                              key=lambda x: hic_data.sections[x])
-              if start <= hic_data.sections[k] < end]
     print "Store raw data\n"
-    write_raw_matrix_tabix(hic_data, rownam,
-                           outdir + 'raw_%s.tsv' % nice(reso))
+    write_matrix_tabix(hic_data, False, outdir + 'raw_%s.tsv' % nice(reso), reso)
     print "Store normalized data\n"
-    write_normalized_matrix_tabix(hic_data, rownam,
-                                  outdir + 'normalized_%s.tsv' % nice(reso))
+    write_matrix_tabix(hic_data, True,
+                       outdir + 'normalized_%s.tsv' % nice(reso), reso)
     print "Compute correlation matrix and store it\n"
-    write_correlation_matrix_tabix(hic_data, rownam,
-                                   outdir + 'correlation_%s.tsv' % nice(reso))
+    write_correlation_matrix_tabix(hic_data, 
+                                   outdir + 'correlation_%s.tsv' % nice(reso), reso)
 
 def process_AB(hic_data, perc_zero, reso, outdir, bins):
 

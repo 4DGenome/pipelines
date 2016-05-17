@@ -1,3 +1,65 @@
+#!/bin/bash
+#$ -N job_dc3a1e069_51720e9cf_2016_05_12_full_hic-16.05
+#$ -q long-sl65
+#$ -l virtual_free=100G
+#$ -l h_rt=100:00:00
+#$ -o /users/project/4DGenome/pipelines/hic-16.05/job_out/job_dc3a1e069_51720e9cf_2016_05_12_full_hic-16.05_$JOB_ID.out
+#$ -e /users/project/4DGenome/pipelines/hic-16.05/job_out/job_dc3a1e069_51720e9cf_2016_05_12_full_hic-16.05_$JOB_ID.err
+#$ -j y
+#$ -M javier.quilez@crg.eu
+#$ -m abe
+#$ -pe smp 10
+
+submitted_on=2016_05_12
+pipeline_version=16.05
+sample_id=dc3a1e069_51720e9cf
+data_type=hic
+pipeline_name=hic
+pipeline_version=16.05
+pipeline_run_mode=full
+io_mode=standard
+CUSTOM_IN=/users/project/4DGenome/pipelines/hic-16.05/test
+CUSTOM_OUT=/users/project/4DGenome/pipelines/hic-16.05/test
+sample_to_fastqs=sample_to_fastqs.txt
+submit_to_cluster=yes
+queue=long-sl65
+memory=100G
+max_time=100:00:00
+slots=10
+email=javier.quilez@crg.eu
+integrate_metadata=yes
+species=homo_sapiens
+version=hg38_mmtv
+read_length=50
+sequencing_type=PE
+seedMismatches=2
+palindromeClipThreshold=30
+simpleClipThreshold=12
+leading=3
+trailing=3
+minAdapterLength=1
+keepBothReads=true
+minQual=3
+strictness=0.999
+minLength=36
+restriction_enzyme=DpnII
+max_molecule_length=500
+max_frag_size=10000
+min_frag_size=50
+over_represented=0.005
+re_proximity=4
+reads_number_qc=100000
+genomic_coverage_resolution=Mb
+frag_map=True
+flag_excluded=783
+flag_included=0
+flag_perzero=99
+resolution_tad=50000
+resolution_ab=100000
+CUSTOM_OUT=/users/project/4DGenome/pipelines/hic-16.05/test
+PIPELINE=/users/project/4DGenome/pipelines/hic-16.05
+config=pipelines/hic-16.05/hic.config
+path_job_file=/users/project/4DGenome/pipelines/hic-16.05/job_cmd/job_dc3a1e069_51720e9cf_2016_05_12_full_hic-16.05.sh
 
 
 # =================================================================================================
@@ -108,7 +170,6 @@ main() {
 	DOWNSTREAM=$SAMPLE/downstream/$version
 
 	# tools
-	shasum=`which shasum`
 	python=`which python`
 	trimmomatic=`which trimmomatic`
 	samtools=/software/mb/el6.3/samtools-1.2/samtools
@@ -258,17 +319,15 @@ preliminary_checks() {
 		# save a SHA checksums of the FASTQ files
 		# because different compressions would then have different checksums, checksums are generated on the uncompressed FASTQ
 		# after checksums are generated, the uncompressed file is deleted for the sake of space
-		#tfq1=`echo $ifq1 | sed "s/\.gz//g"`
-		#tfq2=`echo $ifq2 | sed "s/\.gz//g"`
-		zcat $ifq1 |$shasum | awk -v file=`echo $ifq1 | sed 's/.gz//g'` '{print $1,"",file}' >> $checksums
-		zcat $ifq2 |$shasum | awk -v file=`echo $ifq2 | sed 's/.gz//g'` '{print $1,"",file}' >> $checksums
-		#zcat $ifq1 > $tfq1
-		#zcat $ifq2 > $tfq2
-		#shasum $ifq1 >> $checksums
-		#shasum $tfq1 >> $checksums
-		#shasum $ifq2 >> $checksums
-		#shasum $tfq2 >> $checksums
-		#rm -f $tfq1 $tfq2
+		tfq1=`echo $ifq1 | sed "s/\.gz//g"`
+		tfq2=`echo $ifq2 | sed "s/\.gz//g"`
+		zcat $ifq1 > $tfq1
+		zcat $ifq2 > $tfq2
+		shasum $ifq1 >> $checksums
+		shasum $tfq1 >> $checksums
+		shasum $ifq2 >> $checksums
+		shasum $tfq2 >> $checksums
+		rm -f $tfq1 $tfq2
 		# Get sequencing information from the header of the FASTQ reads (some fields should be shared across all reads)
 		fq_header=`zcat $ifq1 | head -n 1 | sed s'/ /:/g'`
 		sequencing_instrument_name=`echo $fq_header | cut -f1 -d':'`
@@ -311,7 +370,7 @@ preliminary_checks() {
 			message_error $step "FASTA file $fasta does not exist! Exiting..."
 		else
 			message_info $step "genome reference FASTA file found at $fasta"
-			$shasum $fasta >> $checksums
+			shasum $fasta >> $checksums
 			if [[ $integrate_metadata == "yes" ]]; then
 				$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a PATH_REFERENCE_FASTA -v $fasta
 				message_info $step "paths to reference FASTA saved to metadata database"
@@ -507,7 +566,7 @@ align_and_merge() {
 	message_info $step "output saved in $step_log"
 
 	# data integrity
-	$shasum $PROCESSED/${sample_id}*both_map.tsv >> $checksums
+	shasum $PROCESSED/${sample_id}*both_map.tsv >> $checksums
 
 	message_time_step $step $time0
 
@@ -617,7 +676,7 @@ reads_filtering() {
 
 	# data integrity
 	filtered_reads=$FILTERED/*filtered_map.tsv
-	$shasum $filtered_reads >> $checksums
+	shasum $filtered_reads >> $checksums
 
 	message_time_step $step $time0
 
@@ -687,11 +746,10 @@ map_to_bam() {
 	# save a SHA checksums of the alignment file BAM
 	# because different compressions would then have different checksums, checksums are generated on the uncompressed BAM (i.e. SAM)
 	# after checksums are generated, the uncompressed file is deleted for the sake of space
-	$samtools view -h $obam.bam |$shasum | awk -v file=$obam.sam '{print $1,"",file}' >> $checksums
-	#$samtools view -h $obam.bam > $obam.sam
-	#$shasum $obam.bam >> $checksums
-	#$shasum $obam.sam >> $checksums
-	#rm -f $obam.map
+	$samtools view -h $obam.bam > $obam.sam
+	shasum $obam.bam >> $checksums
+	shasum $obam.sam >> $checksums
+	rm -f $obam.map
 
 	message_time_step $step $time0
 

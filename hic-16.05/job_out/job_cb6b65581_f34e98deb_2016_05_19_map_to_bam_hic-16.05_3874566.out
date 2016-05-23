@@ -1,0 +1,15 @@
+
+INFO 	2016-05-19 12:40:26 	[configuration] 	script to access/write from/to metadata: /users/project/4DGenome/utils/io_metadata.sh
+INFO 	2016-05-19 12:40:26 	[configuration] 	metadata database: /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-05-19 12:40:26 	[configuration] 	data for cb6b65581_f34e98deb will be stored at /users/project/4DGenome_no_backup/data/hic/samples/cb6b65581_f34e98deb
+INFO 	2016-05-19 12:40:26 	[configuration] 	paths to input FASTQ files extracted from the metadata
+INFO 	2016-05-19 12:41:37 	[configuration] 	species (Homo_sapiens) and assembly version (hg38_mmtv) extracted from the metadata
+
+INFO 	2016-05-19 12:42:40 	[map_to_bam] 	converting MAP to BAM
+[bam_sort_core] merging from 106 files...
+TIME 	2016-05-19 15:09:14 	[map_to_bam] 	step time for completion (seconds) = 8794
+
+
+INFO 	2016-05-19 15:09:57 	[pipeline] 	completed successfully
+TIME 	2016-05-19 15:09:57 	[pipeline] 	total time for completion (seconds) = 8971
+

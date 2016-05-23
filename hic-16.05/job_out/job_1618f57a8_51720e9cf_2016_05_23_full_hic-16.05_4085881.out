@@ -1,0 +1,32 @@
+
+INFO 	2016-05-23 17:25:23 	[configuration] 	script to access/write from/to metadata: /users/project/4DGenome/utils/io_metadata.sh
+INFO 	2016-05-23 17:25:23 	[configuration] 	metadata database: /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-05-23 17:25:23 	[configuration] 	data for 1618f57a8_51720e9cf will be stored at /users/project/4DGenome_no_backup/data/hic/samples/1618f57a8_51720e9cf
+INFO 	2016-05-23 17:25:23 	[configuration] 	paths to input FASTQ files extracted from the metadata
+INFO 	2016-05-23 17:25:48 	[configuration] 	species (Homo_sapiens) and assembly version (hg38_mmtv) extracted from the metadata
+Traceback (most recent call last):
+  File "/users/project/4DGenome/utils/io_metadata.py", line 100, in <module>
+    tab.upsert(new_data, ['SAMPLE_ID'])
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/dataset/persistence/table.py", line 171, in upsert
+    row_count = self.update(row, keys, ensure=ensure, types=types)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/dataset/persistence/table.py", line 144, in update
+    rp = self.database.executable.execute(stmt)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1991, in execute
+    return connection.execute(statement, *multiparams, **params)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 914, in execute
+    return meth(self, multiparams, params)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/elements.py", line 323, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1010, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1146, in _execute_context
+    context)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1341, in _handle_dbapi_exception
+    exc_info
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/util/compat.py", line 200, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1139, in _execute_context
+    context)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 450, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked [SQL: u'UPDATE hic SET "MAX_TIME"=? WHERE hic."SAMPLE_ID" = ?'] [parameters: ('100:00:00', '1618f57a8_51720e9cf')]

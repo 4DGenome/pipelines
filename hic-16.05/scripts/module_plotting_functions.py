@@ -137,6 +137,10 @@ def plot_genomic_distribution(fnam, name=None, first_read=True, resolution=None,
     fig.text(0.5, 0.9125, 'FASTQ ID = %s (%s)' % (pair_id, name), horizontalalignment='center')
     for i, crm in enumerate(chr_names if chr_names else genome_seq
                             if genome_seq else distr):
+
+        #if crm == "chrM":
+        #    continue
+
         # Add genomic values
         if crm in distr:
             ax[i].plot(range(max(distr[crm])), [distr[crm].get(j, 0) for j in xrange(max(distr[crm]))],
@@ -144,10 +148,16 @@ def plot_genomic_distribution(fnam, name=None, first_read=True, resolution=None,
         # Axes and labels        
         ax[i].set_xlim(0, max_xlim)
         ax[i].set_ylim(0, max_ylim)
-        if crm in distr:
-            tmp = max(range(max(distr[crm]))) if len(distr[crm]) > 1 else 1
-        else:
-            tmp = 0
+        try:
+            tmp = max(range(max(distr[crm])))
+        except ValueError:
+            tmp = 1 # esto engloba los casos de coordenada maxima = 0
+        except KeyError:
+            tmp = 0 # esto en caso de que no este el crm dentro de distr
+        #if crm in distr:
+        #    tmp = max(range(max(distr[crm]))) if len(distr[crm]) > 1 else 1
+        #else:
+        #    tmp = 0
         ax[i].text(tmp+15, max_ylim/2, crm, verticalalignment='center',
                 horizontalalignment='center', fontsize = 20, weight='bold')
         if i == (len(genome_seq)-1):

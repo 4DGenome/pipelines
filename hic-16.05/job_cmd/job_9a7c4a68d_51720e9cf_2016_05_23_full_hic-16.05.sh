@@ -544,11 +544,11 @@ align_and_merge() {
 	export LC_ALL=en_US.UTF-8
 	export LANG=en_US.UTF-8
 
-	# Prevent overriding existing processed reads
-	step_log=$LOGS/${sample_id}_${step}_paired_end.log
-	if [ -f $step_log ]; then
-   		message_error $step "processed reads already mapped (see $step_log). Exiting..."
-	fi
+	# # Prevent overriding existing processed reads
+	# step_log=$LOGS/${sample_id}_${step}_paired_end.log
+	# if [ -f $step_log ]; then
+ #   		message_error $step "processed reads already mapped (see $step_log). Exiting..."
+	# fi
 
 	# Mapping
 	message_info $step "mapping, processing reads according to restriction enzyme fragments and merging aligments for read1 and read2..."

@@ -1,0 +1,38 @@
+
+INFO 	2016-06-01 12:10:31 	[configuration] 	script to access/write from/to metadata: /users/project/4DGenome/utils/io_metadata.sh
+INFO 	2016-06-01 12:10:31 	[configuration] 	metadata database: /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-06-01 12:10:31 	[configuration] 	data for dc3a1e069_db4f304ee will be stored at /users/project/4DGenome_no_backup/data/hic/samples/dc3a1e069_db4f304ee
+INFO 	2016-06-01 12:10:31 	[configuration] 	paths to input FASTQ files extracted from the metadata
+INFO 	2016-06-01 12:10:41 	[configuration] 	species (Homo_sapiens) and assembly version (hg38_mmtv) extracted from the metadata
+
+INFO 	2016-06-01 12:11:10 	[preliminary_checks] 	dc3a1e069_db4f304ee found in /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-06-01 12:23:39 	[preliminary_checks] 	paths to read1 and read2 saved to metadata database
+INFO 	2016-06-01 12:23:41 	[preliminary_checks] 	Sequencing index added as part of the metadata agrees with that observed in the FASTQ file
+WARN 	2016-06-01 12:23:42 	[preliminary_checks] 	read length obtained from the metadata (75 bp) differs from that seen in the FASTQ (76 bp)
+WARN 	2016-06-01 12:23:42 	[preliminary_checks] 	the latter will be kept
+INFO 	2016-06-01 12:23:44 	[preliminary_checks] 	genome reference FASTA file found at /users/GR/mb/jquilez/assemblies/homo_sapiens/hg38_mmtv/ucsc/hg38_mmtv_chr1-22XYM.fa
+INFO 	2016-06-01 12:24:22 	[preliminary_checks] 	paths to reference FASTA saved to metadata database
+TIME 	2016-06-01 12:24:22 	[preliminary_checks] 	step time for completion (seconds) = 793
+
+INFO 	2016-06-01 12:24:24 	[raw_fastqs_quality_plots] 	restriction enzyme = DpnII
+INFO 	2016-06-01 12:24:24 	[raw_fastqs_quality_plots] 	a subset of 100000 reds will be used to generate the quality plots
+INFO 	2016-06-01 12:24:24 	[raw_fastqs_quality_plots] 	making quality plots of the raw FASTQ files... plots saved at /users/project/4DGenome_no_backup/data/hic/samples/dc3a1e069_db4f304ee/plots/hg38_mmtv/raw_fastqs_quality_plots
+INFO 	2016-06-01 12:24:47 	[raw_fastqs_quality_plots] 	percentages of dangling ends and ligated sites in read1 and read2 saved to metadata database
+TIME 	2016-06-01 12:24:47 	[raw_fastqs_quality_plots] 	step time for completion (seconds) = 23
+
+INFO 	2016-06-01 12:24:49 	[trim_reads_trimmomatic] 	sequencing type = PE
+INFO 	2016-06-01 12:24:49 	[trim_reads_trimmomatic] 	trimming TruSeq3 adapter sequences for HiSeq, NextSeq or HiSeq
+INFO 	2016-06-01 12:24:49 	[trim_reads_trimmomatic] 	trimming low-quality reads ends using trimmomatic's recommended practices
+INFO 	2016-06-01 13:48:55 	[trim_reads_trimmomatic] 	parse step log to extract generated metadata
+INFO 	2016-06-01 13:48:55 	[trim_reads_trimmomatic] 	reads after trimming = 184693233
+INFO 	2016-06-01 13:49:15 	[trim_reads_trimmomatic] 	trimmomatic parameters and numbe of trimmed reads added to metadata
+INFO 	2016-06-01 13:49:15 	[trim_reads_trimmomatic] 	trimmed reads are in /users/project/4DGenome_no_backup/data/hic/samples/dc3a1e069_db4f304ee/fastqs_processed/trimmomatic/paired_end
+INFO 	2016-06-01 13:49:15 	[trim_reads_trimmomatic] 	unpaired reads are deleted
+TIME 	2016-06-01 13:49:15 	[trim_reads_trimmomatic] 	step time for completion (seconds) = 5066
+
+INFO 	2016-06-01 13:49:17 	[align_and_merge] 	species = Homo_sapiens
+INFO 	2016-06-01 13:49:17 	[align_and_merge] 	assembly version = hg38_mmtv
+INFO 	2016-06-01 13:49:17 	[align_and_merge] 	restriction enzyme = DpnII
+INFO 	2016-06-01 13:49:17 	[align_and_merge] 	read length = 75
+INFO 	2016-06-01 13:49:17 	[align_and_merge] 	genome reference FASTA file found at /users/GR/mb/jquilez/assemblies/homo_sapiens/hg38_mmtv/ucsc/hg38_mmtv_chr1-22XYM.fa
+INFO 	2016-06-01 13:49:17 	[align_and_merge] 	mapping, processing reads according to restriction enzyme fragments and merging aligments for read1 and read2...

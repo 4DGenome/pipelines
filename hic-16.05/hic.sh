@@ -128,7 +128,8 @@ main() {
 		$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a ASSEMBLY_VERSION -v $version
 		$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a JOB_NAME -v $job_name		
 		$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a PATH_JOB_FILE -v $path_job_file		
-		$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a TADBIT_AND_DEPENDENCIES_VERSIONS -v $tadbit_and_dependencies_versions		
+		$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a TADBIT_AND_DEPENDENCIES_VERSIONS -v $tadbit_and_dependencies_versions
+		$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a LAST_RUN_DATE -v $run_date		
 	fi
 
 	echo
@@ -482,11 +483,11 @@ align_and_merge() {
 	export LC_ALL=en_US.UTF-8
 	export LANG=en_US.UTF-8
 
-	# Prevent overriding existing processed reads
 	step_log=$LOGS/${sample_id}_${step}_paired_end.log
-	if [ -f $step_log ]; then
-   		message_error $step "processed reads already mapped (see $step_log). Exiting..."
-	fi
+	# # Prevent overriding existing processed reads
+	# if [ -f $step_log ]; then
+ #   		message_error $step "processed reads already mapped (see $step_log). Exiting..."
+	# fi
 
 	# Mapping
 	message_info $step "mapping, processing reads according to restriction enzyme fragments and merging aligments for read1 and read2..."
@@ -547,7 +548,7 @@ post_mapping_statistics() {
 	fraction_mapped_read1=`echo $returned_values | cut -f1 -d';' | cut -f1 -d','`
 	fraction_mapped_read2=`echo $returned_values | cut -f1 -d';' | cut -f2 -d','`
 	counts_to_distance_slope=`echo $returned_values | cut -f2 -d';'`
-	both_reads_mapped=`cat $PROCESSED/*both* | grep -v "#" | wc -l`
+	both_reads_mapped=`cat $PROCESSED/$sample_id*both_map.tsv | grep -v "#" | wc -l`
 	message_info $step "fraction of reads mapped read1 = $fraction_mapped_read1"
 	message_info $step "fraction of reads mapped read2 = $fraction_mapped_read2"
 	message_info $step "number of pairs in which both read1 and read2 are mapped = $both_reads_mapped"
@@ -576,7 +577,7 @@ reads_filtering() {
 	time0=$(date +"%s")
 
 	# Paths
-	both_reads_mapped=`cat $PROCESSED/*both_map.tsv | grep -v "#" | wc -l`
+	both_reads_mapped=`cat $PROCESSED/$sample_id*both_map.tsv | grep -v "#" | wc -l`
 	mkdir -p $FILTERED
 	mkdir -p $DANGLING 
 	mkdir -p $SELF_CIRCLE

@@ -1,13 +1,13 @@
-2016-05-11 14:49:42	Main settings ...
+2016-06-01 09:54:15	Main settings ...
 Take reads from
 /users/project/4DGenome/pipelines/hic-16.05/test/test1/results/hg38_mmtv/processed_reads/test1_both_map.bam
 include contacts with flag = 0
 exclude contacts with flag = 783
 save results at /users/project/4DGenome/pipelines/hic-16.05/test/test1/downstream/hg38_mmtv/test1_
-(using 1 cpus and perc_zero = 99)
+(using 10 cpus and perc_zero = 99)
 process A/B compartments at resolution 100000
 process TADs at resolution 50000
-2016-05-11 14:49:42	Loading data ...
+2016-06-01 09:54:15	Loading data ...
 Processing chromosome chr1
 138 lines processed
 Processing chromosome chr2
@@ -60,8 +60,8 @@ Processing chromosome chrM
 1 lines processed
 Processing chromosome mmtv_luciferase
 0 lines processed
-2016-05-11 14:49:42	... done!
-2016-05-11 14:49:42	Processing A/B compartments ...
+2016-06-01 09:54:16	... done!
+2016-06-01 09:54:16	Processing A/B compartments ...
 Get poor bins...
 
 WARNING: removing columns having more than 30587 zeroes:
@@ -1617,11 +1617,11 @@ Get biases using ICE...
 iterative correction
   - copying matrix
 Traceback (most recent call last):
-  File "/users/project/4DGenome/pipelines/hic-16.05/scripts/tadbit_after_bam.py", line 535, in <module>
+  File "/users/project/4DGenome/pipelines/hic-16.05/scripts/tadbit_after_bam.py", line 509, in <module>
     exit(main())
-  File "/users/project/4DGenome/pipelines/hic-16.05/scripts/tadbit_after_bam.py", line 68, in main
+  File "/users/project/4DGenome/pipelines/hic-16.05/scripts/tadbit_after_bam.py", line 69, in main
     process_AB(dat_list[0], perc_zero, resolution_list[0], outdir, bin_list[0])
-  File "/users/project/4DGenome/pipelines/hic-16.05/scripts/tadbit_after_bam.py", line 363, in process_AB
+  File "/users/project/4DGenome/pipelines/hic-16.05/scripts/tadbit_after_bam.py", line 337, in process_AB
     factor=1) # cells of the matrix have a mean of 1
   File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/pytadbit/hic_data.py", line 302, in normalize_hic
     verbose=not silent)

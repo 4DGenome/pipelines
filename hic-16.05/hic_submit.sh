@@ -122,6 +122,8 @@ for s in $samples; do
 		$job_file
 	fi
 
+	sleep 10
+
 done
 
 

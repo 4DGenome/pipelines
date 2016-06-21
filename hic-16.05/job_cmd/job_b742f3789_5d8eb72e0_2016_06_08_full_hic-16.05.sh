@@ -1,3 +1,65 @@
+#!/bin/bash
+#$ -N job_b742f3789_5d8eb72e0_2016_06_08_full_hic-16.05
+#$ -q long-sl65
+#$ -l virtual_free=100G
+#$ -l h_rt=100:00:00
+#$ -o /users/project/4DGenome/pipelines/hic-16.05/job_out/job_b742f3789_5d8eb72e0_2016_06_08_full_hic-16.05_$JOB_ID.out
+#$ -e /users/project/4DGenome/pipelines/hic-16.05/job_out/job_b742f3789_5d8eb72e0_2016_06_08_full_hic-16.05_$JOB_ID.err
+#$ -j y
+#$ -M javier.quilez@crg.eu
+#$ -m abe
+#$ -pe smp 10
+
+submitted_on=2016_06_08
+pipeline_version=16.05
+sample_id=b742f3789_5d8eb72e0
+data_type=hic
+pipeline_name=hic
+pipeline_version=16.05
+pipeline_run_mode=full
+io_mode=standard
+CUSTOM_IN=/users/project/4DGenome/pipelines/hic-16.05/test
+CUSTOM_OUT=/users/project/4DGenome/pipelines/hic-16.05/test
+sample_to_fastqs=sample_to_fastqs.txt
+submit_to_cluster=yes
+queue=long-sl65
+memory=100G
+max_time=100:00:00
+slots=10
+email=javier.quilez@crg.eu
+integrate_metadata=yes
+species=
+version=
+read_length=
+sequencing_type=PE
+seedMismatches=2
+palindromeClipThreshold=30
+simpleClipThreshold=12
+leading=3
+trailing=3
+minAdapterLength=1
+keepBothReads=true
+minQual=3
+strictness=0.999
+minLength=36
+restriction_enzyme=
+max_molecule_length=500
+max_frag_size=10000
+min_frag_size=50
+over_represented=0.005
+re_proximity=4
+reads_number_qc=100000
+genomic_coverage_resolution=Mb
+frag_map=True
+flag_excluded=783
+flag_included=0
+flag_perzero=99
+resolution_tad=50000
+resolution_ab=100000
+CUSTOM_OUT=/users/project/4DGenome/pipelines/hic-16.05/test
+PIPELINE=/users/project/4DGenome/pipelines/hic-16.05
+config=pipelines/hic-16.05/hic.config
+path_job_file=/users/project/4DGenome/pipelines/hic-16.05/job_cmd/job_b742f3789_5d8eb72e0_2016_06_08_full_hic-16.05.sh
 
 
 # =================================================================================================
@@ -548,7 +610,7 @@ post_mapping_statistics() {
 	fraction_mapped_read1=`echo $returned_values | cut -f1 -d';' | cut -f1 -d','`
 	fraction_mapped_read2=`echo $returned_values | cut -f1 -d';' | cut -f2 -d','`
 	counts_to_distance_slope=`echo $returned_values | cut -f2 -d';'`
-	both_reads_mapped=`cat $PROCESSED/$sample_id*both_map.tsv | grep -v "# CRM" | wc -l`
+	both_reads_mapped=`cat $PROCESSED/$sample_id*both_map.tsv | grep -v "#" | wc -l`
 	message_info $step "fraction of reads mapped read1 = $fraction_mapped_read1"
 	message_info $step "fraction of reads mapped read2 = $fraction_mapped_read2"
 	message_info $step "number of pairs in which both read1 and read2 are mapped = $both_reads_mapped"

@@ -1,0 +1,78 @@
+
+INFO 	2016-06-11 07:32:30 	[configuration] 	script to access/write from/to metadata: /users/project/4DGenome/utils/io_metadata.sh
+INFO 	2016-06-11 07:32:30 	[configuration] 	metadata database: /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-06-11 07:32:30 	[configuration] 	data for 6ef597224_cd45830f3 will be stored at /users/project/4DGenome_no_backup/data/hic/samples/6ef597224_cd45830f3
+INFO 	2016-06-11 07:32:30 	[configuration] 	paths to input FASTQ files extracted from the metadata
+INFO 	2016-06-11 07:32:48 	[configuration] 	species (Homo_sapiens) and assembly version (hg38_mmtv) extracted from the metadata
+
+INFO 	2016-06-11 07:33:17 	[preliminary_checks] 	6ef597224_cd45830f3 found in /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-06-11 07:50:07 	[preliminary_checks] 	paths to read1 and read2 saved to metadata database
+INFO 	2016-06-11 07:50:09 	[preliminary_checks] 	Sequencing index added as part of the metadata agrees with that observed in the FASTQ file
+INFO 	2016-06-11 07:50:11 	[preliminary_checks] 	read length added as part of the metadata agrees with that observed in the FASTQ file
+INFO 	2016-06-11 07:50:11 	[preliminary_checks] 	genome reference FASTA file found at /users/GR/mb/jquilez/assemblies/homo_sapiens/hg38_mmtv/ucsc/hg38_mmtv_chr1-22XYM.fa
+INFO 	2016-06-11 07:50:39 	[preliminary_checks] 	paths to reference FASTA saved to metadata database
+TIME 	2016-06-11 07:50:39 	[preliminary_checks] 	step time for completion (seconds) = 1044
+
+INFO 	2016-06-11 07:50:41 	[raw_fastqs_quality_plots] 	restriction enzyme = DpnII
+INFO 	2016-06-11 07:50:41 	[raw_fastqs_quality_plots] 	a subset of 100000 reds will be used to generate the quality plots
+INFO 	2016-06-11 07:50:41 	[raw_fastqs_quality_plots] 	making quality plots of the raw FASTQ files... plots saved at /users/project/4DGenome_no_backup/data/hic/samples/6ef597224_cd45830f3/plots/hg38_mmtv/raw_fastqs_quality_plots
+INFO 	2016-06-11 07:51:02 	[raw_fastqs_quality_plots] 	percentages of dangling ends and ligated sites in read1 and read2 saved to metadata database
+TIME 	2016-06-11 07:51:02 	[raw_fastqs_quality_plots] 	step time for completion (seconds) = 21
+
+INFO 	2016-06-11 07:51:04 	[trim_reads_trimmomatic] 	sequencing type = PE
+INFO 	2016-06-11 07:51:04 	[trim_reads_trimmomatic] 	trimming TruSeq3 adapter sequences for HiSeq, NextSeq or HiSeq
+INFO 	2016-06-11 07:51:04 	[trim_reads_trimmomatic] 	trimming low-quality reads ends using trimmomatic's recommended practices
+INFO 	2016-06-11 09:46:11 	[trim_reads_trimmomatic] 	parse step log to extract generated metadata
+INFO 	2016-06-11 09:46:11 	[trim_reads_trimmomatic] 	reads after trimming = 224933854
+INFO 	2016-06-11 09:46:33 	[trim_reads_trimmomatic] 	trimmomatic parameters and numbe of trimmed reads added to metadata
+INFO 	2016-06-11 09:46:33 	[trim_reads_trimmomatic] 	trimmed reads are in /users/project/4DGenome_no_backup/data/hic/samples/6ef597224_cd45830f3/fastqs_processed/trimmomatic/paired_end
+INFO 	2016-06-11 09:46:33 	[trim_reads_trimmomatic] 	unpaired reads are deleted
+TIME 	2016-06-11 09:46:33 	[trim_reads_trimmomatic] 	step time for completion (seconds) = 6929
+
+INFO 	2016-06-11 09:46:35 	[align_and_merge] 	species = Homo_sapiens
+INFO 	2016-06-11 09:46:35 	[align_and_merge] 	assembly version = hg38_mmtv
+INFO 	2016-06-11 09:46:35 	[align_and_merge] 	restriction enzyme = DpnII
+INFO 	2016-06-11 09:46:35 	[align_and_merge] 	read length = 75
+INFO 	2016-06-11 09:46:35 	[align_and_merge] 	genome reference FASTA file found at /users/GR/mb/jquilez/assemblies/homo_sapiens/hg38_mmtv/ucsc/hg38_mmtv_chr1-22XYM.fa
+INFO 	2016-06-11 09:46:35 	[align_and_merge] 	mapping, processing reads according to restriction enzyme fragments and merging aligments for read1 and read2...
+INFO 	2016-06-11 21:43:35 	[align_and_merge] 	output saved in /users/project/4DGenome_no_backup/data/hic/samples/6ef597224_cd45830f3/logs/hg38_mmtv/6ef597224_cd45830f3_align_and_merge_paired_end.log
+TIME 	2016-06-11 21:48:19 	[align_and_merge] 	step time for completion (seconds) = 43304
+
+INFO 	2016-06-11 21:48:24 	[post_mapping_statistics] 	generating post mapping descriptive statistics plots...
+INFO 	2016-06-11 22:41:16 	[post_mapping_statistics] 	fraction of reads mapped read1 = 1.02412820437
+INFO 	2016-06-11 22:41:16 	[post_mapping_statistics] 	fraction of reads mapped read2 = 0.873716546021
+INFO 	2016-06-11 22:41:16 	[post_mapping_statistics] 	number of pairs in which both read1 and read2 are mapped = 149534912
+INFO 	2016-06-11 22:41:16 	[post_mapping_statistics] 	counts-to-distance slope = -1.26283382229
+TIME 	2016-06-11 22:41:24 	[post_mapping_statistics] 	step time for completion (seconds) = 3180
+
+INFO 	2016-06-11 22:41:55 	[reads_filtering] 	filtering reads based on multiple quality parameters...
+INFO 	2016-06-11 22:41:55 	[reads_filtering] 	filtered reads to be used for subsequent analyses are at /users/project/4DGenome_no_backup/data/hic/samples/6ef597224_cd45830f3/results/hg38_mmtv/filtered_reads
+INFO 	2016-06-11 22:41:55 	[reads_filtering] 	excluded reads due to dangling ends are at /users/project/4DGenome_no_backup/data/hic/samples/6ef597224_cd45830f3/results/hg38_mmtv/excluded_reads/dangling_ends
+INFO 	2016-06-11 22:41:55 	[reads_filtering] 	excluded reads due to self circle are at /users/project/4DGenome_no_backup/data/hic/samples/6ef597224_cd45830f3/results/hg38_mmtv/excluded_reads/self_circle
+INFO 	2016-06-11 22:41:55 	[reads_filtering] 	summary of excluded reads at /users/project/4DGenome_no_backup/data/hic/samples/6ef597224_cd45830f3/results/hg38_mmtv/excluded_reads/summary_excluded_per_filter
+INFO 	2016-06-11 23:12:10 	[reads_filtering] 	numbers and fractions of filtered and excluded reads added to the metadata
+TIME 	2016-06-11 23:14:27 	[reads_filtering] 	step time for completion (seconds) = 1982
+
+INFO 	2016-06-11 23:14:31 	[post_filtering_statistics] 	generating post filtering descriptive statistics plots... saved at /users/project/4DGenome_no_backup/data/hic/samples/6ef597224_cd45830f3/plots/hg38_mmtv/post_filtering_statistics:
+INFO 	2016-06-11 23:14:31 	[post_filtering_statistics] 	- filtered reads: sequencing coverage along chromosomes, coverage values and interaction matrix
+INFO 	2016-06-11 23:14:31 	[post_filtering_statistics] 	- dangling ends: sequencing coverage along chromosomes and coverage values
+INFO 	2016-06-11 23:14:31 	[post_filtering_statistics] 	- self-circle ends: sequencing coverage along chromosomes and coverage values
+TIME 	2016-06-11 23:41:55 	[post_filtering_statistics] 	step time for completion (seconds) = 1644
+
+INFO 	2016-06-11 23:41:58 	[map_to_bam] 	converting MAP to BAM
+[bam_sort_core] merging from 106 files...
+TIME 	2016-06-12 02:07:51 	[map_to_bam] 	step time for completion (seconds) = 8753
+
+INFO 	2016-06-12 02:07:55 	[downstream_bam] 	perform several downstream analyses
+INFO 	2016-06-12 08:57:44 	[downstream_bam] 	number of TADs = 3551
+TIME 	2016-06-12 08:57:55 	[downstream_bam] 	step time for completion (seconds) = 24600
+
+INFO 	2016-06-12 08:57:57 	[clean_up] 	deleting the following intermediate files/directories:
+INFO 	2016-06-12 08:57:57 	[clean_up] 	/users/project/4DGenome_no_backup/data/hic/samples/6ef597224_cd45830f3/fastqs_processed
+INFO 	2016-06-12 08:57:57 	[clean_up] 	/users/project/4DGenome_no_backup/data/hic/samples/6ef597224_cd45830f3/mapped_reads
+TIME 	2016-06-12 08:58:37 	[clean_up] 	step time for completion (seconds) = 40
+
+
+INFO 	2016-06-12 08:58:39 	[pipeline] 	completed successfully
+TIME 	2016-06-12 08:58:39 	[pipeline] 	total time for completion (seconds) = 91569
+

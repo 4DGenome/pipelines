@@ -1,0 +1,16 @@
+
+INFO 	2016-06-27 16:06:18 	[configuration] 	script to access/write from/to metadata: /users/project/4DGenome/utils/io_metadata.sh
+INFO 	2016-06-27 16:06:18 	[configuration] 	metadata database: /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-06-27 16:06:18 	[configuration] 	data for a7c643d27_bf1e6102c will be stored at /users/project/4DGenome_no_backup/data/hic/samples/a7c643d27_bf1e6102c
+INFO 	2016-06-27 16:06:18 	[configuration] 	paths to input FASTQ files extracted from the metadata
+INFO 	2016-06-27 16:06:40 	[configuration] 	species (Mus_musculus) and assembly version (mm10) extracted from the metadata
+
+INFO 	2016-06-27 16:07:28 	[downstream_bam] 	perform several downstream analyses
+/usr/share/univage/soldierantcluster/spool/node-hp0109/job_scripts/5420276: line 768:  3887 Segmentation fault      (core dumped) $python $SCRIPTS/tadbit_after_bam.py $ibam $flag_excluded $flag_included $flag_perzero $DOWNSTREAM/${sample_id}_ $slots $resolution_ab $resolution_tad &>$step_log
+INFO 	2016-06-27 22:15:17 	[downstream_bam] 	number of TADs = 2069
+TIME 	2016-06-27 22:15:40 	[downstream_bam] 	step time for completion (seconds) = 22092
+
+
+INFO 	2016-06-27 22:15:41 	[pipeline] 	completed successfully
+TIME 	2016-06-27 22:15:41 	[pipeline] 	total time for completion (seconds) = 22163
+

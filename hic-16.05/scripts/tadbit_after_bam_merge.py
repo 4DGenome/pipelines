@@ -459,3 +459,4 @@ def process_TAD(hic_data, perc_zero, reso, cpus, outdir, bins):
 
 if __name__ == "__main__":
     exit(main())
+

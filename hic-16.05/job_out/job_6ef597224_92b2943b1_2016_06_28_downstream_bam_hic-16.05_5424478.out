@@ -1,0 +1,20 @@
+
+INFO 	2016-06-28 10:09:44 	[configuration] 	script to access/write from/to metadata: /users/project/4DGenome/utils/io_metadata.sh
+INFO 	2016-06-28 10:09:44 	[configuration] 	metadata database: /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-06-28 10:09:44 	[configuration] 	data for 6ef597224_92b2943b1 will be stored at /users/project/4DGenome_no_backup/data/hic/samples/6ef597224_92b2943b1
+INFO 	2016-06-28 10:09:44 	[configuration] 	paths to input FASTQ files extracted from the metadata
+INFO 	2016-06-28 10:09:53 	[configuration] 	species (Homo_sapiens) and assembly version (hg38_mmtv) extracted from the metadata
+
+INFO 	2016-06-28 10:10:17 	[downstream_bam] 	perform several downstream analyses
+ls: cannot access /users/project/4DGenome_no_backup/data/hic/samples/6ef597224_92b2943b1/downstream/hg38_mmtv/6ef597224_92b2943b1_tads*tsv: No such file or directory
+basename: missing operand
+Try `basename --help' for more information.
+grep: /users/project/4DGenome_no_backup/data/hic/samples/6ef597224_92b2943b1/downstream/hg38_mmtv/6ef597224_92b2943b1_tads_*.tsv: No such file or directory
+rm: cannot remove `/users/project/4DGenome_no_backup/data/hic/samples/6ef597224_92b2943b1/downstream/hg38_mmtv/6ef597224_92b2943b1_tads_chr*': No such file or directory
+INFO 	2016-06-28 10:33:57 	[downstream_bam] 	number of TADs = 0
+TIME 	2016-06-28 10:34:08 	[downstream_bam] 	step time for completion (seconds) = 1431
+
+
+INFO 	2016-06-28 10:34:10 	[pipeline] 	completed successfully
+TIME 	2016-06-28 10:34:10 	[pipeline] 	total time for completion (seconds) = 1466
+

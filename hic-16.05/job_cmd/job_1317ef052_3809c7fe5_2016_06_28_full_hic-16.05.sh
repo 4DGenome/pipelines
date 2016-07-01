@@ -1,3 +1,65 @@
+#!/bin/bash
+#$ -N job_1317ef052_3809c7fe5_2016_06_28_full_hic-16.05
+#$ -q long-sl65
+#$ -l virtual_free=100G
+#$ -l h_rt=100:00:00
+#$ -o /users/project/4DGenome/pipelines/hic-16.05/job_out/job_1317ef052_3809c7fe5_2016_06_28_full_hic-16.05_$JOB_ID.out
+#$ -e /users/project/4DGenome/pipelines/hic-16.05/job_out/job_1317ef052_3809c7fe5_2016_06_28_full_hic-16.05_$JOB_ID.err
+#$ -j y
+#$ -M javier.quilez@crg.eu
+#$ -m abe
+#$ -pe smp 10
+
+submitted_on=2016_06_28
+pipeline_version=16.05
+sample_id=1317ef052_3809c7fe5
+data_type=hic
+pipeline_name=hic
+pipeline_version=16.05
+pipeline_run_mode=full
+io_mode=standard
+CUSTOM_IN=/users/project/4DGenome/sequencing/2016-05-03
+CUSTOM_OUT=/users/project/4DGenome/analysis/2016-05-03_run_hic-16.03_paula_soler/data/hic-16.05
+sample_to_fastqs=sample_to_fastqs.txt
+submit_to_cluster=yes
+queue=long-sl65
+memory=100G
+max_time=100:00:00
+slots=10
+email=javier.quilez@crg.eu
+integrate_metadata=yes
+species=
+version=
+read_length=
+sequencing_type=PE
+seedMismatches=2
+palindromeClipThreshold=30
+simpleClipThreshold=12
+leading=3
+trailing=3
+minAdapterLength=1
+keepBothReads=true
+minQual=3
+strictness=0.999
+minLength=36
+restriction_enzyme=
+max_molecule_length=500
+max_frag_size=10000
+min_frag_size=50
+over_represented=0.005
+re_proximity=4
+reads_number_qc=100000
+genomic_coverage_resolution=Mb
+frag_map=True
+flag_excluded=783
+flag_included=0
+flag_perzero=99
+resolution_tad=50000
+resolution_ab=100000
+CUSTOM_OUT=/users/project/4DGenome/analysis/2016-05-03_run_hic-16.03_paula_soler/data/hic-16.05
+PIPELINE=/users/project/4DGenome/pipelines/hic-16.05
+config=pipelines/hic-16.05/hic.config
+path_job_file=/users/project/4DGenome/pipelines/hic-16.05/job_cmd/job_1317ef052_3809c7fe5_2016_06_28_full_hic-16.05.sh
 
 
 # =================================================================================================
@@ -715,7 +777,7 @@ downstream_bam() {
 
 	# perform several downstream analyses
 	message_info $step "perform several downstream analyses"
-	$python $SCRIPTS/tadbit_after_bam_v2.py $ibam $flag_excluded $flag_included $flag_perzero $DOWNSTREAM/${sample_id}_ $slots $resolution_ab $resolution_tad &> $step_log
+	$python $SCRIPTS/tadbit_after_bam.py $ibam $flag_excluded $flag_included $flag_perzero $DOWNSTREAM/${sample_id}_ $slots $resolution_ab $resolution_tad &> $step_log
 
 	# arrange, merge chromosomes, compress and index TADs
 	obed=$DOWNSTREAM/$(basename $(ls -1 $DOWNSTREAM/${sample_id}_tads*tsv | head -n 1 |  sed 's,_chr.*$,,1'))_allchr.bed.gz

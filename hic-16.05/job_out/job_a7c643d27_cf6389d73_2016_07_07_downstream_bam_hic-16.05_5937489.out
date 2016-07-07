@@ -1,0 +1,8 @@
+
+INFO 	2016-07-07 11:46:23 	[configuration] 	script to access/write from/to metadata: /users/project/4DGenome/utils/io_metadata.sh
+INFO 	2016-07-07 11:46:23 	[configuration] 	metadata database: /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-07-07 11:46:23 	[configuration] 	data for a7c643d27_cf6389d73 will be stored at /users/project/4DGenome_no_backup/data/hic/samples/a7c643d27_cf6389d73
+INFO 	2016-07-07 11:46:23 	[configuration] 	paths to input FASTQ files extracted from the metadata
+INFO 	2016-07-07 11:47:01 	[configuration] 	species (Mus_musculus) and assembly version (mm10) extracted from the metadata
+
+INFO 	2016-07-07 11:47:39 	[downstream_bam] 	perform several downstream analyses

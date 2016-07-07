@@ -16,6 +16,8 @@
 	- checksums of the uncompressed FASTQs are generated on the fly (faster than writting reads to file)
 	- checksums of the uncompressed BAM (i.e. SAM) is generated on the fly
 	- extra dangling-ends filter is now also applied
+- 2016-07-01:
+	- added merger tool
 
 
 ## Dependencies **not provided**:
@@ -66,6 +68,7 @@
 	- retrieves configuration variables and parameter values from the `hic.config` file
 	- (if applies) submits jobs (one per sample) to execute the pipeline in the CRG cluster
 - `hic.config`: configuration file (see below)
+- `merger.sh`: tool to merger data from multiple samples (see below)
 
 
 Configuration file example:
@@ -144,7 +147,7 @@ resolution_ab			= 100000				; in bp
 ## Execute the pipeline
 
 ```
-pipelines/hic-16.03/hic_submit.sh <your_configuration_file>
+pipelines/hic-16.05/hic_submit.sh <your_configuration_file>
 ```
 
 Notes:
@@ -177,6 +180,25 @@ zcat sequencing/2015-04-28/MB_1_1_10082_CGATGT_read2.fastq.gz |head -n 4000 |gzi
 zcat sequencing/2015-04-28/MB_1_2_10083_TGACCA_read1.fastq.gz |head -n 4000 |gzip > pipelines/hic-16.03/test/test2_read1.fastq.gz
 zcat sequencing/2015-04-28/MB_1_2_10083_TGACCA_read2.fastq.gz |head -n 4000 |gzip > pipelines/hic-16.03/test/test2_read2.fastq.gz
 ```
+
+## Merge samples
+
+`merger.sh` is an script that takes as input (passed as script parameter) a table (no header, tab-delimited) like this:
+```
+## merged_name	sample_id1	sample_id2	sample_id3	...	sample_idN
+```
+The script will search for the BAM-like file with alignments/interactions generated for each sample when processed with the hic-16.05 pipeline (provided all modules were successfully run) and:
+- merge them to make a new BAM-lile file and index it
+- perform the same analyses as in the `downstream_bam` module of the pipeline (e.g. calculate eigenvalues, call TADs and A/B compartments, generate normalised matrices...)
+
+Run it like this:
+```
+pipelines/hic-16.05/merger.sh <samples_table>
+```
+
+
+*So far `merger.sh` can only be run on samples run on the `io_mode = standard` and will output files in a pre-set directory*
+
 
 
 ## TO-DO list

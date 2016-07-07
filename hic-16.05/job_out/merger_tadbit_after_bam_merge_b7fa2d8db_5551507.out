@@ -1,0 +1,36 @@
+2016-07-05 12:20:15	Main settings ...
+Take reads from
+/users/project/4DGenome_no_backup/data/hic/merged/b7fa2d8db/b7fa2d8db_both_map_merged.bam
+include contacts with flag = 0
+exclude contacts with flag = 783
+save results at /users/project/4DGenome_no_backup/data/hic/merged/b7fa2d8db/b7fa2d8db_tadbit_after_bam_merge
+(using 10 cpus and perc_zero = 99)
+process A/B compartments at resolution 50000
+process TADs at resolution 50000
+2016-07-05 12:20:15	Loading data ...
+Processing chromosome chr1
+Processing file /users/project/4DGenome_no_backup/data/hic/merged/b7fa2d8db/b7fa2d8db_both_map_merged.bam
+155981759 lines processed
+Processing chromosome chr2
+Processing file /users/project/4DGenome_no_backup/data/hic/merged/b7fa2d8db/b7fa2d8db_both_map_merged.bam
+152680424 lines processed
+Processing chromosome chr3
+Processing file /users/project/4DGenome_no_backup/data/hic/merged/b7fa2d8db/b7fa2d8db_both_map_merged.bam
+123713681 lines processed
+Processing chromosome chr4
+Processing file /users/project/4DGenome_no_backup/data/hic/merged/b7fa2d8db/b7fa2d8db_both_map_merged.bam
+123864045 lines processed
+Processing chromosome chr5
+Processing file /users/project/4DGenome_no_backup/data/hic/merged/b7fa2d8db/b7fa2d8db_both_map_merged.bam
+123303227 lines processed
+Processing chromosome chr6
+Processing file /users/project/4DGenome_no_backup/data/hic/merged/b7fa2d8db/b7fa2d8db_both_map_merged.bam
+121236838 lines processed
+Processing chromosome chr7
+Processing file /users/project/4DGenome_no_backup/data/hic/merged/b7fa2d8db/b7fa2d8db_both_map_merged.bam
+115129167 lines processed
+Processing chromosome chr8
+Processing file /users/project/4DGenome_no_backup/data/hic/merged/b7fa2d8db/b7fa2d8db_both_map_merged.bam
+104244271 lines processed
+Processing chromosome chr9
+Processing file /users/project/4DGenome_no_backup/data/hic/merged/b7fa2d8db/b7fa2d8db_both_map_merged.bam

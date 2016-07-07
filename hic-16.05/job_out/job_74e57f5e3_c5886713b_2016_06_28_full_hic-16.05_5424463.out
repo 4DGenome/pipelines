@@ -61,3 +61,19 @@ INFO 	2016-07-01 04:59:15 	[post_filtering_statistics] 	- self-circle ends: sequ
 TIME 	2016-07-01 06:40:35 	[post_filtering_statistics] 	step time for completion (seconds) = 6081
 
 INFO 	2016-07-01 06:40:54 	[map_to_bam] 	converting MAP to BAM
+[bam_sort_core] merging from 466 files...
+TIME 	2016-07-01 17:35:15 	[map_to_bam] 	step time for completion (seconds) = 39261
+
+INFO 	2016-07-01 17:35:35 	[downstream_bam] 	perform several downstream analyses
+INFO 	2016-07-02 04:37:31 	[downstream_bam] 	number of TADs = 3250
+TIME 	2016-07-02 04:38:03 	[downstream_bam] 	step time for completion (seconds) = 39748
+
+INFO 	2016-07-02 04:38:05 	[clean_up] 	deleting the following intermediate files/directories:
+INFO 	2016-07-02 04:38:05 	[clean_up] 	/users/project/4DGenome_no_backup/data/hic/samples/74e57f5e3_c5886713b/fastqs_processed
+INFO 	2016-07-02 04:38:05 	[clean_up] 	/users/project/4DGenome_no_backup/data/hic/samples/74e57f5e3_c5886713b/mapped_reads
+TIME 	2016-07-02 04:38:06 	[clean_up] 	step time for completion (seconds) = 1
+
+
+INFO 	2016-07-02 04:38:07 	[pipeline] 	completed successfully
+TIME 	2016-07-02 04:38:07 	[pipeline] 	total time for completion (seconds) = 326607
+

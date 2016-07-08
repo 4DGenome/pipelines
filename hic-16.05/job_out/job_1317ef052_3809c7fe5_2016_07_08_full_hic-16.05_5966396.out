@@ -1,0 +1,8 @@
+
+INFO 	2016-07-08 13:09:50 	[configuration] 	script to access/write from/to metadata: /users/project/4DGenome/utils/io_metadata.sh
+INFO 	2016-07-08 13:09:50 	[configuration] 	metadata database: /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-07-08 13:09:50 	[configuration] 	data for 1317ef052_3809c7fe5 will be stored at /users/project/4DGenome_no_backup/data/hic/samples/1317ef052_3809c7fe5
+INFO 	2016-07-08 13:09:50 	[configuration] 	paths to input FASTQ files extracted from the metadata
+INFO 	2016-07-08 13:10:01 	[configuration] 	species (Homo_sapiens) and assembly version (hg38_mmtv) extracted from the metadata
+
+INFO 	2016-07-08 13:10:45 	[preliminary_checks] 	1317ef052_3809c7fe5 found in /users/project/4DGenome/data/4DGenome_metadata.db

@@ -6,3 +6,15 @@ INFO 	2016-07-07 11:46:23 	[configuration] 	paths to input FASTQ files extracted
 INFO 	2016-07-07 11:47:01 	[configuration] 	species (Mus_musculus) and assembly version (mm10) extracted from the metadata
 
 INFO 	2016-07-07 11:47:39 	[downstream_bam] 	perform several downstream analyses
+ls: cannot access /users/project/4DGenome_no_backup/data/hic/samples/a7c643d27_cf6389d73/downstream/mm10/a7c643d27_cf6389d73_tads*tsv: No such file or directory
+basename: missing operand
+Try `basename --help' for more information.
+grep: /users/project/4DGenome_no_backup/data/hic/samples/a7c643d27_cf6389d73/downstream/mm10/a7c643d27_cf6389d73_tads_*.tsv: No such file or directory
+rm: cannot remove `/users/project/4DGenome_no_backup/data/hic/samples/a7c643d27_cf6389d73/downstream/mm10/a7c643d27_cf6389d73_tads_chr*': No such file or directory
+INFO 	2016-07-07 13:41:45 	[downstream_bam] 	number of TADs = 0
+TIME 	2016-07-07 13:42:11 	[downstream_bam] 	step time for completion (seconds) = 6872
+
+
+INFO 	2016-07-07 13:42:13 	[pipeline] 	completed successfully
+TIME 	2016-07-07 13:42:13 	[pipeline] 	total time for completion (seconds) = 6950
+

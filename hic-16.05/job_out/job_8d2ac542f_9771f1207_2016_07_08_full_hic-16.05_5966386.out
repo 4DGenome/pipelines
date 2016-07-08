@@ -1,0 +1,24 @@
+
+INFO 	2016-07-08 12:59:46 	[configuration] 	script to access/write from/to metadata: /users/project/4DGenome/utils/io_metadata.sh
+INFO 	2016-07-08 12:59:46 	[configuration] 	metadata database: /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-07-08 12:59:46 	[configuration] 	data for 8d2ac542f_9771f1207 will be stored at /users/project/4DGenome_no_backup/data/hic/samples/8d2ac542f_9771f1207
+INFO 	2016-07-08 12:59:46 	[configuration] 	paths to input FASTQ files extracted from the metadata
+INFO 	2016-07-08 13:00:15 	[configuration] 	species (Drosophila_melanogaster) and assembly version (dm6) extracted from the metadata
+
+INFO 	2016-07-08 13:00:49 	[preliminary_checks] 	8d2ac542f_9771f1207 found in /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-07-08 13:02:29 	[preliminary_checks] 	paths to read1 and read2 saved to metadata database
+INFO 	2016-07-08 13:02:31 	[preliminary_checks] 	Sequencing index added as part of the metadata agrees with that observed in the FASTQ file
+INFO 	2016-07-08 13:02:33 	[preliminary_checks] 	read length added as part of the metadata agrees with that observed in the FASTQ file
+INFO 	2016-07-08 13:02:33 	[preliminary_checks] 	genome reference FASTA file found at /users/GR/mb/jquilez/assemblies/drosophila_melanogaster/dm6/ucsc/dm6_chr2-4XYM.fa
+INFO 	2016-07-08 13:02:36 	[preliminary_checks] 	paths to reference FASTA saved to metadata database
+TIME 	2016-07-08 13:02:36 	[preliminary_checks] 	step time for completion (seconds) = 109
+
+INFO 	2016-07-08 13:02:38 	[raw_fastqs_quality_plots] 	restriction enzyme = DpnII
+INFO 	2016-07-08 13:02:38 	[raw_fastqs_quality_plots] 	a subset of 100000 reds will be used to generate the quality plots
+INFO 	2016-07-08 13:02:38 	[raw_fastqs_quality_plots] 	making quality plots of the raw FASTQ files... plots saved at /users/project/4DGenome_no_backup/data/hic/samples/8d2ac542f_9771f1207/plots/dm6/raw_fastqs_quality_plots
+INFO 	2016-07-08 13:02:58 	[raw_fastqs_quality_plots] 	percentages of dangling ends and ligated sites in read1 and read2 saved to metadata database
+TIME 	2016-07-08 13:02:58 	[raw_fastqs_quality_plots] 	step time for completion (seconds) = 20
+
+INFO 	2016-07-08 13:03:00 	[trim_reads_trimmomatic] 	sequencing type = PE
+INFO 	2016-07-08 13:03:00 	[trim_reads_trimmomatic] 	trimming TruSeq3 adapter sequences for HiSeq, NextSeq or HiSeq
+INFO 	2016-07-08 13:03:00 	[trim_reads_trimmomatic] 	trimming low-quality reads ends using trimmomatic's recommended practices

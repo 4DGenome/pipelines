@@ -1630,3 +1630,30 @@ input matrix not symmetric: symmetrizing
   - chr7
 input matrix not symmetric: symmetrizing
   - chr8
+input matrix not symmetric: symmetrizing
+  - chr9
+input matrix not symmetric: symmetrizing
+  - chr10
+  - chr11
+input matrix not symmetric: symmetrizing
+  - chr12
+input matrix not symmetric: symmetrizing
+  - chr13
+input matrix not symmetric: symmetrizing
+  - chr14
+input matrix not symmetric: symmetrizing
+  - chr15
+input matrix not symmetric: symmetrizing
+  - chr16
+  - chr17
+input matrix not symmetric: symmetrizing
+  - chr18
+  - chr19
+  - chrX
+input matrix not symmetric: symmetrizing
+  - chrY
+  - chrM
+     Chromosome too short (1 bins), skipping...
+2016-07-07 13:12:20	... done!
+2016-07-07 13:12:20	FINISHED!
+job length was 72172 seconds

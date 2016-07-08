@@ -26,3 +26,6 @@ git push -u origin master
 
 2016-04-08
 - `HiC_visualisation_app` is moved to `archived`
+
+2016-07-08
+- `hic-16.03` is moved to `archived`

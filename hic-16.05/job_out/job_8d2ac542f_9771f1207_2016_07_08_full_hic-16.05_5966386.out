@@ -22,3 +22,16 @@ TIME 	2016-07-08 13:02:58 	[raw_fastqs_quality_plots] 	step time for completion 
 INFO 	2016-07-08 13:03:00 	[trim_reads_trimmomatic] 	sequencing type = PE
 INFO 	2016-07-08 13:03:00 	[trim_reads_trimmomatic] 	trimming TruSeq3 adapter sequences for HiSeq, NextSeq or HiSeq
 INFO 	2016-07-08 13:03:00 	[trim_reads_trimmomatic] 	trimming low-quality reads ends using trimmomatic's recommended practices
+INFO 	2016-07-08 13:17:00 	[trim_reads_trimmomatic] 	parse step log to extract generated metadata
+INFO 	2016-07-08 13:17:00 	[trim_reads_trimmomatic] 	reads after trimming = 25555151
+INFO 	2016-07-08 13:17:27 	[trim_reads_trimmomatic] 	trimmomatic parameters and numbe of trimmed reads added to metadata
+INFO 	2016-07-08 13:17:27 	[trim_reads_trimmomatic] 	trimmed reads are in /users/project/4DGenome_no_backup/data/hic/samples/8d2ac542f_9771f1207/fastqs_processed/trimmomatic/paired_end
+INFO 	2016-07-08 13:17:27 	[trim_reads_trimmomatic] 	unpaired reads are deleted
+TIME 	2016-07-08 13:17:27 	[trim_reads_trimmomatic] 	step time for completion (seconds) = 867
+
+INFO 	2016-07-08 13:17:29 	[align_and_merge] 	species = Drosophila_melanogaster
+INFO 	2016-07-08 13:17:29 	[align_and_merge] 	assembly version = dm6
+INFO 	2016-07-08 13:17:29 	[align_and_merge] 	restriction enzyme = DpnII
+INFO 	2016-07-08 13:17:29 	[align_and_merge] 	read length = 75
+INFO 	2016-07-08 13:17:29 	[align_and_merge] 	genome reference FASTA file found at /users/GR/mb/jquilez/assemblies/drosophila_melanogaster/dm6/ucsc/dm6_chr2-4XYM.fa
+INFO 	2016-07-08 13:17:29 	[align_and_merge] 	mapping, processing reads according to restriction enzyme fragments and merging aligments for read1 and read2...

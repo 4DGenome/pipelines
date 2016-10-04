@@ -35,3 +35,45 @@ INFO 	2016-07-08 13:17:29 	[align_and_merge] 	restriction enzyme = DpnII
 INFO 	2016-07-08 13:17:29 	[align_and_merge] 	read length = 75
 INFO 	2016-07-08 13:17:29 	[align_and_merge] 	genome reference FASTA file found at /users/GR/mb/jquilez/assemblies/drosophila_melanogaster/dm6/ucsc/dm6_chr2-4XYM.fa
 INFO 	2016-07-08 13:17:29 	[align_and_merge] 	mapping, processing reads according to restriction enzyme fragments and merging aligments for read1 and read2...
+INFO 	2016-07-08 14:13:10 	[align_and_merge] 	output saved in /users/project/4DGenome_no_backup/data/hic/samples/8d2ac542f_9771f1207/logs/dm6/8d2ac542f_9771f1207_align_and_merge_paired_end.log
+TIME 	2016-07-08 14:13:27 	[align_and_merge] 	step time for completion (seconds) = 3358
+
+INFO 	2016-07-08 14:13:37 	[post_mapping_statistics] 	generating post mapping descriptive statistics plots...
+INFO 	2016-07-08 14:19:27 	[post_mapping_statistics] 	fraction of reads mapped read1 = 0.84155409608
+INFO 	2016-07-08 14:19:27 	[post_mapping_statistics] 	fraction of reads mapped read2 = 0.832828379688
+INFO 	2016-07-08 14:19:27 	[post_mapping_statistics] 	number of pairs in which both read1 and read2 are mapped = 22074336
+INFO 	2016-07-08 14:19:27 	[post_mapping_statistics] 	counts-to-distance slope = -1.00585942739
+TIME 	2016-07-08 14:19:35 	[post_mapping_statistics] 	step time for completion (seconds) = 359
+
+INFO 	2016-07-08 14:19:40 	[reads_filtering] 	filtering reads based on multiple quality parameters...
+INFO 	2016-07-08 14:19:40 	[reads_filtering] 	filtered reads to be used for subsequent analyses are at /users/project/4DGenome_no_backup/data/hic/samples/8d2ac542f_9771f1207/results/dm6/filtered_reads
+INFO 	2016-07-08 14:19:40 	[reads_filtering] 	excluded reads due to dangling ends are at /users/project/4DGenome_no_backup/data/hic/samples/8d2ac542f_9771f1207/results/dm6/excluded_reads/dangling_ends
+INFO 	2016-07-08 14:19:40 	[reads_filtering] 	excluded reads due to self circle are at /users/project/4DGenome_no_backup/data/hic/samples/8d2ac542f_9771f1207/results/dm6/excluded_reads/self_circle
+INFO 	2016-07-08 14:19:40 	[reads_filtering] 	summary of excluded reads at /users/project/4DGenome_no_backup/data/hic/samples/8d2ac542f_9771f1207/results/dm6/excluded_reads/summary_excluded_per_filter
+INFO 	2016-07-08 14:23:20 	[reads_filtering] 	numbers and fractions of filtered and excluded reads added to the metadata
+TIME 	2016-07-08 14:23:32 	[reads_filtering] 	step time for completion (seconds) = 235
+
+INFO 	2016-07-08 14:23:34 	[post_filtering_statistics] 	generating post filtering descriptive statistics plots... saved at /users/project/4DGenome_no_backup/data/hic/samples/8d2ac542f_9771f1207/plots/dm6/post_filtering_statistics:
+INFO 	2016-07-08 14:23:34 	[post_filtering_statistics] 	- filtered reads: sequencing coverage along chromosomes, coverage values and interaction matrix
+INFO 	2016-07-08 14:23:34 	[post_filtering_statistics] 	- dangling ends: sequencing coverage along chromosomes and coverage values
+INFO 	2016-07-08 14:23:34 	[post_filtering_statistics] 	- self-circle ends: sequencing coverage along chromosomes and coverage values
+TIME 	2016-07-08 14:26:42 	[post_filtering_statistics] 	step time for completion (seconds) = 188
+
+INFO 	2016-07-08 14:26:44 	[map_to_bam] 	converting MAP to BAM
+[bam_sort_core] merging from 11 files...
+TIME 	2016-07-08 14:41:58 	[map_to_bam] 	step time for completion (seconds) = 914
+
+INFO 	2016-07-08 14:42:13 	[downstream_bam] 	perform several downstream analyses
+/usr/share/univage/soldierantcluster/spool/node-hp0104/job_scripts/5966386: line 773: 21527 Segmentation fault      (core dumped) $python $SCRIPTS/tadbit_after_bam_v2.py $ibam $flag_excluded $flag_included $flag_perzero $DOWNSTREAM/${sample_id}_ $slots $resolution_ab $resolution_tad &>$step_log
+INFO 	2016-07-08 14:52:05 	[downstream_bam] 	number of TADs = 368
+TIME 	2016-07-08 14:52:31 	[downstream_bam] 	step time for completion (seconds) = 618
+
+INFO 	2016-07-08 14:52:33 	[clean_up] 	deleting the following intermediate files/directories:
+INFO 	2016-07-08 14:52:33 	[clean_up] 	/users/project/4DGenome_no_backup/data/hic/samples/8d2ac542f_9771f1207/fastqs_processed
+INFO 	2016-07-08 14:52:33 	[clean_up] 	/users/project/4DGenome_no_backup/data/hic/samples/8d2ac542f_9771f1207/mapped_reads
+TIME 	2016-07-08 14:52:37 	[clean_up] 	step time for completion (seconds) = 4
+
+
+INFO 	2016-07-08 14:52:39 	[pipeline] 	completed successfully
+TIME 	2016-07-08 14:52:39 	[pipeline] 	total time for completion (seconds) = 6773
+

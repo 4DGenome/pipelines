@@ -20,17 +20,17 @@
 
 # variables
 itab=$1
-mode=full
+mode=tadbit
 project=4DGenome
-analysis=2016-06-21_develop_merger
+analysis=2016-07-06_run_merger_rtadhouders
 process=merger
 min_n_replicates=2
 pipeline_version=hic-16.05
 flag_excluded=783
 flag_included=0
 flag_perzero=99
-resolution_tad=50000 			# in bp
-resolution_ab=50000				# in bp
+resolution_tad=10000 			# in bp
+resolution_ab=10000				# in bp
 
 # Paths
 PROJECT=/users/project/$project
@@ -43,9 +43,15 @@ samtools=`which samtools`
 tadbit_after_bam_v2_bigbam_include_chromosome=$PROJECT/pipelines/$pipeline_version/scripts/tadbit_after_bam_v2_bigbam_include_chromosome.py
 
 # Cluster parameters
-queue=long-sl65
-memory=100G
-max_time=24:00:00
+#queue=long-sl65
+#memory=100G
+#max_time=24:00:00
+#slots=10
+
+# for high-memory jobs
+queue=mem_256
+memory=200G
+max_time=48:00:00
 slots=10
 
 
@@ -55,9 +61,9 @@ slots=10
 
 while read line ;do 
 
-	samples=$line
+  samples=$line
 
-	merged_name=`echo $line | awk '{OFS="\t"; print $1}'`
+  merged_name=`echo $line | awk '{OFS="\t"; print $1}'`
 	samples_ids=`echo $line | awk '{OFS="\t"; for (i=2; i<=NF; i++) printf $i" "}'`
 
 	#echo $merged_name
@@ -68,7 +74,7 @@ while read line ;do
  	names=""
  	ibams=""
  	for s in $samples_ids; do
- 		n_replicates=`expr $n_replicates + 1`
+ 	  n_replicates=`expr $n_replicates + 1`
  		names="$names `echo $s |cut -f1 -d'_'`"
  		ibam="$DATA/samples/${s}/results/*/processed_reads/${s}_both_map.bam"
  		ibams="$ibams $ibam"
@@ -93,21 +99,21 @@ while read line ;do
 
  	# output directory
 	ODIR=$DATA/merged/$merged_name
-	if [ -d $ODIR ]; then
-		echo "$merged_name already exists ($ODIR); continue..."
-		continue
-	fi		
+	#if [ -d $ODIR ]; then
+	#	echo "$merged_name already exists ($ODIR); continue..."
+	#	continue
+	#fi		
 	mkdir -p $ODIR
 
-  	# make a record of the samples and files merged
-  	echo -e "samples merged: \n$samples\n" > $ODIR/README.md
-  	echo -e "BAMs merged: \n`ls $ibams`" >> $ODIR/README.md
+  # make a record of the samples and files merged
+  echo -e "samples merged: \n$samples\n" > $ODIR/README.md
+  echo -e "BAMs merged: \n`ls $ibams`" >> $ODIR/README.md
 
-  	# Build job: parameters
-  	job_name=${process}_${mode}_${merged_name}
-  	job_file=$JOB_CMD/$job_name.sh
-  	m_out=$JOB_OUT
-  	echo "#!/bin/bash
+  # Build job: parameters
+  job_name=${process}_${mode}_${merged_name}
+  job_file=$JOB_CMD/$job_name.sh
+  m_out=$JOB_OUT
+  echo "#!/bin/bash
 	#$ -N $job_name
 	#$ -q $queue
 	#$ -l virtual_free=$memory
@@ -118,20 +124,20 @@ while read line ;do
 	#$ -M javier.quilez@crg.eu
 	#$ -m abe
 	#$ -pe smp $slots" > $job_file	
-  	sed -i 's/^\t//g' $job_file
+  sed -i 's/^\t//g' $job_file
 
  	# makes that the job uses this python/tadbit
-  	echo 'export PATH="/software/mb/el6.3/Conda/bin:$PATH"' >> $job_file
-  	echo 'python=`which python`' >> $job_file
+  echo 'export PATH="/software/mb/el6.3/Conda/bin:$PATH"' >> $job_file
+  echo 'python=`which python`' >> $job_file
 
  	# start timing job
-  	echo 'time0=$(date +"%s")' >> $job_file
+  echo 'time0=$(date +"%s")' >> $job_file
 
  	# merge BAMs
-  	obam=$ODIR/${merged_name}_both_map_merged.bam
-  	obai=$ODIR/${merged_name}_both_map_merged.bam.bai		
-  	job_cmd_merge="$samtools merge -rf -@ $slots $obam $ibams"
-  	job_cmd_index="$samtools index $obam"
+  obam=$ODIR/${merged_name}_both_map_merged.bam
+  obai=$ODIR/${merged_name}_both_map_merged.bam.bai		
+  job_cmd_merge="$samtools merge -rf -@ $slots $obam $ibams"
+  job_cmd_index="$samtools index $obam"
 
 	# apply TADbit after merging BAM
  	job_cmd_tadbit="\$python $tadbit_after_bam_v2_bigbam_include_chromosome \
@@ -145,23 +151,23 @@ while read line ;do
  								$resolution_tad"
 
  	# add job commands depending on the mode
-  	if [[ $mode == "full" ]]; then
-  		echo $job_cmd_merge >> $job_file
-  		echo $job_cmd_index >> $job_file
-  		echo $job_cmd_tadbit >> $job_file
-  	elif [[ $mode == "merge" ]]; then
-  		echo $job_cmd_merge >> $job_file
-  		echo $job_cmd_index >> $job_file
+  if [[ $mode == "full" ]]; then
+  	echo $job_cmd_merge >> $job_file
+  	echo $job_cmd_index >> $job_file
+  	echo $job_cmd_tadbit >> $job_file
+  elif [[ $mode == "merge" ]]; then
+  	echo $job_cmd_merge >> $job_file
+  	echo $job_cmd_index >> $job_file
  	elif [[ $mode == "tadbit" ]]; then
-  		echo $job_cmd_tadbit >> $job_file
-  	fi
+  	echo $job_cmd_tadbit >> $job_file
+  fi
 
-  	# end timing job and calculate time running
-  	echo 'time1=$(date +"%s")' >> $job_file
-  	echo 'echo "job length was $(($time1-$time0)) seconds"' >> $job_file
+  # end timing job and calculate time running
+  echo 'time1=$(date +"%s")' >> $job_file
+  echo 'echo "job length was $(($time1-$time0)) seconds"' >> $job_file
 
-  	# submit job
-  	chmod a+x $job_file
-  	qsub < $job_file
+ 	# submit job
+ 	chmod a+x $job_file
+ 	qsub < $job_file
 
 done<$itab

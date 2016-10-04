@@ -1,0 +1,20 @@
+
+INFO 	2016-09-13 15:05:35 	[configuration] 	script to access/write from/to metadata: /users/project/4DGenome/utils/io_metadata.sh
+INFO 	2016-09-13 15:05:35 	[configuration] 	metadata database: /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-09-13 15:05:35 	[configuration] 	data for PRL_3 will be stored at /users/project/4DGenome_no_backup/data/hic/samples/PRL_3
+INFO 	2016-09-13 15:05:35 	[configuration] 	paths to input FASTQ files extracted from the metadata
+INFO 	2016-09-13 15:05:49 	[configuration] 	species (Homo_sapiens) and assembly version (hg38_mmtv) extracted from the metadata
+
+INFO 	2016-09-13 15:06:30 	[downstream_bam] 	perform several downstream analyses
+ls: cannot access /users/project/4DGenome_no_backup/data/hic/samples/PRL_3/downstream/hg38_mmtv/PRL_3_tads*tsv: No such file or directory
+basename: missing operand
+Try `basename --help' for more information.
+grep: /users/project/4DGenome_no_backup/data/hic/samples/PRL_3/downstream/hg38_mmtv/PRL_3_tads_*.tsv: No such file or directory
+rm: cannot remove `/users/project/4DGenome_no_backup/data/hic/samples/PRL_3/downstream/hg38_mmtv/PRL_3_tads_chr*': No such file or directory
+INFO 	2016-09-13 15:33:55 	[downstream_bam] 	number of TADs = 0
+TIME 	2016-09-13 15:34:07 	[downstream_bam] 	step time for completion (seconds) = 1657
+
+
+INFO 	2016-09-13 15:34:08 	[pipeline] 	completed successfully
+TIME 	2016-09-13 15:34:08 	[pipeline] 	total time for completion (seconds) = 1713
+

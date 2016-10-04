@@ -48,6 +48,8 @@ main() {
 			fasta=/users/GR/mb/jquilez/assemblies/$species/$version/ucsc/${version}_chr1-19XYM.fa
 		elif [[ $species == 'drosophila_melanogaster' ]]; then
 			fasta=/users/GR/mb/jquilez/assemblies/$species/$version/ucsc/${version}_chr2-4XYM.fa
+		elif [[ $species == 'caulobacter_crescentus' ]]; then
+			fasta=/users/GR/mb/jquilez/assemblies/$species/$version/ncbi/${version}.fa			
 		fi
 	elif [[ $io_mode == "standard" ]]; then
 		# script to in/out data from metadata

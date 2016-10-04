@@ -35,3 +35,44 @@ INFO 	2016-07-08 12:49:31 	[align_and_merge] 	restriction enzyme = MboI
 INFO 	2016-07-08 12:49:31 	[align_and_merge] 	read length = 75
 INFO 	2016-07-08 12:49:31 	[align_and_merge] 	genome reference FASTA file found at /users/GR/mb/jquilez/assemblies/mus_musculus/mm10/ucsc/mm10_chr1-19XYM.fa
 INFO 	2016-07-08 12:49:31 	[align_and_merge] 	mapping, processing reads according to restriction enzyme fragments and merging aligments for read1 and read2...
+INFO 	2016-07-08 13:30:37 	[align_and_merge] 	output saved in /users/project/4DGenome_no_backup/data/hic/samples/LDC_4/logs/mm10/LDC_4_align_and_merge_paired_end.log
+TIME 	2016-07-08 13:30:48 	[align_and_merge] 	step time for completion (seconds) = 2477
+
+INFO 	2016-07-08 13:30:51 	[post_mapping_statistics] 	generating post mapping descriptive statistics plots...
+INFO 	2016-07-08 13:35:43 	[post_mapping_statistics] 	fraction of reads mapped read1 = 0.996030713792
+INFO 	2016-07-08 13:35:43 	[post_mapping_statistics] 	fraction of reads mapped read2 = 0.971827761549
+INFO 	2016-07-08 13:35:43 	[post_mapping_statistics] 	number of pairs in which both read1 and read2 are mapped = 14171072
+INFO 	2016-07-08 13:35:43 	[post_mapping_statistics] 	counts-to-distance slope = -0.948590406904
+TIME 	2016-07-08 13:35:51 	[post_mapping_statistics] 	step time for completion (seconds) = 300
+
+INFO 	2016-07-08 13:35:55 	[reads_filtering] 	filtering reads based on multiple quality parameters...
+INFO 	2016-07-08 13:35:55 	[reads_filtering] 	filtered reads to be used for subsequent analyses are at /users/project/4DGenome_no_backup/data/hic/samples/LDC_4/results/mm10/filtered_reads
+INFO 	2016-07-08 13:35:55 	[reads_filtering] 	excluded reads due to dangling ends are at /users/project/4DGenome_no_backup/data/hic/samples/LDC_4/results/mm10/excluded_reads/dangling_ends
+INFO 	2016-07-08 13:35:55 	[reads_filtering] 	excluded reads due to self circle are at /users/project/4DGenome_no_backup/data/hic/samples/LDC_4/results/mm10/excluded_reads/self_circle
+INFO 	2016-07-08 13:35:55 	[reads_filtering] 	summary of excluded reads at /users/project/4DGenome_no_backup/data/hic/samples/LDC_4/results/mm10/excluded_reads/summary_excluded_per_filter
+INFO 	2016-07-08 13:38:40 	[reads_filtering] 	numbers and fractions of filtered and excluded reads added to the metadata
+TIME 	2016-07-08 13:38:50 	[reads_filtering] 	step time for completion (seconds) = 177
+
+INFO 	2016-07-08 13:38:52 	[post_filtering_statistics] 	generating post filtering descriptive statistics plots... saved at /users/project/4DGenome_no_backup/data/hic/samples/LDC_4/plots/mm10/post_filtering_statistics:
+INFO 	2016-07-08 13:38:52 	[post_filtering_statistics] 	- filtered reads: sequencing coverage along chromosomes, coverage values and interaction matrix
+INFO 	2016-07-08 13:38:52 	[post_filtering_statistics] 	- dangling ends: sequencing coverage along chromosomes and coverage values
+INFO 	2016-07-08 13:38:52 	[post_filtering_statistics] 	- self-circle ends: sequencing coverage along chromosomes and coverage values
+TIME 	2016-07-08 13:42:11 	[post_filtering_statistics] 	step time for completion (seconds) = 199
+
+INFO 	2016-07-08 13:42:13 	[map_to_bam] 	converting MAP to BAM
+[bam_sort_core] merging from 8 files...
+TIME 	2016-07-08 13:52:03 	[map_to_bam] 	step time for completion (seconds) = 590
+
+INFO 	2016-07-08 13:52:19 	[downstream_bam] 	perform several downstream analyses
+INFO 	2016-07-08 21:15:00 	[downstream_bam] 	number of TADs = 1960
+TIME 	2016-07-08 21:15:27 	[downstream_bam] 	step time for completion (seconds) = 26588
+
+INFO 	2016-07-08 21:15:29 	[clean_up] 	deleting the following intermediate files/directories:
+INFO 	2016-07-08 21:15:29 	[clean_up] 	/users/project/4DGenome_no_backup/data/hic/samples/LDC_4/fastqs_processed
+INFO 	2016-07-08 21:15:29 	[clean_up] 	/users/project/4DGenome_no_backup/data/hic/samples/LDC_4/mapped_reads
+TIME 	2016-07-08 21:15:32 	[clean_up] 	step time for completion (seconds) = 3
+
+
+INFO 	2016-07-08 21:15:33 	[pipeline] 	completed successfully
+TIME 	2016-07-08 21:15:33 	[pipeline] 	total time for completion (seconds) = 31023
+

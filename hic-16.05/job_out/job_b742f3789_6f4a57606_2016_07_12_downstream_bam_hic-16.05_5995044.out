@@ -1,0 +1,20 @@
+
+INFO 	2016-07-12 16:48:54 	[configuration] 	script to access/write from/to metadata: /users/project/4DGenome/utils/io_metadata.sh
+INFO 	2016-07-12 16:48:54 	[configuration] 	metadata database: /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-07-12 16:48:54 	[configuration] 	data for b742f3789_6f4a57606 will be stored at /users/project/4DGenome_no_backup/data/hic/samples/b742f3789_6f4a57606
+INFO 	2016-07-12 16:48:54 	[configuration] 	paths to input FASTQ files extracted from the metadata
+INFO 	2016-07-12 16:49:03 	[configuration] 	species (Mus_musculus) and assembly version (mm10) extracted from the metadata
+
+INFO 	2016-07-12 16:49:25 	[downstream_bam] 	perform several downstream analyses
+ls: cannot access /users/project/4DGenome_no_backup/data/hic/samples/b742f3789_6f4a57606/downstream/mm10/b742f3789_6f4a57606_tads*tsv: No such file or directory
+basename: missing operand
+Try `basename --help' for more information.
+grep: /users/project/4DGenome_no_backup/data/hic/samples/b742f3789_6f4a57606/downstream/mm10/b742f3789_6f4a57606_tads_*.tsv: No such file or directory
+rm: cannot remove `/users/project/4DGenome_no_backup/data/hic/samples/b742f3789_6f4a57606/downstream/mm10/b742f3789_6f4a57606_tads_chr*': No such file or directory
+INFO 	2016-07-12 17:29:21 	[downstream_bam] 	number of TADs = 0
+TIME 	2016-07-12 17:29:44 	[downstream_bam] 	step time for completion (seconds) = 2419
+
+
+INFO 	2016-07-12 17:29:47 	[pipeline] 	completed successfully
+TIME 	2016-07-12 17:29:47 	[pipeline] 	total time for completion (seconds) = 2453
+

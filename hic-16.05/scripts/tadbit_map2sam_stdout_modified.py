@@ -1,11 +1,5 @@
 #!/usr/bin/env python
 
-"""
-script provided by Enrique Vidal <enrique.vidal@crg.eu> to convert 2D beds
-into compressed BAM format.
-
-"""
-
 #
 # Gets the *_both_filled_map.tsv contacts from TADBIT (and the corresponding filter files)
 #  and outputs a modified SAM with the following fields:

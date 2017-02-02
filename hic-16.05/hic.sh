@@ -18,7 +18,7 @@ main() {
 	job_name=$pipeline_name-$pipeline_version
 
 	# makes that the job uses this python/tadbit
-	export PATH="/software/mb/el6.3/Conda/bin:$PATH"
+	export PATH="/software/mb/el7.2/anaconda2/bin:$PATH"
 
 	# pipeline scripts
 	SCRIPTS=$PIPELINE/scripts

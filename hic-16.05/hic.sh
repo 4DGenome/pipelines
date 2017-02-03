@@ -90,7 +90,7 @@ main() {
 	TRIMMED=$SAMPLE/fastqs_processed/trimmomatic
 	PAIRED=$TRIMMED/paired_end
 	UNPAIRED=$TRIMMED/unpaired_reads
-	ADAPTERS=/software/mb/el6.3/Trimmomatic-0.33/adapters
+	ADAPTERS=/software/mb/el7.2/Trimmomatic-0.36/adapters
 
 	# SHA cheksums
 	CHECKSUMS=$SAMPLE/checksums/$version/$run_date

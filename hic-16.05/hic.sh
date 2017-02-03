@@ -121,6 +121,7 @@ main() {
 	samtools=`which samtools`
 	bgzip=`which bgzip`
 	tabix=`which tabix`
+	java=`which java`
 
 	# get TADbit and its dependencies versions
 	tadbit_and_dependencies_versions=`$python $SCRIPTS/print_tadbit_and_dependencies_version.py`
@@ -409,7 +410,7 @@ trim_reads_trimmomatic() {
 	message_info $step "trimming low-quality reads ends using trimmomatic's recommended practices"
 	seqs=$ADAPTERS/TruSeq3-$sequencing_type.fa
 	targetLength=$read_length
-	$trimmomatic $sequencing_type \
+	$java -jar $trimmomatic $sequencing_type \
  					$params \
  					ILLUMINACLIP:$seqs:$seedMismatches:$palindromeClipThreshold:$simpleClipThreshold:$minAdapterLength:$keepBothReads \
  					LEADING:$leading \

@@ -118,9 +118,9 @@ main() {
 	shasum=`which shasum`
 	python=`which python`
 	trimmomatic=`which trimmomatic`
-	samtools=/software/mb/el6.3/samtools-1.2/samtools
-	bgzip=/software/mb/bin/bgzip
-	tabix=/software/mb/bin/tabix
+	samtools=`which samtools`
+	bgzip=`which bgzip`
+	tabix=`which tabix
 
 	# get TADbit and its dependencies versions
 	tadbit_and_dependencies_versions=`$python $SCRIPTS/print_tadbit_and_dependencies_version.py`

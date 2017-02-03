@@ -120,7 +120,7 @@ main() {
 	trimmomatic=`which trimmomatic`
 	samtools=`which samtools`
 	bgzip=`which bgzip`
-	tabix=`which tabix
+	tabix=`which tabix`
 
 	# get TADbit and its dependencies versions
 	tadbit_and_dependencies_versions=`$python $SCRIPTS/print_tadbit_and_dependencies_version.py`

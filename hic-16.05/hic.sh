@@ -681,13 +681,13 @@ map_to_bam() {
 	if [[ $io_mode == "custom" ]]; then
 		ODIR=$PROCESSED
 		obam=$ODIR/$(basename $imap .tsv)
-		$python $SCRIPTS/tadbit_map2sam_stdout_modified.py $imap | $samtools view -Su - | $samtools sort - $obam
+		$python $SCRIPTS/tadbit_map2sam_stdout_modified.py $imap | $samtools view -Su - | $samtools sort - -o $obam
 		$samtools index $obam.bam
 	elif [[ $io_mode == "standard" ]]; then
 		ODIR=/users/project/4DGenome/data/hic/samples/$sample_id/results/$version/processed_reads
 		mkdir -p $ODIR
 		obam=$ODIR/$(basename $imap .tsv)
-		$python $SCRIPTS/tadbit_map2sam_stdout_modified.py $imap | $samtools view -Su - | $samtools sort - $obam
+		$python $SCRIPTS/tadbit_map2sam_stdout_modified.py $imap | $samtools view -Su - | $samtools sort - -o $obam
 		$samtools index $obam.bam
 		ln -sf $obam.bam $PROCESSED/$(basename $obam).bam
 		ln -sf $obam.bam.bai $PROCESSED/$(basename $obam).bam.bai

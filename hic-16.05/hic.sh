@@ -682,21 +682,21 @@ map_to_bam() {
 		ODIR=$PROCESSED
 		obam=$ODIR/$(basename $imap .tsv)
 		$python $SCRIPTS/tadbit_map2sam_stdout_modified.py $imap | $samtools view -Su - | $samtools sort - -o $obam
-		$samtools index $obam.bam
+		$samtools index $obam
 	elif [[ $io_mode == "standard" ]]; then
 		ODIR=/users/project/4DGenome/data/hic/samples/$sample_id/results/$version/processed_reads
 		mkdir -p $ODIR
-		obam=$ODIR/$(basename $imap .tsv)
+		obam=$ODIR/$(basename $imap .tsv).bam
 		$python $SCRIPTS/tadbit_map2sam_stdout_modified.py $imap | $samtools view -Su - | $samtools sort - -o $obam
-		$samtools index $obam.bam
-		ln -sf $obam.bam $PROCESSED/$(basename $obam).bam
-		ln -sf $obam.bam.bai $PROCESSED/$(basename $obam).bam.bai
+		$samtools index $obam
+		ln -sf $obam $PROCESSED/$(basename $obam)
+		ln -sf $obam.bai $PROCESSED/$(basename $obam).bai
 	fi
 
 	# save a SHA checksums of the alignment file BAM
 	# because different compressions would then have different checksums, checksums are generated on the uncompressed BAM (i.e. SAM)
 	# after checksums are generated, the uncompressed file is deleted for the sake of space
-	$samtools view -h $obam.bam |$shasum | awk -v file=$obam.sam '{print $1,"",file}' >> $checksums
+	$samtools view -h $obam |$shasum | awk -v file=$obam.sam '{print $1,"",file}' >> $checksums
 	#$samtools view -h $obam.bam > $obam.sam
 	#$shasum $obam.bam >> $checksums
 	#$shasum $obam.sam >> $checksums

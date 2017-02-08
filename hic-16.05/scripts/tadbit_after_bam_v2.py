@@ -221,7 +221,7 @@ def bam_to_hic_data(inbam, resolution_list, filter_exclude, filter_include):
         for line in pysam.view("-F", str(filter_exclude),
                                "-f", str(filter_include),
                                inbam,
-                               chrom):
+                               chrom, split_lines = True):
 
             # get info
 

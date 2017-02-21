@@ -680,7 +680,7 @@ map_to_bam() {
 
 	if [[ $io_mode == "custom" ]]; then
 		ODIR=$PROCESSED
-		obam=$ODIR/$(basename $imap .tsv)
+		obam=$ODIR/$(basename $imap .tsv).bam
 		$python $SCRIPTS/tadbit_map2sam_stdout_modified.py $imap | $samtools view -Su - | $samtools sort - -o $obam
 		$samtools index $obam
 	elif [[ $io_mode == "standard" ]]; then
@@ -734,10 +734,11 @@ downstream_bam() {
 	message_info $step "number of TADs = $n_tads"
 
 	# call TADs with the Dekker method
-	resolution_nice=`$python $SCRIPTS/nice.py $resolution_tad`
+	resolution_nice=`$python $SCRIPTS/nice.py $resolution_ab`
 	MY_TMP=$DOWNSTREAM/my_tmp 
 	mkdir -p $MY_TMP
-	$SCRIPTS/dekker_call.r $DOWNSTREAM/${sample_id}_normalized_${resolution_nice}.tsv.gz $ibam $resolution_tad $slots $DOWNSTREAM/${sample_id}_ $pis $pids $pnt $MY_TMP
+	$SCRIPTS/dekker_call.r $DOWNSTREAM/${sample_id}_normalized_${resolution_nice}.tsv.gz $ibam $resolution_tad $slots $DOWNSTREAM/${sample_id} $pis $pids $pnt $MY_TMP &>>$step_log
+	rm -fr $MY_TMP
 
 	# update metadata
 	if [[ $integrate_metadata == "yes" ]]; then

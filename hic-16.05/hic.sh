@@ -76,8 +76,10 @@ main() {
 				version=mm10
 				fasta=/users/GR/mb/jquilez/assemblies/${species,,}/$version/ucsc/${version}_chr1-19XYM.fa
 			elif [[ ${species,,} == 'drosophila_melanogaster' ]]; then
-				version=dm6
-				fasta=/users/GR/mb/jquilez/assemblies/${species,,}/$version/ucsc/${version}_chr2-4XYM.fa
+				#version=dm6
+				#fasta=/users/GR/mb/jquilez/assemblies/${species,,}/$version/ucsc/${version}_chr2-4XYM.fa
+				version=dm3
+				fasta=/users/GR/mb/jquilez/assemblies/${species,,}/$version/flybase/${version}.fa
 			fi
 		fi
 		message_info "configuration" "species ($species) and assembly version ($version) extracted from the metadata"
@@ -167,6 +169,16 @@ main() {
 	elif [[ $pipeline_run_mode == 'map_to_bam' ]]; then map_to_bam
 	elif [[ $pipeline_run_mode == 'downstream_bam' ]]; then downstream_bam
 	elif [[ $pipeline_run_mode == 'clean_up' ]]; then clean_up
+	elif [[ $pipeline_run_mode == 'full_no_clean_up' ]]; then
+		preliminary_checks
+		raw_fastqs_quality_plots
+		trim_reads_trimmomatic
+		align_and_merge
+		post_mapping_statistics
+		reads_filtering
+		post_filtering_statistics
+		map_to_bam
+		downstream_bam
 	fi
 	echo
 
@@ -494,23 +506,13 @@ align_and_merge() {
 	step_log=$LOGS/${sample_id}_${step}_paired_end.log
 	# # Prevent overriding existing processed reads
 	# if [ -f $step_log ]; then
- #   		message_error $step "processed reads already mapped (see $step_log). Exiting..."
+    #		message_error $step "processed reads already mapped (see $step_log). Exiting..."
 	# fi
 
 	# Mapping
 	message_info $step "mapping, processing reads according to restriction enzyme fragments and merging aligments for read1 and read2..."
 	gem_index=`echo $fasta | sed "s/\.fa/\.gem/g"`
-	$python $SCRIPTS/map_process_merge.py $gem_index \
- 			$SAMPLE \
- 			$species \
- 			$read_length \
- 			$paired1 \
- 			$paired2 \
- 			$restriction_enzyme \
-			$fasta \
-			$slots \
-			$frag_map \
-			$version > $step_log
+	$python $SCRIPTS/map_process_merge.py $gem_index $SAMPLE $species $read_length $paired1 $paired2 $restriction_enzyme $fasta $slots $frag_map $version > $step_log
 	rm -fr $SAMPLE/mapped_reads/tmp_dir*
 	rm -fr $SAMPLE/results/processed_reads/tmp*
 	message_info $step "output saved in $step_log"
@@ -772,6 +774,7 @@ clean_up() {
 	message_info $step "$SAMPLE/mapped_reads"
 	rm -fR $SAMPLE/fastqs_processed
 	rm -fR $SAMPLE/mapped_reads
+	rm -fR $SAMPLE/results/*/processed_reads/${sample_id}_read*_map.tsv
 	message_time_step $step $time0
 
 }

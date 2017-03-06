@@ -186,6 +186,8 @@ aux <- mclapply(chromosomes, function(chrom){
                           silent = T))
 }, mc.cores = ncores, mc.preschedule = F)
 
+print(aux[sapply(aux, class) == "try-error"])
+
 aux <- aux[sapply(aux, class) != "try-error"]
 
 # arrange to store

@@ -158,6 +158,7 @@ main() {
 		post_filtering_statistics
 		map_to_bam
 		downstream_bam
+		dekker_call
 		clean_up
 	elif [[ $pipeline_run_mode == 'preliminary_checks' ]]; then preliminary_checks
 	elif [[ $pipeline_run_mode == 'raw_fastqs_quality_plots' ]]; then raw_fastqs_quality_plots
@@ -168,6 +169,7 @@ main() {
 	elif [[ $pipeline_run_mode == 'post_filtering_statistics' ]]; then post_filtering_statistics
 	elif [[ $pipeline_run_mode == 'map_to_bam' ]]; then map_to_bam
 	elif [[ $pipeline_run_mode == 'downstream_bam' ]]; then downstream_bam
+	elif [[ $pipeline_run_mode == 'dekker_call' ]]; then dekker_call	
 	elif [[ $pipeline_run_mode == 'clean_up' ]]; then clean_up
 	elif [[ $pipeline_run_mode == 'full_no_clean_up' ]]; then
 		preliminary_checks
@@ -179,6 +181,7 @@ main() {
 		post_filtering_statistics
 		map_to_bam
 		downstream_bam
+		dekker_call
 	fi
 	echo
 
@@ -750,6 +753,37 @@ downstream_bam() {
 	 	$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a RESOLUTION_TAD -v $resolution_tad
 	 	$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a RESOLUTION_AB -v $resolution_ab
 	 	$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a N_TADS -v $n_tads
+	fi
+	
+	message_time_step $step $time0
+
+}
+
+
+# ========================================================================================
+# Dekker call
+# ========================================================================================
+
+dekker_call() {
+
+	step="dekker_call"
+	time0=$(date +"%s")
+
+	# paths
+	ibam=$PROCESSED/*both_map.bam
+	mkdir -p $DOWNSTREAM
+	step_log=$LOGS/${sample_id}_${step}_paired_end.log
+
+	# call TADs with the Dekker method
+	message_info $step "call TADs using Dekker's method"
+	resolution_nice=`$python $SCRIPTS/nice.py $resolution_ab`
+	MY_TMP=$DOWNSTREAM/my_tmp 
+	mkdir -p $MY_TMP
+	$SCRIPTS/dekker_call.r $DOWNSTREAM/${sample_id}_normalized_${resolution_nice}.tsv.gz $ibam $resolution_tad $slots $DOWNSTREAM/${sample_id} $pis $pids $pnt $MY_TMP &>>$step_log
+	rm -fr $MY_TMP
+
+	# update metadata
+	if [[ $integrate_metadata == "yes" ]]; then
 	 	$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a PIS -v $pis
 	 	$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a PIDS -v $pids
 	 	$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a PNT -v $pnt

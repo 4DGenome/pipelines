@@ -738,13 +738,6 @@ downstream_bam() {
 	n_tads=`zcat $obed | wc -l`
 	message_info $step "number of TADs = $n_tads"
 
-	# call TADs with the Dekker method
-	resolution_nice=`$python $SCRIPTS/nice.py $resolution_ab`
-	MY_TMP=$DOWNSTREAM/my_tmp 
-	mkdir -p $MY_TMP
-	$SCRIPTS/dekker_call.r $DOWNSTREAM/${sample_id}_normalized_${resolution_nice}.tsv.gz $ibam $resolution_tad $slots $DOWNSTREAM/${sample_id} $pis $pids $pnt $MY_TMP &>>$step_log
-	rm -fr $MY_TMP
-
 	# update metadata
 	if [[ $integrate_metadata == "yes" ]]; then
 	 	$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a FLAG_EXCLUDED -v $flag_excluded

@@ -20,17 +20,17 @@
 
 # variables
 itab=$1
-mode=tadbit
+mode=full
 project=4DGenome
-analysis=2016-07-06_run_merger_rtadhouders
+analysis=2017-03-30_run_merger_losada
 process=merger
 min_n_replicates=2
 pipeline_version=hic-16.05
 flag_excluded=783
 flag_included=0
 flag_perzero=99
-resolution_tad=10000 			# in bp
-resolution_ab=10000				# in bp
+resolution_tad=50000 			# in bp
+resolution_ab=100000				# in bp
 
 # Paths
 PROJECT=/users/project/$project
@@ -43,16 +43,16 @@ samtools=`which samtools`
 tadbit_after_bam_v2_bigbam_include_chromosome=$PROJECT/pipelines/$pipeline_version/scripts/tadbit_after_bam_v2_bigbam_include_chromosome.py
 
 # Cluster parameters
-#queue=long-sl65
-#memory=100G
-#max_time=24:00:00
-#slots=10
+queue=long-sl7
+memory=100G
+max_time=24:00:00
+slots=10
 
 # for high-memory jobs
-queue=mem_256
-memory=200G
-max_time=48:00:00
-slots=10
+#queue=mem_256
+#memory=200G
+#max_time=48:00:00
+#slots=10
 
 
 #==================================================================================================
@@ -65,10 +65,7 @@ while read line ;do
 
   merged_name=`echo $line | awk '{OFS="\t"; print $1}'`
 	samples_ids=`echo $line | awk '{OFS="\t"; for (i=2; i<=NF; i++) printf $i" "}'`
-
-	#echo $merged_name
-	#echo $samples_ids
-
+ 
  	# check the number of replicates and that we are merging sequencing replicates from the same biological sample
  	n_replicates=0
  	names=""
@@ -79,10 +76,6 @@ while read line ;do
  		ibam="$DATA/samples/${s}/results/*/processed_reads/${s}_both_map.bam"
  		ibams="$ibams $ibam"
  	done
- 	#echo $names
- 	#echo $ibams
- 	#echo $n_replicates
- 	#echo
 
  	# stop if not enough replicates
  	if [[ $n_replicates -lt $min_n_replicates ]]; then

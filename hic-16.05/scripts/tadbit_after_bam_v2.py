@@ -380,7 +380,7 @@ def process_AB(hic_data, perc_zero, reso, outdir, bins):
 
     print 'Searching compartments'
 
-    ev = hic_data.find_compartments()
+    ev = hic_data.find_compartments(label_compartments = "none")
     ev_file = outdir + 'ev_%s.tsv' % nice(reso)
 
     out = []

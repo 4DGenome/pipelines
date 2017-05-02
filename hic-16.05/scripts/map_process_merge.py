@@ -34,6 +34,8 @@ print restriction_enzyme
 print fasta
 print slots
 print frag_map
+print version
+
 
 # ========================================================================================
 # Mapping

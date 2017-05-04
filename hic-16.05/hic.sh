@@ -769,7 +769,7 @@ dekker_call() {
 
 	# call TADs with the Dekker method
 	message_info $step "call TADs using Dekker's method"
-	resolution_nice=`$python $SCRIPTS/nice.py $resolution_ab`
+	resolution_nice=`$python $SCRIPTS/nice.py $resolution_tad`
 	MY_TMP=$DOWNSTREAM/my_tmp 
 	mkdir -p $MY_TMP
 	$SCRIPTS/dekker_call.r $DOWNSTREAM/${sample_id}_normalized_${resolution_nice}.tsv.gz $ibam $resolution_tad $slots $DOWNSTREAM/${sample_id} $pis $pids $pnt $MY_TMP &>>$step_log

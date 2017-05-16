@@ -18,6 +18,7 @@ main() {
 	job_name=$pipeline_name-$pipeline_version
 
 	# makes that the job uses this python/tadbit
+	source activate tadbit_old
 	export PATH="/software/mb/el7.2/anaconda2/bin:$PATH"
 
 	# pipeline scripts

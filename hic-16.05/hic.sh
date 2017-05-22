@@ -77,10 +77,10 @@ main() {
 				version=mm10
 				fasta=/users/GR/mb/jquilez/assemblies/${species,,}/$version/ucsc/${version}_chr1-19XYM.fa
 			elif [[ ${species,,} == 'drosophila_melanogaster' ]]; then
-				#version=dm6
-				#fasta=/users/GR/mb/jquilez/assemblies/${species,,}/$version/ucsc/${version}_chr2-4XYM.fa
-				version=dm3
-				fasta=/users/GR/mb/jquilez/assemblies/${species,,}/$version/flybase/${version}.fa
+				version=dm6
+				fasta=/users/GR/mb/jquilez/assemblies/${species,,}/$version/ucsc/${version}_chr2-4XYM.fa
+				#version=dm3
+				#fasta=/users/GR/mb/jquilez/assemblies/${species,,}/$version/flybase/${version}.fa
 			fi
 		fi
 		message_info "configuration" "species ($species) and assembly version ($version) extracted from the metadata"

@@ -206,6 +206,10 @@ def bam_to_hic_data(inbam, resolution_list, filter_exclude, filter_include, chun
         for pos in range(chunk_size, sections[chrom], chunk_size):
             chunks.append(chrom + ":" + str(old) + "-" + str(pos))
             old = pos + 1
+    # add last chunk in case chromsome size is not an exact multiple of chunk_size
+    if old < sections[chrom]:
+        chunks.append(chrom + ":" + str(old) "-" + sections[chrom])
+
     # access bam file per chromosome
     for chrom in chunks:
         j = 0

@@ -14,7 +14,7 @@ from pytadbit.parsers.tad_parser  import parse_tads
 from pytadbit.utils.normalize_hic import iterative, expected
 from pytadbit                     import HiC_data
 from os                           import path, system
-import subprocess, sys, os, re, numpy, math, pysam, datetime, time
+import subprocess, sys, os, re, numpy, math, pysam, datetime, time, gc
 from collections import OrderedDict
 from itertools import izip
 
@@ -37,7 +37,7 @@ def main():
     perc_zero = int(sys.argv[4])
     outdir = sys.argv[5]
     ncpus = int(sys.argv[6])
-    resolution_list = [int(i) for i in sys.argv[7:]]
+    resolution_list = [int(sys.argv[7])]
 
     # create dir
 
@@ -51,8 +51,7 @@ def main():
     print "exclude contacts with flag = " + str(filter_exclude)
     print "save results at " + str(outdir)
     print "(using " + str(ncpus) + " cpus and perc_zero = " + str(perc_zero) + ")"
-    print "process A/B compartments at resolution " + str(resolution_list[0])
-    print "process TADs at resolution " + str(resolution_list[1])
+    print "process A/B compartments and TADs at resolution " + str(resolution_list[0])
 
     # load data
 
@@ -74,7 +73,7 @@ def main():
 
     print printime() + "Processing TADs compartments ..."
 
-    process_TAD(dat_list[1], perc_zero, resolution_list[1], ncpus, outdir, bin_list[1])
+    process_TAD(dat_list[0], perc_zero, resolution_list[0], ncpus, outdir, bin_list[0])
 
     print printime() + "... done!"
 
@@ -189,69 +188,52 @@ def get_bins(dat, resolution):
 
     return bins_dict
 
-def bam_to_hic_data(inbam, resolution_list, filter_exclude, filter_include):
-
+def bam_to_hic_data(inbam, resolution_list, filter_exclude, filter_include, chunk_size = int(1e7)):
     # open bam file
-
     bamfile = pysam.AlignmentFile(inbam, "rb")
-
     # get sections
-
     sections = OrderedDict(zip(bamfile.references,
                                bamfile.lengths))
-
     # init HiC_data objects
-
     dat_list = [init_hic_data(bamfile, resolution) for resolution in resolution_list]
     bin_list = [get_bins(bamfile, resolution) for resolution in resolution_list]
-
     # close bam file    
-
     bamfile.close()
-
-    # access bam file per chromosome
-
+    # set chunks
+    chunks = []
     for chrom in sections.keys():
-
+        old = 0
+        for pos in range(chunk_size, sections[chrom], chunk_size):
+            chunks.append(chrom + ":" + str(old) + "-" + str(pos))
+            old = pos + 1
+    # access bam file per chromosome
+    for chrom in chunks:
         j = 0
-        print "Processing chromosome " + str(chrom)
-
+        print "Processing chunk " + str(chrom)
         # read line by line
-
         for line in pysam.view("-F", str(filter_exclude),
                                "-f", str(filter_include),
                                inbam,
                                chrom):
-
             # get info
-
             info = line.strip().split("\t")
             chrom1 = info[2]
             pos1 = int(info[3])
             chrom2 = info[6]
             pos2 = int(info[7])
-
             if chrom2 == "=":
                 chrom2 = chrom1
-
             # get bins and add counts
-
             try:
-
                 for i in xrange(len(resolution_list)):
-
                     b1 = bin_list[i][(chrom1, int(pos1) / resolution_list[i])]
                     b2 = bin_list[i][(chrom2, int(pos2) / resolution_list[i])]
                     dat_list[i][b1, b2] += 1
-
             except KeyError:
-
                 pass
-
             j += 1
-
         print str(j) + " lines processed"
-
+        gc.collect()
     return dat_list, bin_list
 
 # functions to write raw/normalized/correlation matrices as compressed and indexed bed file

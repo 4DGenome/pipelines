@@ -18,7 +18,8 @@ main() {
 	job_name=$pipeline_name-$pipeline_version
 
 	# makes that the job uses this python/tadbit
-	export PATH="/software/mb/el6.3/Conda/bin:$PATH"
+	#source activate tadbit_old
+	export PATH="/software/mb/el7.2/anaconda2/bin:$PATH"
 
 	# pipeline scripts
 	SCRIPTS=$PIPELINE/scripts
@@ -78,6 +79,8 @@ main() {
 			elif [[ ${species,,} == 'drosophila_melanogaster' ]]; then
 				version=dm6
 				fasta=/users/GR/mb/jquilez/assemblies/${species,,}/$version/ucsc/${version}_chr2-4XYM.fa
+				#version=dm3
+				#fasta=/users/GR/mb/jquilez/assemblies/${species,,}/$version/flybase/${version}.fa
 			fi
 		fi
 		message_info "configuration" "species ($species) and assembly version ($version) extracted from the metadata"
@@ -90,7 +93,7 @@ main() {
 	TRIMMED=$SAMPLE/fastqs_processed/trimmomatic
 	PAIRED=$TRIMMED/paired_end
 	UNPAIRED=$TRIMMED/unpaired_reads
-	ADAPTERS=/software/mb/el6.3/Trimmomatic-0.33/adapters
+	ADAPTERS=/software/mb/el7.2/Trimmomatic-0.36/adapters
 
 	# SHA cheksums
 	CHECKSUMS=$SAMPLE/checksums/$version/$run_date
@@ -118,9 +121,10 @@ main() {
 	shasum=`which shasum`
 	python=`which python`
 	trimmomatic=`which trimmomatic`
-	samtools=/software/mb/el6.3/samtools-1.2/samtools
-	bgzip=/software/mb/bin/bgzip
-	tabix=/software/mb/bin/tabix
+	samtools=`which samtools`
+	bgzip=`which bgzip`
+	tabix=`which tabix`
+	java=`which java`
 
 	# get TADbit and its dependencies versions
 	tadbit_and_dependencies_versions=`$python $SCRIPTS/print_tadbit_and_dependencies_version.py`
@@ -155,6 +159,7 @@ main() {
 		post_filtering_statistics
 		map_to_bam
 		downstream_bam
+		dekker_call
 		clean_up
 	elif [[ $pipeline_run_mode == 'preliminary_checks' ]]; then preliminary_checks
 	elif [[ $pipeline_run_mode == 'raw_fastqs_quality_plots' ]]; then raw_fastqs_quality_plots
@@ -165,7 +170,19 @@ main() {
 	elif [[ $pipeline_run_mode == 'post_filtering_statistics' ]]; then post_filtering_statistics
 	elif [[ $pipeline_run_mode == 'map_to_bam' ]]; then map_to_bam
 	elif [[ $pipeline_run_mode == 'downstream_bam' ]]; then downstream_bam
+	elif [[ $pipeline_run_mode == 'dekker_call' ]]; then dekker_call	
 	elif [[ $pipeline_run_mode == 'clean_up' ]]; then clean_up
+	elif [[ $pipeline_run_mode == 'full_no_clean_up' ]]; then
+		preliminary_checks
+		raw_fastqs_quality_plots
+		trim_reads_trimmomatic
+		align_and_merge
+		post_mapping_statistics
+		reads_filtering
+		post_filtering_statistics
+		map_to_bam
+		downstream_bam
+		dekker_call
 	fi
 	echo
 
@@ -409,7 +426,7 @@ trim_reads_trimmomatic() {
 	message_info $step "trimming low-quality reads ends using trimmomatic's recommended practices"
 	seqs=$ADAPTERS/TruSeq3-$sequencing_type.fa
 	targetLength=$read_length
-	$trimmomatic $sequencing_type \
+	$java -jar $trimmomatic $sequencing_type \
  					$params \
  					ILLUMINACLIP:$seqs:$seedMismatches:$palindromeClipThreshold:$simpleClipThreshold:$minAdapterLength:$keepBothReads \
  					LEADING:$leading \
@@ -493,23 +510,13 @@ align_and_merge() {
 	step_log=$LOGS/${sample_id}_${step}_paired_end.log
 	# # Prevent overriding existing processed reads
 	# if [ -f $step_log ]; then
- #   		message_error $step "processed reads already mapped (see $step_log). Exiting..."
+    #		message_error $step "processed reads already mapped (see $step_log). Exiting..."
 	# fi
 
 	# Mapping
 	message_info $step "mapping, processing reads according to restriction enzyme fragments and merging aligments for read1 and read2..."
 	gem_index=`echo $fasta | sed "s/\.fa/\.gem/g"`
-	$python $SCRIPTS/map_process_merge.py $gem_index \
- 			$SAMPLE \
- 			$species \
- 			$read_length \
- 			$paired1 \
- 			$paired2 \
- 			$restriction_enzyme \
-			$fasta \
-			$slots \
-			$frag_map \
-			$version > $step_log
+	$python $SCRIPTS/map_process_merge.py $gem_index $SAMPLE $species $read_length $paired1 $paired2 $restriction_enzyme $fasta $slots $frag_map $version > $step_log
 	rm -fr $SAMPLE/mapped_reads/tmp_dir*
 	rm -fr $SAMPLE/results/processed_reads/tmp*
 	message_info $step "output saved in $step_log"
@@ -679,23 +686,23 @@ map_to_bam() {
 
 	if [[ $io_mode == "custom" ]]; then
 		ODIR=$PROCESSED
-		obam=$ODIR/$(basename $imap .tsv)
-		$python $SCRIPTS/tadbit_map2sam_stdout_modified.py $imap | $samtools view -Su - | $samtools sort - $obam
-		$samtools index $obam.bam
+		obam=$ODIR/$(basename $imap .tsv).bam
+		$python $SCRIPTS/tadbit_map2sam_stdout_modified.py $imap | $samtools view -Su - | $samtools sort - -o $obam
+		$samtools index $obam
 	elif [[ $io_mode == "standard" ]]; then
 		ODIR=/users/project/4DGenome/data/hic/samples/$sample_id/results/$version/processed_reads
 		mkdir -p $ODIR
-		obam=$ODIR/$(basename $imap .tsv)
-		$python $SCRIPTS/tadbit_map2sam_stdout_modified.py $imap | $samtools view -Su - | $samtools sort - $obam
-		$samtools index $obam.bam
-		ln -sf $obam.bam $PROCESSED/$(basename $obam).bam
-		ln -sf $obam.bam.bai $PROCESSED/$(basename $obam).bam.bai
+		obam=$ODIR/$(basename $imap .tsv).bam
+		$python $SCRIPTS/tadbit_map2sam_stdout_modified.py $imap | $samtools view -Su - | $samtools sort - -o $obam
+		$samtools index $obam
+		ln -sf $obam $PROCESSED/$(basename $obam)
+		ln -sf $obam.bai $PROCESSED/$(basename $obam).bai
 	fi
 
 	# save a SHA checksums of the alignment file BAM
 	# because different compressions would then have different checksums, checksums are generated on the uncompressed BAM (i.e. SAM)
 	# after checksums are generated, the uncompressed file is deleted for the sake of space
-	$samtools view -h $obam.bam |$shasum | awk -v file=$obam.sam '{print $1,"",file}' >> $checksums
+	$samtools view -h $obam |$shasum | awk -v file=$obam.sam '{print $1,"",file}' >> $checksums
 	#$samtools view -h $obam.bam > $obam.sam
 	#$shasum $obam.bam >> $checksums
 	#$shasum $obam.sam >> $checksums
@@ -748,6 +755,40 @@ downstream_bam() {
 
 
 # ========================================================================================
+# Dekker call
+# ========================================================================================
+
+dekker_call() {
+
+	step="dekker_call"
+	time0=$(date +"%s")
+
+	# paths
+	ibam=$PROCESSED/*both_map.bam
+	mkdir -p $DOWNSTREAM
+	step_log=$LOGS/${sample_id}_${step}_paired_end.log
+
+	# call TADs with the Dekker method
+	message_info $step "call TADs using Dekker's method"
+	resolution_nice=`$python $SCRIPTS/nice.py $resolution_tad`
+	MY_TMP=$DOWNSTREAM/my_tmp 
+	mkdir -p $MY_TMP
+	$SCRIPTS/dekker_call.r $DOWNSTREAM/${sample_id}_normalized_${resolution_nice}.tsv.gz $ibam $resolution_tad $slots $DOWNSTREAM/${sample_id} $pis $pids $pnt $MY_TMP &>>$step_log
+	rm -fr $MY_TMP
+
+	# update metadata
+	if [[ $integrate_metadata == "yes" ]]; then
+	 	$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a PIS -v $pis
+	 	$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a PIDS -v $pids
+	 	$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a PNT -v $pnt
+	fi
+	
+	message_time_step $step $time0
+
+}
+
+
+# ========================================================================================
 # Deletes intermediate files
 # ========================================================================================
 
@@ -761,6 +802,7 @@ clean_up() {
 	message_info $step "$SAMPLE/mapped_reads"
 	rm -fR $SAMPLE/fastqs_processed
 	rm -fR $SAMPLE/mapped_reads
+	rm -fR $SAMPLE/results/*/processed_reads/${sample_id}_read*_map.tsv
 	message_time_step $step $time0
 
 }

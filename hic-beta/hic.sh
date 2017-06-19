@@ -19,7 +19,7 @@ main() {
 
 	# makes that the job uses this python/tadbit
 	source activate tadbit_beta
-	export PATH="/software/mb/el7.2/anaconda2/bin:$PATH"
+	#export PATH="/software/mb/el7.2/anaconda2/bin:$PATH"
 
 	# pipeline scripts
 	SCRIPTS=$PIPELINE/scripts

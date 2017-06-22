@@ -6,7 +6,7 @@
 ## Table of contents
 
 - [Modules](#modules)
-- [Scripts and configuration file](#scripts and configuration file)
+- [Scripts and configuration file](#scripts-and-configuration-file)
 - [Execute the pipeline](#execute the pipeline)
 - [Test datasets](#test datasets)
 - [Merge samples](#merge samples)

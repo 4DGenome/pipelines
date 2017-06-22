@@ -2,24 +2,16 @@
 
 **Pipeline to process HiC data using TADbit**
 
+
 ## Table of contents
+
+- [Modules](#modules)
+- [Scripts and configuration file](#scripts and configuration file)
+- [Execute the pipeline](#execute the pipeline)
+- [Test datasets](#test datasets)
+- [Merge samples](#merge samples)
 - [New](#new)
 
-## New
-- 2016-04-25:
-	- Trimmomatic's `targetLength` is now set equal to `read_length`; keep in mind the second is specified in the metadata database or in the configuration file if run in `mode=custom`. Also, `targetLength` has been removed from the configuration file to avoid confusion/redundance
-- 2016-05-10:
-	- *Homo sapiens*: genome reference sequence includes chr1-22, X, Y and M as well as a contig with the sequence of the mouse mammary tumour virus (MMTV)
-	- *Mus musculus*: genome reference sequence includes chr1-19, X, Y and M
-	- `itegrate_metadata` is set to `no` if `io_mode=custom`
-	- checksums are also generated for the uncompressed input FASTQ files (previously we did it for the compressed files but different compressions will generate different checksums); uncompressed FASTQs are deleted after the checksum generation
-	- checksums are generated for the BAM file storing contacts (as well as for the uncompressed SAM, but such SAM is deleted after the generation of the checksum for the sake of space)
-- 2016-05-17:
-	- checksums of the uncompressed FASTQs are generated on the fly (faster than writting reads to file)
-	- checksums of the uncompressed BAM (i.e. SAM) is generated on the fly
-	- extra dangling-ends filter is now also applied
-- 2016-07-01:
-	- added merger tool
 
 
 
@@ -56,6 +48,7 @@
 10. clean_up
 	- delete (relatively large) intermediate files
 
+<br>
 
 
 ## Scripts and configuration file
@@ -196,6 +189,22 @@ pipelines/hic-16.05/merger.sh <samples_table>
 
 *So far `merger.sh` can only be run on samples run on the `io_mode = standard` and will output files in a pre-set directory*
 
+
+## New
+- 2016-04-25:
+	- Trimmomatic's `targetLength` is now set equal to `read_length`; keep in mind the second is specified in the metadata database or in the configuration file if run in `mode=custom`. Also, `targetLength` has been removed from the configuration file to avoid confusion/redundance
+- 2016-05-10:
+	- *Homo sapiens*: genome reference sequence includes chr1-22, X, Y and M as well as a contig with the sequence of the mouse mammary tumour virus (MMTV)
+	- *Mus musculus*: genome reference sequence includes chr1-19, X, Y and M
+	- `itegrate_metadata` is set to `no` if `io_mode=custom`
+	- checksums are also generated for the uncompressed input FASTQ files (previously we did it for the compressed files but different compressions will generate different checksums); uncompressed FASTQs are deleted after the checksum generation
+	- checksums are generated for the BAM file storing contacts (as well as for the uncompressed SAM, but such SAM is deleted after the generation of the checksum for the sake of space)
+- 2016-05-17:
+	- checksums of the uncompressed FASTQs are generated on the fly (faster than writting reads to file)
+	- checksums of the uncompressed BAM (i.e. SAM) is generated on the fly
+	- extra dangling-ends filter is now also applied
+- 2016-07-01:
+	- added merger tool
 
 
 ## Why this pipeline is not fully portable:

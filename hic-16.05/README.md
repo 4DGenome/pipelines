@@ -1,7 +1,9 @@
 # README
----------------------------------------------------------------------------------------------------
 
 **Pipeline to process HiC data using TADbit**
+
+## Table of contents
+- [New](#new)
 
 ## New
 - 2016-04-25:

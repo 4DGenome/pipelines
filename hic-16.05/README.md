@@ -12,8 +12,8 @@
 - [Test datasets](#test-datasets)
 - [Merge samples](#merge-samples)
 - [New](#new)
-
-
+- [Why this pipeline is not fully portable](#why-this-pipeline-is-not-fully-portable)
+<br>
 
 
 ## Modules
@@ -218,7 +218,7 @@ pipelines/hic-16.05/merger.sh <samples_table>
 <br>
 
 
-## Why this pipeline is not fully portable:
+## Why this pipeline is not fully portable
 
 ### `hic_submit.sh`
 

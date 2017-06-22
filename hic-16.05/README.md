@@ -3,13 +3,14 @@
 **Pipeline to process HiC data using TADbit**
 
 
-## Table of contents
+## Table of contents
+
 
 - [Modules](#modules)
 - [Scripts and configuration file](#scripts-and-configuration-file)
-- [Execute the pipeline](#execute the pipeline)
-- [Test datasets](#test datasets)
-- [Merge samples](#merge samples)
+- [Execute the pipeline](#execute-the-pipeline)
+- [Test datasets](#test-datasets)
+- [Merge samples](#merge-samples)
 - [New](#new)
 
 
@@ -133,6 +134,8 @@ resolution_tad			= 50000 				; in bp
 resolution_ab			= 100000				; in bp
 ```
 
+<br>
+
 
 ## Execute the pipeline
 
@@ -145,6 +148,8 @@ Notes:
 - integration with metadata (i.e. access data from or add data to the metadata database only happens if `integrate_metadata=yes`
 - if metadata are integrated, these will be used to set some parameters values; otherwise, such values are used from the configuration file
 - the pipeline can be run in differents modes: `mode=full` executes all steps while `mode=<module_name> runs only that module`; note that running the *i*th step assumes the *i-n*th step has been already run
+
+<br>
 
 
 ## Test datasets
@@ -171,6 +176,9 @@ zcat sequencing/2015-04-28/MB_1_2_10083_TGACCA_read1.fastq.gz |head -n 4000 |gzi
 zcat sequencing/2015-04-28/MB_1_2_10083_TGACCA_read2.fastq.gz |head -n 4000 |gzip > pipelines/hic-16.03/test/test2_read2.fastq.gz
 ```
 
+<br>
+
+
 ## Merge samples
 
 `merger.sh` is an script that takes as input (passed as script parameter) a table (no header, tab-delimited) like this:
@@ -186,8 +194,9 @@ Run it like this:
 pipelines/hic-16.05/merger.sh <samples_table>
 ```
 
-
 *So far `merger.sh` can only be run on samples run on the `io_mode = standard` and will output files in a pre-set directory*
+
+<br>
 
 
 ## New
@@ -205,6 +214,8 @@ pipelines/hic-16.05/merger.sh <samples_table>
 	- extra dangling-ends filter is now also applied
 - 2016-07-01:
 	- added merger tool
+
+<br>
 
 
 ## Why this pipeline is not fully portable:

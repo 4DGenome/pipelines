@@ -224,6 +224,11 @@ pipelines/hic-16.05/merger.sh <samples_table>
 
 - added merger tool
 
+### 2017-06-22
+
+
+Make that `hic.sh` uses the TADbit version installed in `latest_tadbit` (see [commit](https://github.com/4DGenome/pipelines/commit/7cb7745103a6e5f557742d47c5ee688063045d18))
+
 <br>
 
 

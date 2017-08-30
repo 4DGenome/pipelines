@@ -29,7 +29,3 @@ git push -u origin master
 
 2016-07-08
 - `hic-16.03` is moved to `archived`
-
-2017-07-13
-- `hisee-16.04` is moved to `archived`
-- Updated visualization apps

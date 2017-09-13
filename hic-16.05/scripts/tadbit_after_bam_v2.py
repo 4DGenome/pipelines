@@ -277,9 +277,15 @@ def write_correlation_matrix_tabix(hic_object, outfile, reso):
     for chromosome in hic_object.chromosomes.keys():
         if "M" in chromosome:
             continue
-        mat = [[v / hic_object.expected[abs(i - j)] for j, v in enumerate(line)]
-               for i, line in enumerate(hic_object.yield_matrix(normalized=True,
-                                                                focus=chromosome))]
+        try:
+            mat = [[v / hic_object.expected[abs(i - j)] for j, v in enumerate(line)]
+                   for i, line in enumerate(hic_object.yield_matrix(normalized=True,
+                                                                    focus=chromosome))]
+        except ZeroDivisionError:  # slow version checking in each cell if there is an expeced equal to zero
+            mat = [[(v / hic_object.expected[abs(i - j)]) if hic_object.expected[abs(i - j)] else float('nan') 
+                    for j, v in enumerate(line)]
+                   for i, line in enumerate(hic_object.yield_matrix(normalized=True,
+                                                                    focus=chromosome))]
         if len(mat) == 1:
             continue
         mat = numpy.corrcoef(mat)

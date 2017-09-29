@@ -7,11 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 <br>
+
 ## [16.05] 2017-09-28
 ### Added
 - Added this CHANGELOG
 
 <br>
+
+## [16.05] 2017-09-29 
+### Fixed
+- [Trimmomatic uses `TruSeq-PE-2.fa` for paired-end samples](https://github.com/4DGenome/pipelines/commit/13f8f1b8d4343a014d4560fa6bfa5b74afd2858e) (see more [here](https://public_docs.crg.es/mbeato/jquilez/projects/misc/2017-09-27_adapter_removal/2017-09-27_adapter_removal.slides.html))
+
+<br>
+
 ## [_pipeline_version_] YYYY-MM-DD
 ### Added
 ### Changed

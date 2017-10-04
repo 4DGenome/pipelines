@@ -125,6 +125,8 @@ main() {
 	bgzip=`which bgzip`
 	tabix=`which tabix`
 	java=`which java`
+	fastqc=`which fastqc`
+	unzip=`which unzip`
 
 	# get TADbit and its dependencies versions
 	tadbit_and_dependencies_versions=`$python $SCRIPTS/print_tadbit_and_dependencies_version.py`
@@ -407,6 +409,7 @@ trim_reads_trimmomatic() {
 	mkdir -p $LOGS
 	mkdir -p $CHECKSUMS
 	step_log=$SAMPLE/logs/${sample_id}_${step}_paired_end.log
+	fastqc_log=$SAMPLE/logs/${sample_id}_fastqc_paired_end.log
 	paired1=$PAIRED/${sample_id}_read1.fastq.gz
 	paired2=$PAIRED/${sample_id}_read2.fastq.gz
 	unpaired1=$UNPAIRED/${sample_id}_read1.fastq.gz
@@ -466,6 +469,11 @@ trim_reads_trimmomatic() {
 		message_info $step "unpaired reads are deleted"
 		rm -fr $UNPAIRED
 	fi
+
+	# run FastQC on the trimmed reads
+	$fastqc --extract $paired1 -o $PAIRED > $fastqc_log 2>&1
+	$fastqc --extract $paired2 -o $PAIRED >> $fastqc_log 2>&1
+	rm -f $PAIRED/$sample_id*read*_fastqc.zip
 
 	message_time_step $step $time0
 
@@ -804,7 +812,7 @@ clean_up() {
 	message_info $step "deleting the following intermediate files/directories:"
 	message_info $step "$SAMPLE/fastqs_processed"
 	message_info $step "$SAMPLE/mapped_reads"
-	rm -fR $SAMPLE/fastqs_processed
+	rm -f $SAMPLE/fastqs_processed/trimmomatic/*/*fastq.gz
 	rm -fR $SAMPLE/mapped_reads
 	rm -fR $SAMPLE/results/*/processed_reads/${sample_id}_read*_map.tsv
 	message_time_step $step $time0

@@ -20,6 +20,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <br>
 
+## [16.05] 2017-10-04
+### Added
+- [FastQC is run on the FASTQ(s) with the trimmed reads](https://github.com/4DGenome/pipelines/commit/f4c0ee1233d42bb4f3e32085058d895a3f16130e)
+
+<br>
+
 ## [_pipeline_version_] YYYY-MM-DD
 ### Added
 ### Changed

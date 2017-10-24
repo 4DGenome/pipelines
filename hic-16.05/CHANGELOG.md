@@ -26,6 +26,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <br>
 
+## [16.05] 2017-10-20
+### Added
+- [adapt pipeline to loxAfr3 (African elephant) assembly](https://github.com/4DGenome/pipelines/commit/fb553e50f4b05d94f3ea5387198eb918df205c92)
+
+<br>
+
 ## [_pipeline_version_] YYYY-MM-DD
 ### Added
 ### Changed

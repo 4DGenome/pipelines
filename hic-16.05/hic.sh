@@ -81,6 +81,9 @@ main() {
 				fasta=/users/GR/mb/jquilez/assemblies/${species,,}/$version/ucsc/${version}_chr2-4XYM.fa
 				#version=dm3
 				#fasta=/users/GR/mb/jquilez/assemblies/${species,,}/$version/flybase/${version}.fa
+			elif [[ ${species,,} == 'loxodonta_africana' ]]; then
+				version=loxAfr3
+				fasta=/users/GR/mb/jquilez/assemblies/${species,,}/$version/ucsc/${version}.fa
 			fi
 		fi
 		message_info "configuration" "species ($species) and assembly version ($version) extracted from the metadata"

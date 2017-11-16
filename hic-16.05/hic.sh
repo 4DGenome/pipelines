@@ -84,6 +84,10 @@ main() {
 			elif [[ ${species,,} == 'loxodonta_africana' ]]; then
 				version=loxAfr3
 				fasta=/users/GR/mb/jquilez/assemblies/${species,,}/$version/ucsc/${version}.fa
+			elif [[ ${species,,} == 'vultur_gryphus' ]]; then
+				version=falPer2
+				# there is no genome assembly for Vultur gryphus; the one of falco peregrinus is used instead
+				fasta=/users/GR/mb/jquilez/assemblies/falco_peregrinus/$version/ncbi/${version}.fa
 			fi
 		fi
 		message_info "configuration" "species ($species) and assembly version ($version) extracted from the metadata"

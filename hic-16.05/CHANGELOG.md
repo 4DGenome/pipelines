@@ -32,6 +32,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <br>
 
+## [16.05] 2017-11-17
+### Added
+- [adapt pipeline to falPer2 (Falco peregrinus) assembly](https://github.com/4DGenome/pipelines/commit/0256bb166ba308fb89a3dca1d3734908d3639062)
+
+<br>
+
 ## [_pipeline_version_] YYYY-MM-DD
 ### Added
 ### Changed

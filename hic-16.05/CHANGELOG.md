@@ -38,6 +38,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <br>
 
+## [_pipeline_version_] 2017-11-29
+### Fixed
+- found error in `/software/mb/el7.2/anaconda2/envs/latest_tadbit/lib/python2.7/site-packages/pytadbit/hic_data.py`
+- error fixed and documented at `/software/mb/el7.2/0README.md`
+
+<br>
+
 ## [_pipeline_version_] YYYY-MM-DD
 ### Added
 ### Changed

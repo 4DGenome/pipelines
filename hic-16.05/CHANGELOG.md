@@ -38,10 +38,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <br>
 
-## [_pipeline_version_] 2017-11-29
+## [16.05] 2017-11-29
 ### Fixed
 - found error in `/software/mb/el7.2/anaconda2/envs/latest_tadbit/lib/python2.7/site-packages/pytadbit/hic_data.py`
 - error fixed and documented at `/software/mb/el7.2/0README.md`
+
+<br>
+
+## [16.05] 2017-12-13
+### Fixed
+- [no wild card is used whendefining the path to the input FASTQ](https://github.com/4DGenome/pipelines/commit/e4915f0b11b0aa6fb61ae978d4f69c9a4fae5433); instead, the exact sample ID needs to match
 
 <br>
 

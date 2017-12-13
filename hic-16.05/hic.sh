@@ -62,8 +62,8 @@ main() {
 		SAMPLE=/users/project/4DGenome_no_backup/data/$data_type/samples/$sample_id
 		message_info "configuration" "data for $sample_id will be stored at $SAMPLE"
 		# input FASTQ files
-		ifq1=$SEQ_DATA/*/${sample_id}*read1.fastq.gz
-		ifq2=$SEQ_DATA/*/${sample_id}*read2.fastq.gz
+		ifq1=$SEQ_DATA/*/${sample_id}_read1.fastq.gz
+		ifq2=$SEQ_DATA/*/${sample_id}_read2.fastq.gz
 		message_info "configuration" "paths to input FASTQ files extracted from the metadata"
 		# get species and assembly version from the metadata
 		if [[ $integrate_metadata == "yes" ]]; then

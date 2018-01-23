@@ -51,6 +51,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <br>
 
+## [16.05] 2018-01-23
+### Added
+- [add fix_multicontact_flag.sh and check_and_replace_bam.sh](https://github.com/4DGenome/pipelines/commit/cb63959da244d66009976a0acc33d2b5ae66497b)
+### Changed
+- [additional threads to fix_multicontact_flag.sh](https://github.com/4DGenome/pipelines/commit/ac2ffd67d90c1b14494799f9612d0aa57a89a173)
+
+<br>
+
 ## [_pipeline_version_] YYYY-MM-DD
 ### Added
 ### Changed

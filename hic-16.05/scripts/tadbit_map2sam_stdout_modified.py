@@ -73,7 +73,7 @@ def map2sam (line, flag):
 
     # multicontact?
 
-    tc = str(int("~" in qname) + 1)
+    tc = str(int("#" in qname) + 1)
     
     # trans contact?
 

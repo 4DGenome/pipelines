@@ -59,6 +59,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <br>
 
+## [16.05] 2018-01-24
+### Changed
+- [Fixed identification of multicontacts](https://github.com/4DGenome/pipelines/commit/456d25399e54087472799e6f0cfcfcc22044d595)
+
+<br>
+
 ## [_pipeline_version_] YYYY-MM-DD
 ### Added
 ### Changed

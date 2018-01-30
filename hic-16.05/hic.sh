@@ -44,13 +44,13 @@ main() {
 	 	message_info "configuration" "paths to input FASTQ files extracted from $CUSTOM_IN/sample_to_fastqs.txt"
 		message_info "configuration" "species ($species) and assembly version ($version) extracted from the metadata"
 		if [[ $species == 'homo_sapiens' ]]; then
-			fasta=/users/GR/mb/jquilez/assemblies/$species/$version/ucsc/${version}_chr1-22XYM.fa
+			fasta=/users/mbeato/projects/assemblies/$species/$version/ucsc/${version}_chr1-22XYM.fa
 		elif [[ $species == 'mus_musculus' ]]; then
-			fasta=/users/GR/mb/jquilez/assemblies/$species/$version/ucsc/${version}_chr1-19XYM.fa
+			fasta=/users/mbeato/projects/assemblies/$species/$version/ucsc/${version}_chr1-19XYM.fa
 		elif [[ $species == 'drosophila_melanogaster' ]]; then
-			fasta=/users/GR/mb/jquilez/assemblies/$species/$version/ucsc/${version}_chr2-4XYM.fa
+			fasta=/users/mbeato/projects/assemblies/$species/$version/ucsc/${version}_chr2-4XYM.fa
 		elif [[ $species == 'caulobacter_crescentus' ]]; then
-			fasta=/users/GR/mb/jquilez/assemblies/$species/$version/ncbi/${version}.fa			
+			fasta=/users/mbeato/projects/assemblies/$species/$version/ncbi/${version}.fa			
 		fi
 	elif [[ $io_mode == "standard" ]]; then
 		# script to in/out data from metadata
@@ -72,22 +72,22 @@ main() {
 			read_length=`$io_metadata -m get_from_metadata -s $sample_id -t input_metadata -a READ_LENGTH`
 			if [[ ${species,,} == 'homo_sapiens' ]]; then
 				version=hg38_mmtv
-				fasta=/users/GR/mb/jquilez/assemblies/${species,,}/$version/ucsc/${version}_chr1-22XYM.fa
+				fasta=/users/mbeato/projects/assemblies/${species,,}/$version/ucsc/${version}_chr1-22XYM.fa
 			elif [[ ${species,,} == 'mus_musculus' ]]; then
 				version=mm10
-				fasta=/users/GR/mb/jquilez/assemblies/${species,,}/$version/ucsc/${version}_chr1-19XYM.fa
+				fasta=/users/mbeato/projects/assemblies/${species,,}/$version/ucsc/${version}_chr1-19XYM.fa
 			elif [[ ${species,,} == 'drosophila_melanogaster' ]]; then
 				version=dm6
-				fasta=/users/GR/mb/jquilez/assemblies/${species,,}/$version/ucsc/${version}_chr2-4XYM.fa
+				fasta=/users/mbeato/projects/assemblies/${species,,}/$version/ucsc/${version}_chr2-4XYM.fa
 				#version=dm3
-				#fasta=/users/GR/mb/jquilez/assemblies/${species,,}/$version/flybase/${version}.fa
+				#fasta=/users/mbeato/projects/assemblies/${species,,}/$version/flybase/${version}.fa
 			elif [[ ${species,,} == 'loxodonta_africana' ]]; then
 				version=loxAfr3
-				fasta=/users/GR/mb/jquilez/assemblies/${species,,}/$version/ucsc/${version}.fa
+				fasta=/users/mbeato/projects/assemblies/${species,,}/$version/ucsc/${version}.fa
 			elif [[ ${species,,} == 'vultur_gryphus' ]]; then
 				version=falPer2
 				# there is no genome assembly for Vultur gryphus; the one of falco peregrinus is used instead
-				fasta=/users/GR/mb/jquilez/assemblies/falco_peregrinus/$version/ncbi/${version}.fa
+				fasta=/users/mbeato/projects/assemblies/falco_peregrinus/$version/ncbi/${version}.fa
 			fi
 		fi
 		message_info "configuration" "species ($species) and assembly version ($version) extracted from the metadata"
@@ -511,7 +511,7 @@ align_and_merge() {
 	message_info $step "read length = $read_length"
 
 	# genome reference FASTA
-	#fasta=/users/GR/mb/jquilez/assemblies/${species,,}/$version/ucsc/$version.fa
+	#fasta=/users/mbeato/projects/assemblies/${species,,}/$version/ucsc/$version.fa
 	if ! [[ -f "$fasta" ]]; then
 		message_error $step "FASTA file $fasta does not exist! Exiting..."
 	else

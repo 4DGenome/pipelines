@@ -65,6 +65,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <br>
 
+## [16.05] 2018-01-30
+### Changed
+- [update path to genome assemblies](https://github.com/4DGenome/pipelines/commit/790564692427594fa899aa7aac5c94bf90199d08)
+
+<br>
+
 ## [_pipeline_version_] YYYY-MM-DD
 ### Added
 ### Changed

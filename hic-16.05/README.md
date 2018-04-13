@@ -24,7 +24,7 @@
 	- check FASTQ files exist
 	- save a SHA checksums of the FASTQ files
 	- retrieve information from the sequencer, and store it in the metadata; a warning will be produced if the sequencing index introduced in the metadata does not agree with that seen in the first read of the FASTQ
-	- compare the read length as seen in the FASTQ with that introduced either in the metadata or the configuration file 
+	- compare the read length as seen in the FASTQ with that introduced either in the metadata or the configuration file
 	- check the FASTQ for the reference genome sequence exists
 2. raw_fastqs_quality_plots
 	- generate quality plots of the raw reads (read1 and read2 separately)
@@ -40,7 +40,7 @@
 	- extract metrics: fraction of read1 and read2 alignments, fraction of reads in which both read1 and read2 are mapped and the counts-to-distance slope
 6. reads_filtering
 	- filter reads based on multiple quality parameters; as of 2016-05-17 reads that meet these filters are excluded: self-circle, dangling-end, error, extra dangling-ends, duplicated and random breaks (for more info see [TADbit](http://3dgenomes.github.io/TADbit/tutorial/tutorial_0_mapping.html))
-	- save a SHA checksums of the filtered alignments (*tsv file)
+	- save a SHA checksums of the filtered alignments (\*tsv file)
 7. post_filtering_statistics
 	- generate plots after filtering reads: genomic coverage and interaction matrix of filtered reads in 1-Mb; also, 1-Mb genomic coverage of dangling ends and self circle reads
 8. map_to_bam:
@@ -71,34 +71,34 @@ Configuration file example:
 data_type			= hic
 
 [samples]
-samples				=TE_S_T				; e.g.: `samples=s1 s2 s3`, use 'TE_S_T' for testing purposes
+samples				= test1 test2				; e.g.: `samples=s1 s2 s3`, use 'test1 test2' for testing purposes
 
 [pipeline]
 pipeline_name		= hic
-pipeline_version	= 16.03
+pipeline_version	= 16.05
 pipeline_run_mode	= full
 
 [IO mode]
-io_mode				= standard									; standard = ******, custom = in and out dir specified
-CUSTOM_IN			= /users/project/4DGenome/pipelines/hic-16.03/test 		; only used if pipeline_io_mode=custom
-CUSTOM_OUT			= /users/project/4DGenome/pipelines/hic-16.03/test 		; only used if pipeline_io_mode=custom
+io_mode				= standard								; standard = ******, custom = in and out dir specified
+CUSTOM_IN			= /users/project/4DGenome/pipelines/hic-16.05/test 		; only used if pipeline_io_mode=custom
+CUSTOM_OUT			= /users/project/4DGenome/pipelines/hic-16.05/test		; only used if pipeline_io_mode=custom
 sample_to_fastqs	= sample_to_fastqs.txt				; file with paths, relative to CUSTOM_IN, to read1 (and read2) FASTQs, only used if pipeline_io_mode=custom
 
 [cluster options]
 submit_to_cluster	= yes					; the following are only applied if submit_to_cluster=yes
-queue				= long-sl65				; for real data = long-sl65, for test = short-sl65
+queue				= long-sl7				; for real data = long-sl7, for test = short-sl7
 memory				= 100G					; for real data = 100G, for test = 20G
-max_time			= 100:00:00 				; for real data = 100:00:00, for test = 6:00:00
-slots				= 10 					; for real data = 10, for test = 1
-email				= javier.quilez@crg.eu	; email to which start/end/error emails are sent
+max_time			= 100:00:00 			; for real data = 100:00:00, for test = 6:00:00
+slots				= 1 					; for real data = 10, for test = 1
+email				= joseluis.villanueva@crg.eu	; email to which start/end/error emails are sent
 
 [metadata]
 integrate_metadata	= yes					; yes: metadata is stored into database
 
 [genome]
-species					= homo_sapiens		; required if integrate_metadata=no, otherwise, retrieved from the metadata
-version					= hg38_mmtv
-read_length				= 50 				; required if integrate_metadata=no, otherwise, retrieved from the metadata
+species					= 					; required if integrate_metadata=no, otherwise, ignored and retrieved from the metadata
+version					= 					; required if integrate_metadata=no, otherwise, ignored: hg38_mmtv (homo_sapiens), mm10 (mus_musculus) and dm6(droshophila_melanogaster)
+read_length				=  					; required if integrate_metadata=no, otherwise, ignored and retrieved from the metadata
 
 [trimmomatic]
 ; for recommended values see http://www.broadinstitute.org/cancer/software/genepattern/modules/docs/Trimmomatic/
@@ -112,12 +112,11 @@ trailing				= 3
 minAdapterLength		= 1
 keepBothReads			= true
 minQual					= 3
-targetLength			= 40
 strictness				= 0.999
 minLength				= 36
 
 [tadbit]
-restriction_enzyme		= DpnII				; required if integrate_metadata=no, otherwise, retrieved from the metadata
+restriction_enzyme		= 				; required if integrate_metadata=no, otherwise, retrieved from the metadata
 max_molecule_length		= 500
 max_frag_size			= 10000
 min_frag_size			= 50
@@ -128,27 +127,30 @@ genomic_coverage_resolution	= Mb
 frag_map				= True
 
 [downstream]
-flag_excluded			= 775
+flag_excluded			= 783
 flag_included			= 0
 flag_perzero			= 99
 resolution_tad			= 50000 				; in bp
 resolution_ab			= 100000				; in bp
-```
+pis						= 500000				; Dekker/Crane parameter
+pids					= 250000				; Dekker/Crane parameter
+pnt						= 0.1					; Dekker/Crane parameter
 
 <br>
 
+```
 
 ## Execute the pipeline
 
-```
 pipelines/hic-16.05/hic_submit.sh <your_configuration_file>
+
 ```
 
 Notes:
 - please use your configuration file
 - integration with metadata (i.e. access data from or add data to the metadata database only happens if `integrate_metadata=yes`
 - if metadata are integrated, these will be used to set some parameters values; otherwise, such values are used from the configuration file
-- the pipeline can be run in differents modes: `mode=full` executes all steps while `mode=<module_name> runs only that module`; note that running the *i*th step assumes the *i-n*th step has been already run
+- the pipeline can be run in different modes: `mode=full` executes all steps while `mode=<module_name> runs only that module`; note that running the *i*th step assumes the *i-n*th step has been already run
 
 <br>
 
@@ -157,7 +159,7 @@ Notes:
 
 ### `TE_S_T`
 
-Sample to test the `io_mode=standard` and/or `integrate_metadata=yes`. 
+Sample to test the `io_mode=standard` and/or `integrate_metadata=yes`.
 
 It consists of 1000 reads of the `MB_1_1` sample, generated with:
 ```
@@ -167,7 +169,7 @@ zcat sequencing/2015-04-28/MB_1_1_10082_CGATGT_read2.fastq.gz |head -n 4000 |gzi
 
 ### `test1` and `test2`
 
-Samples to test the `io_mode=custom` with `integrate_metadata=no`. 
+Samples to test the `io_mode=custom` with `integrate_metadata=no`.
 
 It consists of 1000 reads of the `MB_1_1` and `MB_1_2` samples, generated with:
 ```
@@ -208,15 +210,15 @@ pipelines/hic-16.05/merger.sh <samples_table>
 
 ### 2016-05-10
 
-- *Homo sapiens*: genome reference sequence includes chr1-22, X, Y and M as well as a contig with the sequence of the mouse mammary tumour virus (MMTV)
+- *Homo sapiens*: genome reference sequence includes chr1-22, X, Y and M as well as a contig with the sequence of the mouse mammary tumor virus (MMTV)
 - *Mus musculus*: genome reference sequence includes chr1-19, X, Y and M
-- `itegrate_metadata` is set to `no` if `io_mode=custom`
+- `integrate_metadata` is set to `no` if `io_mode=custom`
 - checksums are also generated for the uncompressed input FASTQ files (previously we did it for the compressed files but different compressions will generate different checksums); uncompressed FASTQs are deleted after the checksum generation
 - checksums are generated for the BAM file storing contacts (as well as for the uncompressed SAM, but such SAM is deleted after the generation of the checksum for the sake of space)
 
 ### 2016-05-17
 
-- checksums of the uncompressed FASTQs are generated on the fly (faster than writting reads to file)
+- checksums of the uncompressed FASTQs are generated on the fly (faster than writing reads to a file)
 - checksums of the uncompressed BAM (i.e. SAM) is generated on the fly
 - extra dangling-ends filter is now also applied
 
@@ -250,9 +252,9 @@ PIPELINE=/users/project/4DGenome/pipelines/$pipeline_name-$pipeline_version
 io_metadata=/users/project/4DGenome/utils/io_metadata.sh
 ```
 
-**1.3 Specific queue paramters**
+**1.3 Specific queue parameters**
 
-The job scripts generated by `hic_submit.sh` are tuned for being submitted in our cluster.
+The job scripts generated by `hic_submit.sh` are tuned for being submitted to the CRG cluster.
 
 
 ### `hic.sh`
@@ -266,7 +268,7 @@ export PATH="/software/mb/el7.2/anaconda2/bin:$PATH"
 
 **2.2 Path to FASTA files**
 
-Paths to the genome reference sequence in FASTA format, specific for each species, are hard coded in th `hic.sh`, for instance:
+Paths to the genome reference sequence in FASTA format, specific for each species, are hard coded in `hic.sh`, for instance:
 ```
 fasta=/users/GR/mb/jquilez/assemblies/$species/$version/ucsc/${version}_chr1-22XYM.fa
 ```

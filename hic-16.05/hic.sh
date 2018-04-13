@@ -50,7 +50,7 @@ main() {
 		elif [[ $species == 'drosophila_melanogaster' ]]; then
 			fasta=/users/mbeato/projects/assemblies/$species/$version/ucsc/${version}_chr2-4XYM.fa
 		elif [[ $species == 'caulobacter_crescentus' ]]; then
-			fasta=/users/mbeato/projects/assemblies/$species/$version/ncbi/${version}.fa			
+			fasta=/users/mbeato/projects/assemblies/$species/$version/ncbi/${version}.fa
 		fi
 	elif [[ $io_mode == "standard" ]]; then
 		# script to in/out data from metadata
@@ -146,10 +146,10 @@ main() {
 		$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a MAX_TIME -v $max_time
 		$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a SLOTS -v $slots
 		$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a ASSEMBLY_VERSION -v $version
-		$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a JOB_NAME -v $job_name		
-		$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a PATH_JOB_FILE -v $path_job_file		
+		$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a JOB_NAME -v $job_name
+		$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a PATH_JOB_FILE -v $path_job_file
 		$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a TADBIT_AND_DEPENDENCIES_VERSIONS -v $tadbit_and_dependencies_versions
-		$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a LAST_RUN_DATE -v $run_date		
+		$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a LAST_RUN_DATE -v $run_date
 	fi
 
 	echo
@@ -179,7 +179,7 @@ main() {
 	elif [[ $pipeline_run_mode == 'post_filtering_statistics' ]]; then post_filtering_statistics
 	elif [[ $pipeline_run_mode == 'map_to_bam' ]]; then map_to_bam
 	elif [[ $pipeline_run_mode == 'downstream_bam' ]]; then downstream_bam
-	elif [[ $pipeline_run_mode == 'dekker_call' ]]; then dekker_call	
+	elif [[ $pipeline_run_mode == 'dekker_call' ]]; then dekker_call
 	elif [[ $pipeline_run_mode == 'clean_up' ]]; then clean_up
 	elif [[ $pipeline_run_mode == 'full_no_clean_up' ]]; then
 		preliminary_checks
@@ -197,7 +197,7 @@ main() {
 
 	# Final message
 	message_info "pipeline" "completed successfully"
-	message_time_pipeline 
+	message_time_pipeline
 
 }
 
@@ -224,7 +224,7 @@ message_error() {
 	step_name=$1
 	message=$2
 	echo -e "ERROR \t`date +"%Y-%m-%d %T"` \t[$step_name] \t$message"
-	exit	
+	exit
 }
 
 # Outputs a warning message about the task being done
@@ -327,8 +327,8 @@ preliminary_checks() {
 				message_warn $step "Sequencing index added as part of the metadata does not agree with that observed in the FASTQ file"
 			fi
 			# Determine read length and update metadata if necessary
-			# Read length from the first read of the FASTQ files (it assumes all reads in the file have the same lenght!)
-			first_read=`zcat $ifq1 | head -2 | tail -n 1`	
+			# Read length from the first read of the FASTQ files (it assumes all reads in the file have the same length!)
+			first_read=`zcat $ifq1 | head -2 | tail -n 1`
 			read_length_fq=${#first_read}
 			# Read length from the metadata
 			read_length_metadata=`$io_metadata -m get_from_metadata -s $sample_id -t input_metadata -a 'READ_LENGTH'`
@@ -371,7 +371,7 @@ raw_fastqs_quality_plots() {
 
 	message_info $step "restriction enzyme = $restriction_enzyme"
 	message_info $step "a subset of $reads_number_qc reds will be used to generate the quality plots"
-	
+
 	# Make plots
 	mkdir -p $QUALITY_PLOTS
 	message_info $step "making quality plots of the raw FASTQ files... plots saved at $QUALITY_PLOTS"
@@ -395,7 +395,7 @@ raw_fastqs_quality_plots() {
 		$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a PERCENTAGE_LIGATED_SITES_READ2 -v $percentage_ligated_sites_read2
 		message_info $step "percentages of dangling ends and ligated sites in read1 and read2 saved to metadata database"
 	fi
- 
+
 	message_time_step $step $time0
 
 }
@@ -431,7 +431,7 @@ trim_reads_trimmomatic() {
 
 	# adapter trimming: the trimmomatic program directory contains a folder with the adapter sequences for
 	# the Illumina sequencers in use. 'TruSeq3-PE.fa' is used, which contains the adapter sequences for the HiSeq
-	message_info $step "sequencing type = $sequencing_type" 
+	message_info $step "sequencing type = $sequencing_type"
 	message_info $step "trimming TruSeq3 adapter sequences for HiSeq, NextSeq or HiSeq"
 	message_info $step "trimming low-quality reads ends using trimmomatic's recommended practices"
 	if [[ $sequencing_type == "SE" ]]; then
@@ -467,7 +467,7 @@ trim_reads_trimmomatic() {
 	 	$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a STRICTNESS -v $strictness
 	 	$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a MIN_LENGTH -v $minLength
 	 	$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a N_READS_TRIMMED -v $n_reads_trimmed
-		message_info $step "trimmomatic parameters and numbe of trimmed reads added to metadata"
+		message_info $step "trimmomatic parameters and number of trimmed reads added to metadata"
 	fi
 
 	# delete intermediate files
@@ -612,7 +612,7 @@ reads_filtering() {
 	# Paths
 	both_reads_mapped=`cat $PROCESSED/$sample_id*both_map.tsv | grep -v "#" | wc -l`
 	mkdir -p $FILTERED
-	mkdir -p $DANGLING 
+	mkdir -p $DANGLING
 	mkdir -p $SELF_CIRCLE
 	mkdir -p $SUMMARY_EXCLUDED
 	mkdir -p $CHECKSUMS
@@ -646,7 +646,7 @@ reads_filtering() {
 			filter="EXCLUDED_$filter"
 		 	$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a $filter -v "$reads_number;$reads_fraction"
 		done
-	 	message_info $step "numbers and fractions of filtered and excluded reads added to the metadata"	
+	 	message_info $step "numbers and fractions of filtered and excluded reads added to the metadata"
 	fi
 
 	# data integrity
@@ -767,7 +767,7 @@ downstream_bam() {
 	 	$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a RESOLUTION_AB -v $resolution_ab
 	 	$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a N_TADS -v $n_tads
 	fi
-	
+
 	message_time_step $step $time0
 
 }
@@ -790,7 +790,7 @@ dekker_call() {
 	# call TADs with the Dekker method
 	message_info $step "call TADs using Dekker's method"
 	resolution_nice=`$python $SCRIPTS/nice.py $resolution_tad`
-	MY_TMP=$DOWNSTREAM/my_tmp 
+	MY_TMP=$DOWNSTREAM/my_tmp
 	mkdir -p $MY_TMP
 	$SCRIPTS/dekker_call.r $DOWNSTREAM/${sample_id}_normalized_${resolution_nice}.tsv.gz $ibam $resolution_tad $slots $DOWNSTREAM/${sample_id} $pis $pids $pnt $MY_TMP &>>$step_log
 	rm -fr $MY_TMP
@@ -801,7 +801,7 @@ dekker_call() {
 	 	$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a PIDS -v $pids
 	 	$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a PNT -v $pnt
 	fi
-	
+
 	message_time_step $step $time0
 
 }

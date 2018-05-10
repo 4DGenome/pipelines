@@ -12,9 +12,10 @@ for s in $samples; do
   assembly=$(sqlite3 $metadata_db "$query")
   if [ $assembly != '' ];
   then
-    mapped_reads=$(</users/project/4DGenome_no_backup/data/hic/samples/$s/results/$assembly/processed_reads/$s\_per_mapped_reads.text)
-    if [ -s mapped_reads ];
+    mapped_file=/users/project/4DGenome_no_backup/data/hic/samples/$s/results/$assembly/processed_reads/$s\_per_mapped_reads.text
+    if [ -s $mapped_file ];
     then
+      mapped_reads=$(</users/project/4DGenome_no_backup/data/hic/samples/$s/results/$assembly/processed_reads/$s\_per_mapped_reads.text)
       query="UPDATE hic SET TOTAL_UNIQUE_MAPPED_READS = '$mapped_reads' WHERE SAMPLE_ID = '$s';" #generate query for DB
       sqlite3 $metadata_db "$query" #Assign the value to the database field
     else

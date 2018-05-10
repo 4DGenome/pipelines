@@ -746,6 +746,10 @@ downstream_bam() {
 	mkdir -p $DOWNSTREAM
 	step_log=$LOGS/${sample_id}_${step}_paired_end.log
 
+	# Calculate the number of mapped reads (takes about 2h)
+	mapped_reads=$(samtools sort -n ibam | sed 's,#,~,g' | cut -f 1 | cut -d \"~\" -f 1 | uniq | wc -l)
+	message_info $step "Calculate number of mapped reads = $mapped_reads"
+
 	# perform several downstream analyses
 	message_info $step "perform several downstream analyses"
 	$python $SCRIPTS/tadbit_after_bam_v2.py $ibam $flag_excluded $flag_included $flag_perzero $DOWNSTREAM/${sample_id}_ $slots $resolution_ab $resolution_tad &> $step_log
@@ -765,7 +769,8 @@ downstream_bam() {
 	 	$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a FLAG_PERZERO -v $flag_perzero
 	 	$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a RESOLUTION_TAD -v $resolution_tad
 	 	$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a RESOLUTION_AB -v $resolution_ab
-	 	$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a N_TADS -v $n_tads
+		$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a N_TADS -v $n_tads
+		$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a TOTAL_UNIQUE_MAPPED_READS -v $mapped_reads
 	fi
 
 	message_time_step $step $time0

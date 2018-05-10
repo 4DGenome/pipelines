@@ -3,7 +3,7 @@
 #==================================================================================================
 
 #variables and paths
-metadata_db=/users/project/4DGenome/data/4DGenome_metadata_backup.db
+metadata_db=/users/project/4DGenome/data/4DGenome_metadata.db
 query="select SAMPLE_ID from input_metadata" #generate query for DB
 samples=$(sqlite3 $metadata_db "$query" | tr "\n" " " | sort | uniq | sed 's, $,,1') #Get all sample IDs
 

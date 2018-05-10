@@ -46,10 +46,9 @@ for s in $samples; do
 	m_out=$JOB_OUT
 	#rm $job_file
 	bam_file=/users/project/4DGenome_no_backup/data/hic/samples/$s/results/$assembly/processed_reads/$s\_both_map.bam
-
 	echo "#!/bin/bash
 	#$ -N $job_name
-	#$ -q long-sl7
+	#$ -q short-sl7
 	#$ -l virtual_free=10G
 	#$ -o $m_out/${job_name}.out
 	#$ -e $m_out/${job_name}.err

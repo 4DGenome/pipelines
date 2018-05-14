@@ -747,7 +747,7 @@ downstream_bam() {
 	step_log=$LOGS/${sample_id}_${step}_paired_end.log
 
 	# Calculate the number of mapped reads (takes about 2h!)
-	mapped_reads=$(samtools sort -n ibam | sed 's,#,~,g' | cut -f 1 | cut -d \"~\" -f 1 | uniq | wc -l)
+	mapped_reads=$(samtools sort -n ibam | samtools view | sed 's,#,~,g' | cut -f 1 | cut -d \"~\" -f 1 | uniq | wc -l)
 	message_info $step "Calculate number of mapped reads = $mapped_reads"
 
 	# perform several downstream analyses

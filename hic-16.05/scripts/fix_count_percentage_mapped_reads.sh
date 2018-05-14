@@ -30,7 +30,8 @@ JOB_OUT=$PIPELINE/job_out
 # CODE EXECUTION
 #==================================================================================================
 # Run pipeline for each sample
-samples="CAR_501 LDC_12 LDC_5 LDC_6 LDC_7 a7c643d27_4ed08f4eb a7c643d27_29726bc8f b742f3789_55a06ab10 a7c643d27_15f152106 b742f3789_37b77d82a auxin_rep1c b742f3789_0c582f35f b742f3789_43b4d3493 a7c643d27_ed0f2b6ec b742f3789_128e263fa b742f3789_4e6781c38 b742f3789_01d7fe832 b742f3789_20b0c0e8d"
+samples="9a7c4a68d_49deac2f0 GM_HindIII_NcoIGM_MboI_AseI GM_MboI_H20 GM_MboI_only HIC034 HIC036 HIC037 HIC070 K562_HindIII_NcoI K562_MboI_AseI K562_MboI_only e22e868a9_78d40f073"
+
 
 for s in $samples; do
 	metadata_db=/users/project/4DGenome/data/4DGenome_metadata.db
@@ -44,7 +45,7 @@ for s in $samples; do
 	job_name=job_${s}_per_mapped_reads
 	job_file=$JOB_CMD/$job_name.sh
 	m_out=$JOB_OUT
-	#rm $job_file
+	rm $job_file
 	bam_file=/users/project/4DGenome_no_backup/data/hic/samples/$s/results/$assembly/processed_reads/$s\_both_map.bam
 	echo "#!/bin/bash
 	#$ -N $job_name
@@ -60,7 +61,7 @@ for s in $samples; do
 
 	# Add sample ID
 	echo "sample=$s" >> $job_file
-	echo "samtools sort -n $bam_file | sed 's,#,~,g' | cut -f 1 | cut -d \"~\" -f 1 | uniq | wc -l > /users/project/4DGenome_no_backup/data/hic/samples/$s/results/$assembly/processed_reads/$s\\_per_mapped_reads.text" >> $job_file
+	echo "samtools sort -n $bam_file | samtools view | sed 's,#,~,g' | cut -f 1 | cut -d \"~\" -f 1 | uniq | wc -l > /users/project/4DGenome_no_backup/data/hic/samples/$s/results/$assembly/processed_reads/$s\\_per_mapped_reads.text" >> $job_file
 
 	# Submit
 	chmod a+x $job_file

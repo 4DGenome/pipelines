@@ -1,11 +1,12 @@
+
 #!/bin/bash
 
 #==================================================================================================
-# Created on: 2018-05-03
+# Created on: 2018-05-15
 # Usage: ./fix_count_percentage_mapped.sh
 # Authors: joseluis.villanueva@crg.eu (GitHub: egenomics)
 # Goal: run a small script on all samples in the CRG cluster
-# * get values for the number of reads mapped, counting only once quimeric reads
+# * Run the ONED normalization script for all samples
 # * generate a job script for each sample
 # * submit jobs to the cluster
 #==================================================================================================
@@ -37,16 +38,12 @@ for s in $samples; do
 	metadata_db=/users/project/4DGenome/data/4DGenome_metadata.db
 	query="select ASSEMBLY_VERSION from hic WHERE SAMPLE_ID='$s';"
 	assembly=$(sqlite3 $metadata_db "$query")
-	#if [ $assembly != 'hg38_mmtv' ];
-	#then
-	#echo $assembly, $s
 	# Build job: parameters
 	submitted_on=`date +"%Y_%m_%d"`
-	job_name=job_${s}_per_mapped_reads
+	job_name=job_${s}_oned_norm
 	job_file=$JOB_CMD/$job_name.sh
 	m_out=$JOB_OUT
 	rm $job_file
-	bam_file=/users/project/4DGenome_no_backup/data/hic/samples/$s/results/$assembly/processed_reads/$s\_both_map.bam
 	echo "#!/bin/bash
 	#$ -N $job_name
 	#$ -q short-sl7
@@ -61,7 +58,7 @@ for s in $samples; do
 
 	# Add sample ID
 	echo "sample=$s" >> $job_file
-	echo "samtools sort -n $bam_file | samtools view | sed 's,#,~,g' | cut -f 1 | cut -d \"~\" -f 1 | uniq | wc -l > /users/project/4DGenome_no_backup/data/hic/samples/$s/results/$assembly/processed_reads/${s}_per_mapped_reads.text" >> $job_file
+	echo "/users/mbeato/evidal/scripts/fdg_pipeline/oned_model.r $s ${s}_oned.RData > /users/project/4DGenome_no_backup/data/hic/samples/$s/downstream/$assembly/${s}_oned.RData" >> $job_file
 
 	# Submit
 	chmod a+x $job_file

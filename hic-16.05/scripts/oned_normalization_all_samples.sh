@@ -58,7 +58,7 @@ for s in $samples; do
 
 	# Add sample ID
 	echo "sample=$s" >> $job_file
-	echo "/users/mbeato/evidal/scripts/fdg_pipeline/oned_model.r $s ${s}_oned.RData > /users/project/4DGenome_no_backup/data/hic/samples/$s/downstream/$assembly/${s}_oned.RData" >> $job_file
+	echo "/users/mbeato/projects/utils_backup/oned_model.r $s ${s}_oned.RData > /users/project/4DGenome_no_backup/data/hic/samples/$s/downstream/$assembly/${s}_oned.RData" >> $job_file
 
 	# Submit
 	chmod a+x $job_file

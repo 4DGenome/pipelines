@@ -743,16 +743,20 @@ downstream_bam() {
 
 	# paths
 	ibam=$PROCESSED/*both_map.bam
+	filtered_file=$FILTERED/${sample_id}_filtered_map.tsv
 	mkdir -p $DOWNSTREAM
 	step_log=$LOGS/${sample_id}_${step}_paired_end.log
 
 	# Calculate the number of mapped reads (takes about 2h!)
-	mapped_reads=$(samtools sort -n ibam | samtools view | sed 's,#,~,g' | cut -f 1 | cut -d \"~\" -f 1 | uniq | wc -l)
+	mapped_reads=$(samtools sort -n $ibam | samtools view | sed 's,#,~,g' | cut -f 1 | cut -d \"~\" -f 1 | uniq | wc -l)
+	unique_filtered_reads=$(cat $filtered_file | sed 's,#,~,g' | cut -f 1 | cut -d \"~\" -f 1 | uniq | wc -l)
 	message_info $step "Calculate number of mapped reads = $mapped_reads"
+
 
 	# perform several downstream analyses
 	message_info $step "perform several downstream analyses"
 	$python $SCRIPTS/tadbit_after_bam_v2.py $ibam $flag_excluded $flag_included $flag_perzero $DOWNSTREAM/${sample_id}_ $slots $resolution_ab $resolution_tad &> $step_log
+
 
 	# arrange, merge chromosomes, compress and index TADs
 	obed=$DOWNSTREAM/$(basename $(ls -1 $DOWNSTREAM/${sample_id}_tads*tsv | head -n 1 |  sed 's,_chr.*$,,1'))_allchr.bed.gz
@@ -761,6 +765,10 @@ downstream_bam() {
 	rm $DOWNSTREAM/${sample_id}_tads_chr*
 	n_tads=`zcat $obed | wc -l`
 	message_info $step "number of TADs = $n_tads"
+
+	#oneD normalization
+	message_info $step "Normalize the matrix with oneD"
+	/users/mbeato/projects/utils_backup/oned_model.r $sample_id /users/project/4DGenome_no_backup/data/hic/samples/${sample_id}/downstream/$version/${sample_id}_oned.RData
 
 	# update metadata
 	if [[ $integrate_metadata == "yes" ]]; then
@@ -771,6 +779,7 @@ downstream_bam() {
 	 	$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a RESOLUTION_AB -v $resolution_ab
 		$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a N_TADS -v $n_tads
 		$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a TOTAL_UNIQUE_MAPPED_READS -v $mapped_reads
+		$io_metadata -m add_to_metadata -t 'hic' -s $sample_id -u $run_date -a TOTAL_UNIQUE_FILTERED -v $unique_filtered_reads
 	fi
 
 	message_time_step $step $time0

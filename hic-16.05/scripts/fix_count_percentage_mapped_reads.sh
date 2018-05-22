@@ -46,7 +46,8 @@ for s in $samples; do
 	job_file=$JOB_CMD/$job_name.sh
 	m_out=$JOB_OUT
 	rm $job_file
-	bam_file=/users/project/4DGenome_no_backup/data/hic/samples/$s/results/$assembly/processed_reads/$s\_both_map.bam
+	bam_file=/users/project/4DGenome_no_backup/data/hic/samples/$s/results/$assembly/processed_reads/${s}_both_map.bam
+	tsv_file=/users/project/4DGenome_no_backup/data/hic/samples/$s/results/$assembly/filtered_reads/${s}_filtered_map.tsv
 	echo "#!/bin/bash
 	#$ -N $job_name
 	#$ -q short-sl7
@@ -62,6 +63,7 @@ for s in $samples; do
 	# Add sample ID
 	echo "sample=$s" >> $job_file
 	echo "samtools sort -n $bam_file | samtools view | sed 's,#,~,g' | cut -f 1 | cut -d \"~\" -f 1 | uniq | wc -l > /users/project/4DGenome_no_backup/data/hic/samples/$s/results/$assembly/processed_reads/${s}_per_mapped_reads.text" >> $job_file
+  echo "cat $tsv_file | sed 's,#,~,g' | cut -f 1 | cut -d \"~\" -f 1 | sort | uniq |wc -l > /users/project/4DGenome_no_backup/data/hic/samples/$s/results/$assembly/filtered_reads/${s}_unique_reads.txt" >> $job_file
 
 	# Submit
 	chmod a+x $job_file

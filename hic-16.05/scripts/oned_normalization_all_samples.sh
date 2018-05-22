@@ -4,7 +4,7 @@
 #==================================================================================================
 # Created on: 2018-05-15
 # Usage: ./fix_count_percentage_mapped.sh
-# Authors: joseluis.villanueva@crg.eu (GitHub: egenomics)
+# Author: joseluis.villanueva@crg.eu (GitHub: egenomics)
 # Goal: run a small script on all samples in the CRG cluster
 # * Run the ONED normalization script for all samples
 # * generate a job script for each sample
@@ -31,7 +31,7 @@ JOB_OUT=$PIPELINE/job_out
 # CODE EXECUTION
 #==================================================================================================
 # Run pipeline for each sample
-#samples="TE_S_T"
+samples="HIC001"
 
 
 for s in $samples; do
@@ -58,7 +58,7 @@ for s in $samples; do
 
 	# Add sample ID
 	echo "sample=$s" >> $job_file
-	echo "/users/mbeato/projects/utils_backup/oned_model.r $s ${s}_oned.RData > /users/project/4DGenome_no_backup/data/hic/samples/$s/downstream/$assembly/${s}_oned.RData" >> $job_file
+	echo "/users/mbeato/projects/utils_backup/oned_model.r $s /users/project/4DGenome_no_backup/data/hic/samples/$s/downstream/$assembly/${s}_oned.RData" >> $job_file
 
 	# Submit
 	chmod a+x $job_file

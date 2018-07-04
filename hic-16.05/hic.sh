@@ -505,6 +505,7 @@ align_and_merge() {
 	#	species=`$io_metadata -m get_from_metadata -s $sample_id -t input_metadata -a SPECIES`
 	#	read_length=`$io_metadata -m get_from_metadata -s $sample_id -t input_metadata -a READ_LENGTH`
 	#fi
+	
 	message_info $step "species = $species"
 	message_info $step "assembly version = $version"
 	message_info $step "restriction enzyme = $restriction_enzyme"

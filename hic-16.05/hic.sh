@@ -170,15 +170,19 @@ main() {
 		downstream_bam
 		dekker_call
 		clean_up
- elif [[ $pipeline_run_mode == 'start_align_full' ]]; then
-			align_and_merge
-			post_mapping_statistics
-			reads_filtering
-			post_filtering_statistics
-			map_to_bam
-			downstream_bam
-			dekker_call
-			clean_up
+	elif [[ $pipeline_run_mode == 'start_align_full' ]]; then
+ 			align_and_merge
+ 			post_mapping_statistics
+ 			reads_filtering
+ 			post_filtering_statistics
+ 			map_to_bam
+ 			downstream_bam
+ 			dekker_call
+ 			clean_up
+	elif [[ $pipeline_run_mode == 'downstream_bam_onwards' ]]; then
+			 downstream_bam
+			 dekker_call
+			 clean_up
 	elif [[ $pipeline_run_mode == 'preliminary_checks' ]]; then preliminary_checks
 	elif [[ $pipeline_run_mode == 'raw_fastqs_quality_plots' ]]; then raw_fastqs_quality_plots
 	elif [[ $pipeline_run_mode == 'trim_reads_trimmomatic' ]]; then trim_reads_trimmomatic

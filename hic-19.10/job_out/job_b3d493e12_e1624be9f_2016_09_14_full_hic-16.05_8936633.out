@@ -1,0 +1,10 @@
+
+INFO 	2016-09-14 11:16:34 	[configuration] 	script to access/write from/to metadata: /users/project/4DGenome/utils/io_metadata.sh
+INFO 	2016-09-14 11:16:34 	[configuration] 	metadata database: /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-09-14 11:16:34 	[configuration] 	data for b3d493e12_e1624be9f will be stored at /users/project/4DGenome_no_backup/data/hic/samples/b3d493e12_e1624be9f
+INFO 	2016-09-14 11:16:34 	[configuration] 	paths to input FASTQ files extracted from the metadata
+INFO 	2016-09-14 11:17:03 	[configuration] 	species (Homo_sapiens) and assembly version (hg38_mmtv) extracted from the metadata
+
+INFO 	2016-09-14 11:17:45 	[preliminary_checks] 	b3d493e12_e1624be9f found in /users/project/4DGenome/data/4DGenome_metadata.db
+/usr/share/univage/soldierantcluster/spool/node-hp0501/job_scripts/8936633: line 322: [: /users/project/4DGenome/sequencing/2016-08-16/b3d493e12_e1624be9f_read1.fastq.gz: binary operator expected
+ERROR 	2016-09-14 11:17:48 	[preliminary_checks] 	/users/project/4DGenome/sequencing/*/b3d493e12_e1624be9f*read1.fastq.gz and/or /users/project/4DGenome/sequencing/*/b3d493e12_e1624be9f*read2.fastq.gz not found. Exiting...

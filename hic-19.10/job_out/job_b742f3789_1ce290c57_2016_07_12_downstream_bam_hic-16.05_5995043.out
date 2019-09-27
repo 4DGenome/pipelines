@@ -1,0 +1,15 @@
+
+INFO 	2016-07-12 16:48:44 	[configuration] 	script to access/write from/to metadata: /users/project/4DGenome/utils/io_metadata.sh
+INFO 	2016-07-12 16:48:44 	[configuration] 	metadata database: /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-07-12 16:48:44 	[configuration] 	data for b742f3789_1ce290c57 will be stored at /users/project/4DGenome_no_backup/data/hic/samples/b742f3789_1ce290c57
+INFO 	2016-07-12 16:48:44 	[configuration] 	paths to input FASTQ files extracted from the metadata
+INFO 	2016-07-12 16:48:52 	[configuration] 	species (Mus_musculus) and assembly version (mm10) extracted from the metadata
+
+INFO 	2016-07-12 16:49:15 	[downstream_bam] 	perform several downstream analyses
+INFO 	2016-07-12 22:47:07 	[downstream_bam] 	number of TADs = 2192
+TIME 	2016-07-12 22:47:20 	[downstream_bam] 	step time for completion (seconds) = 21485
+
+
+INFO 	2016-07-12 22:47:22 	[pipeline] 	completed successfully
+TIME 	2016-07-12 22:47:22 	[pipeline] 	total time for completion (seconds) = 21518
+

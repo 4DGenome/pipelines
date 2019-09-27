@@ -1,0 +1,114 @@
+
+INFO 	2016-05-23 18:35:46 	[configuration] 	script to access/write from/to metadata: /users/project/4DGenome/utils/io_metadata.sh
+INFO 	2016-05-23 18:35:46 	[configuration] 	metadata database: /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-05-23 18:35:46 	[configuration] 	data for 1317ef052_f34e98deb will be stored at /users/project/4DGenome_no_backup/data/hic/samples/1317ef052_f34e98deb
+INFO 	2016-05-23 18:35:46 	[configuration] 	paths to input FASTQ files extracted from the metadata
+INFO 	2016-05-23 18:35:55 	[configuration] 	species (Homo_sapiens) and assembly version (hg38_mmtv) extracted from the metadata
+Traceback (most recent call last):
+  File "/users/project/4DGenome/utils/io_metadata.py", line 100, in <module>
+    tab.upsert(new_data, ['SAMPLE_ID'])
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/dataset/persistence/table.py", line 171, in upsert
+    row_count = self.update(row, keys, ensure=ensure, types=types)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/dataset/persistence/table.py", line 144, in update
+    rp = self.database.executable.execute(stmt)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1991, in execute
+    return connection.execute(statement, *multiparams, **params)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 914, in execute
+    return meth(self, multiparams, params)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/elements.py", line 323, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1010, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1146, in _execute_context
+    context)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1341, in _handle_dbapi_exception
+    exc_info
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/util/compat.py", line 200, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1139, in _execute_context
+    context)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 450, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked [SQL: u'UPDATE hic SET "QUEUE"=? WHERE hic."SAMPLE_ID" = ?'] [parameters: ('long-sl65', '1317ef052_f34e98deb')]
+
+INFO 	2016-05-23 18:36:37 	[preliminary_checks] 	1317ef052_f34e98deb found in /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-05-23 18:55:05 	[preliminary_checks] 	paths to read1 and read2 saved to metadata database
+INFO 	2016-05-23 18:55:07 	[preliminary_checks] 	Sequencing index added as part of the metadata agrees with that observed in the FASTQ file
+INFO 	2016-05-23 18:55:09 	[preliminary_checks] 	read length added as part of the metadata agrees with that observed in the FASTQ file
+INFO 	2016-05-23 18:55:09 	[preliminary_checks] 	genome reference FASTA file found at /users/GR/mb/jquilez/assemblies/homo_sapiens/hg38_mmtv/ucsc/hg38_mmtv_chr1-22XYM.fa
+INFO 	2016-05-23 18:55:31 	[preliminary_checks] 	paths to reference FASTA saved to metadata database
+TIME 	2016-05-23 18:55:31 	[preliminary_checks] 	step time for completion (seconds) = 1136
+
+INFO 	2016-05-23 18:55:33 	[raw_fastqs_quality_plots] 	restriction enzyme = DpnII
+INFO 	2016-05-23 18:55:33 	[raw_fastqs_quality_plots] 	a subset of 100000 reds will be used to generate the quality plots
+INFO 	2016-05-23 18:55:34 	[raw_fastqs_quality_plots] 	making quality plots of the raw FASTQ files... plots saved at /users/project/4DGenome_no_backup/data/hic/samples/1317ef052_f34e98deb/plots/hg38_mmtv/raw_fastqs_quality_plots
+INFO 	2016-05-23 18:55:53 	[raw_fastqs_quality_plots] 	percentages of dangling ends and ligated sites in read1 and read2 saved to metadata database
+TIME 	2016-05-23 18:55:53 	[raw_fastqs_quality_plots] 	step time for completion (seconds) = 20
+
+INFO 	2016-05-23 18:55:55 	[trim_reads_trimmomatic] 	sequencing type = PE
+INFO 	2016-05-23 18:55:55 	[trim_reads_trimmomatic] 	trimming TruSeq3 adapter sequences for HiSeq, NextSeq or HiSeq
+INFO 	2016-05-23 18:55:55 	[trim_reads_trimmomatic] 	trimming low-quality reads ends using trimmomatic's recommended practices
+INFO 	2016-05-23 21:06:46 	[trim_reads_trimmomatic] 	parse step log to extract generated metadata
+INFO 	2016-05-23 21:06:47 	[trim_reads_trimmomatic] 	reads after trimming = 253045887
+INFO 	2016-05-23 21:07:38 	[trim_reads_trimmomatic] 	trimmomatic parameters and numbe of trimmed reads added to metadata
+INFO 	2016-05-23 21:07:38 	[trim_reads_trimmomatic] 	trimmed reads are in /users/project/4DGenome_no_backup/data/hic/samples/1317ef052_f34e98deb/fastqs_processed/trimmomatic/paired_end
+INFO 	2016-05-23 21:07:38 	[trim_reads_trimmomatic] 	unpaired reads are deleted
+TIME 	2016-05-23 21:07:38 	[trim_reads_trimmomatic] 	step time for completion (seconds) = 7903
+
+INFO 	2016-05-23 21:07:47 	[align_and_merge] 	species = Homo_sapiens
+INFO 	2016-05-23 21:07:47 	[align_and_merge] 	assembly version = hg38_mmtv
+INFO 	2016-05-23 21:07:48 	[align_and_merge] 	restriction enzyme = DpnII
+INFO 	2016-05-23 21:07:48 	[align_and_merge] 	read length = 75
+INFO 	2016-05-23 21:07:48 	[align_and_merge] 	genome reference FASTA file found at /users/GR/mb/jquilez/assemblies/homo_sapiens/hg38_mmtv/ucsc/hg38_mmtv_chr1-22XYM.fa
+INFO 	2016-05-23 21:07:48 	[align_and_merge] 	mapping, processing reads according to restriction enzyme fragments and merging aligments for read1 and read2...
+INFO 	2016-05-24 13:56:27 	[align_and_merge] 	output saved in /users/project/4DGenome_no_backup/data/hic/samples/1317ef052_f34e98deb/logs/1317ef052_f34e98deb_trim_reads_trimmomatic_paired_end.log
+TIME 	2016-05-24 14:00:22 	[align_and_merge] 	step time for completion (seconds) = 60755
+
+INFO 	2016-05-24 14:00:45 	[post_mapping_statistics] 	generating post mapping descriptive statistics plots...
+Traceback (most recent call last):
+  File "/users/project/4DGenome/pipelines/hic-16.05/scripts/mappings_descriptive_statistics.py", line 33, in <module>
+    n_reads_trimmed = int(sys.argv[6])
+ValueError: invalid literal for int() with base 10: 'Mb'
+INFO 	2016-05-24 14:00:52 	[post_mapping_statistics] 	fraction of reads mapped read1 = 
+INFO 	2016-05-24 14:00:52 	[post_mapping_statistics] 	fraction of reads mapped read2 = 
+INFO 	2016-05-24 14:00:52 	[post_mapping_statistics] 	number of pairs in which both read1 and read2 are mapped = 1
+INFO 	2016-05-24 14:00:52 	[post_mapping_statistics] 	counts-to-distance slope = 
+INFO 	2016-05-24 14:00:52 	[add_to_metadata] 	-t <table>, -s <sample_id>, -u <time_stamp> -a <attribute> and or -v <value> are not provided; exiting...
+INFO 	2016-05-24 14:00:52 	[add_to_metadata] 	t=hic s=1317ef052_f34e98deb u=2016-05-23-18-35 a=FRACTION_MAPPED_READ1 v=
+INFO 	2016-05-24 14:00:52 	[add_to_metadata] 	-t <table>, -s <sample_id>, -u <time_stamp> -a <attribute> and or -v <value> are not provided; exiting...
+INFO 	2016-05-24 14:00:52 	[add_to_metadata] 	t=hic s=1317ef052_f34e98deb u=2016-05-23-18-35 a=FRACTION_MAPPED_READ2 v=
+INFO 	2016-05-24 14:00:52 	[add_to_metadata] 	-t <table>, -s <sample_id>, -u <time_stamp> -a <attribute> and or -v <value> are not provided; exiting...
+INFO 	2016-05-24 14:00:52 	[add_to_metadata] 	t=hic s=1317ef052_f34e98deb u=2016-05-23-18-35 a=COUNTS_TO_DISTANCE_SLOPE v=
+TIME 	2016-05-24 14:00:54 	[post_mapping_statistics] 	step time for completion (seconds) = 9
+
+INFO 	2016-05-24 14:01:28 	[reads_filtering] 	filtering reads based on multiple quality parameters...
+INFO 	2016-05-24 14:01:28 	[reads_filtering] 	filtered reads to be used for subsequent analyses are at /users/project/4DGenome_no_backup/data/hic/samples/1317ef052_f34e98deb/results/hg38_mmtv/filtered_reads
+INFO 	2016-05-24 14:01:28 	[reads_filtering] 	excluded reads due to dangling ends are at /users/project/4DGenome_no_backup/data/hic/samples/1317ef052_f34e98deb/results/hg38_mmtv/excluded_reads/dangling_ends
+INFO 	2016-05-24 14:01:28 	[reads_filtering] 	excluded reads due to self circle are at /users/project/4DGenome_no_backup/data/hic/samples/1317ef052_f34e98deb/results/hg38_mmtv/excluded_reads/self_circle
+INFO 	2016-05-24 14:01:28 	[reads_filtering] 	summary of excluded reads at /users/project/4DGenome_no_backup/data/hic/samples/1317ef052_f34e98deb/results/hg38_mmtv/excluded_reads/summary_excluded_per_filter
+INFO 	2016-05-24 14:40:53 	[reads_filtering] 	numbers and fractions of filtered and excluded reads added to the metadata
+TIME 	2016-05-24 14:42:25 	[reads_filtering] 	step time for completion (seconds) = 2489
+
+INFO 	2016-05-24 14:42:27 	[post_filtering_statistics] 	generating post filtering descriptive statistics plots... saved at /users/project/4DGenome_no_backup/data/hic/samples/1317ef052_f34e98deb/plots/hg38_mmtv/post_filtering_statistics:
+INFO 	2016-05-24 14:42:27 	[post_filtering_statistics] 	- filtered reads: sequencing coverage along chromosomes, coverage values and interaction matrix
+INFO 	2016-05-24 14:42:27 	[post_filtering_statistics] 	- dangling ends: sequencing coverage along chromosomes and coverage values
+INFO 	2016-05-24 14:42:27 	[post_filtering_statistics] 	- self-circle ends: sequencing coverage along chromosomes and coverage values
+TIME 	2016-05-24 15:02:28 	[post_filtering_statistics] 	step time for completion (seconds) = 1201
+
+INFO 	2016-05-24 15:02:30 	[map_to_bam] 	converting MAP to BAM
+[bam_sort_core] merging from 119 files...
+TIME 	2016-05-24 17:42:47 	[map_to_bam] 	step time for completion (seconds) = 9617
+
+INFO 	2016-05-24 17:42:49 	[downstream_bam] 	perform several downstream analyses
+INFO 	2016-05-24 23:32:37 	[downstream_bam] 	number of TADs = 3041
+TIME 	2016-05-24 23:32:52 	[downstream_bam] 	step time for completion (seconds) = 21003
+
+INFO 	2016-05-24 23:32:54 	[clean_up] 	deleting the following intermediate files/directories:
+INFO 	2016-05-24 23:32:54 	[clean_up] 	/users/project/4DGenome_no_backup/data/hic/samples/1317ef052_f34e98deb/fastqs_processed
+INFO 	2016-05-24 23:32:54 	[clean_up] 	/users/project/4DGenome_no_backup/data/hic/samples/1317ef052_f34e98deb/mapped_reads
+TIME 	2016-05-24 23:33:33 	[clean_up] 	step time for completion (seconds) = 39
+
+
+INFO 	2016-05-24 23:33:37 	[pipeline] 	completed successfully
+TIME 	2016-05-24 23:33:37 	[pipeline] 	total time for completion (seconds) = 104271
+

@@ -1,0 +1,117 @@
+
+INFO 	2016-06-23 18:33:59 	[configuration] 	script to access/write from/to metadata: /users/project/4DGenome/utils/io_metadata.sh
+INFO 	2016-06-23 18:33:59 	[configuration] 	metadata database: /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-06-23 18:33:59 	[configuration] 	data for b1913e6c1_bb16b8aae will be stored at /users/project/4DGenome_no_backup/data/hic/samples/b1913e6c1_bb16b8aae
+INFO 	2016-06-23 18:33:59 	[configuration] 	paths to input FASTQ files extracted from the metadata
+INFO 	2016-06-23 18:34:38 	[configuration] 	species (Homo_sapiens) and assembly version (hg38_mmtv) extracted from the metadata
+
+INFO 	2016-06-23 18:35:20 	[preliminary_checks] 	b1913e6c1_bb16b8aae found in /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-06-23 19:21:16 	[preliminary_checks] 	paths to read1 and read2 saved to metadata database
+INFO 	2016-06-23 19:21:18 	[preliminary_checks] 	Sequencing index added as part of the metadata agrees with that observed in the FASTQ file
+INFO 	2016-06-23 19:21:20 	[preliminary_checks] 	read length added as part of the metadata agrees with that observed in the FASTQ file
+INFO 	2016-06-23 19:21:20 	[preliminary_checks] 	genome reference FASTA file found at /users/GR/mb/jquilez/assemblies/homo_sapiens/hg38_mmtv/ucsc/hg38_mmtv_chr1-22XYM.fa
+INFO 	2016-06-23 19:21:53 	[preliminary_checks] 	paths to reference FASTA saved to metadata database
+TIME 	2016-06-23 19:21:53 	[preliminary_checks] 	step time for completion (seconds) = 2795
+
+INFO 	2016-06-23 19:21:55 	[raw_fastqs_quality_plots] 	restriction enzyme = DpnII
+INFO 	2016-06-23 19:21:55 	[raw_fastqs_quality_plots] 	a subset of 100000 reds will be used to generate the quality plots
+INFO 	2016-06-23 19:21:55 	[raw_fastqs_quality_plots] 	making quality plots of the raw FASTQ files... plots saved at /users/project/4DGenome_no_backup/data/hic/samples/b1913e6c1_bb16b8aae/plots/hg38_mmtv/raw_fastqs_quality_plots
+INFO 	2016-06-23 19:22:40 	[raw_fastqs_quality_plots] 	percentages of dangling ends and ligated sites in read1 and read2 saved to metadata database
+TIME 	2016-06-23 19:22:40 	[raw_fastqs_quality_plots] 	step time for completion (seconds) = 45
+
+INFO 	2016-06-23 19:22:42 	[trim_reads_trimmomatic] 	sequencing type = PE
+INFO 	2016-06-23 19:22:42 	[trim_reads_trimmomatic] 	trimming TruSeq3 adapter sequences for HiSeq, NextSeq or HiSeq
+INFO 	2016-06-23 19:22:42 	[trim_reads_trimmomatic] 	trimming low-quality reads ends using trimmomatic's recommended practices
+INFO 	2016-06-24 00:55:16 	[trim_reads_trimmomatic] 	parse step log to extract generated metadata
+INFO 	2016-06-24 00:55:16 	[trim_reads_trimmomatic] 	reads after trimming = 283013228
+INFO 	2016-06-24 00:55:54 	[trim_reads_trimmomatic] 	trimmomatic parameters and numbe of trimmed reads added to metadata
+INFO 	2016-06-24 00:55:54 	[trim_reads_trimmomatic] 	trimmed reads are in /users/project/4DGenome_no_backup/data/hic/samples/b1913e6c1_bb16b8aae/fastqs_processed/trimmomatic/paired_end
+INFO 	2016-06-24 00:55:54 	[trim_reads_trimmomatic] 	unpaired reads are deleted
+TIME 	2016-06-24 00:55:55 	[trim_reads_trimmomatic] 	step time for completion (seconds) = 19993
+
+INFO 	2016-06-24 00:55:57 	[align_and_merge] 	species = Homo_sapiens
+INFO 	2016-06-24 00:55:57 	[align_and_merge] 	assembly version = hg38_mmtv
+INFO 	2016-06-24 00:55:57 	[align_and_merge] 	restriction enzyme = DpnII
+INFO 	2016-06-24 00:55:57 	[align_and_merge] 	read length = 125
+INFO 	2016-06-24 00:55:57 	[align_and_merge] 	genome reference FASTA file found at /users/GR/mb/jquilez/assemblies/homo_sapiens/hg38_mmtv/ucsc/hg38_mmtv_chr1-22XYM.fa
+INFO 	2016-06-24 00:55:57 	[align_and_merge] 	mapping, processing reads according to restriction enzyme fragments and merging aligments for read1 and read2...
+/usr/share/univage/soldierantcluster/spool/node-ib0002bi/job_scripts/4987013: line 513: 13953 Killed                  $python $SCRIPTS/map_process_merge.py $gem_index $SAMPLE $species $read_length $paired1 $paired2 $restriction_enzyme $fasta $slots $frag_map $version > $step_log
+INFO 	2016-06-25 08:13:05 	[align_and_merge] 	output saved in /users/project/4DGenome_no_backup/data/hic/samples/b1913e6c1_bb16b8aae/logs/hg38_mmtv/b1913e6c1_bb16b8aae_align_and_merge_paired_end.log
+TIME 	2016-06-25 08:19:36 	[align_and_merge] 	step time for completion (seconds) = 113020
+
+INFO 	2016-06-25 08:20:08 	[post_mapping_statistics] 	generating post mapping descriptive statistics plots...
+Traceback (most recent call last):
+  File "/users/project/4DGenome/pipelines/hic-16.05/scripts/mappings_descriptive_statistics.py", line 61, in <module>
+    insert_sizes(infile, xlog=False, max_size=99.9, savefig=outfile)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/pytadbit/mapping/analyze.py", line 662, in insert_sizes
+    crm2, pos2, dir2, _, re2) = line.strip().split('\t')[1:12]
+ValueError: need more than 0 values to unpack
+INFO 	2016-06-25 08:43:50 	[post_mapping_statistics] 	fraction of reads mapped read1 = 
+INFO 	2016-06-25 08:43:50 	[post_mapping_statistics] 	fraction of reads mapped read2 = 
+INFO 	2016-06-25 08:43:50 	[post_mapping_statistics] 	number of pairs in which both read1 and read2 are mapped = 341821287
+INFO 	2016-06-25 08:43:50 	[post_mapping_statistics] 	counts-to-distance slope = 
+INFO 	2016-06-25 08:43:50 	[add_to_metadata] 	-t <table>, -s <sample_id>, -u <time_stamp> -a <attribute> and or -v <value> are not provided; exiting...
+INFO 	2016-06-25 08:43:50 	[add_to_metadata] 	t=hic s=b1913e6c1_bb16b8aae u=2016-06-23-18-33 a=FRACTION_MAPPED_READ1 v=
+INFO 	2016-06-25 08:43:50 	[add_to_metadata] 	-t <table>, -s <sample_id>, -u <time_stamp> -a <attribute> and or -v <value> are not provided; exiting...
+INFO 	2016-06-25 08:43:50 	[add_to_metadata] 	t=hic s=b1913e6c1_bb16b8aae u=2016-06-23-18-33 a=FRACTION_MAPPED_READ2 v=
+INFO 	2016-06-25 08:43:50 	[add_to_metadata] 	-t <table>, -s <sample_id>, -u <time_stamp> -a <attribute> and or -v <value> are not provided; exiting...
+INFO 	2016-06-25 08:43:50 	[add_to_metadata] 	t=hic s=b1913e6c1_bb16b8aae u=2016-06-23-18-33 a=COUNTS_TO_DISTANCE_SLOPE v=
+TIME 	2016-06-25 08:44:04 	[post_mapping_statistics] 	step time for completion (seconds) = 1436
+
+INFO 	2016-06-25 08:45:13 	[reads_filtering] 	filtering reads based on multiple quality parameters...
+INFO 	2016-06-25 08:45:13 	[reads_filtering] 	filtered reads to be used for subsequent analyses are at /users/project/4DGenome_no_backup/data/hic/samples/b1913e6c1_bb16b8aae/results/hg38_mmtv/filtered_reads
+INFO 	2016-06-25 08:45:13 	[reads_filtering] 	excluded reads due to dangling ends are at /users/project/4DGenome_no_backup/data/hic/samples/b1913e6c1_bb16b8aae/results/hg38_mmtv/excluded_reads/dangling_ends
+INFO 	2016-06-25 08:45:13 	[reads_filtering] 	excluded reads due to self circle are at /users/project/4DGenome_no_backup/data/hic/samples/b1913e6c1_bb16b8aae/results/hg38_mmtv/excluded_reads/self_circle
+INFO 	2016-06-25 08:45:13 	[reads_filtering] 	summary of excluded reads at /users/project/4DGenome_no_backup/data/hic/samples/b1913e6c1_bb16b8aae/results/hg38_mmtv/excluded_reads/summary_excluded_per_filter
+Traceback (most recent call last):
+  File "/users/project/4DGenome/pipelines/hic-16.05/scripts/filter_reads.py", line 37, in <module>
+    verbose=False)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/pytadbit/mapping/filter.py", line 181, in filter_reads
+    masked, total = d.get()
+  File "/software/mb/el6.3/Conda/lib/python2.7/multiprocessing/pool.py", line 567, in get
+    raise self._value
+ValueError: need more than 1 value to unpack
+INFO 	2016-06-25 09:31:15 	[add_to_metadata] 	-t <table>, -s <sample_id>, -u <time_stamp> -a <attribute> and or -v <value> are not provided; exiting...
+INFO 	2016-06-25 09:31:15 	[add_to_metadata] 	t=hic s=b1913e6c1_bb16b8aae u=2016-06-23-18-33 a=N_FILTERED_READS v=
+cut: /users/project/4DGenome_no_backup/data/hic/samples/b1913e6c1_bb16b8aae/results/hg38_mmtv/excluded_reads/summary_excluded_per_filter/*_summary_excluded_per_filter.txt: No such file or directory
+INFO 	2016-06-25 09:31:16 	[reads_filtering] 	numbers and fractions of filtered and excluded reads added to the metadata
+shasum: /users/project/4DGenome_no_backup/data/hic/samples/b1913e6c1_bb16b8aae/results/hg38_mmtv/filtered_reads/*filtered_map.tsv: 
+TIME 	2016-06-25 09:31:16 	[reads_filtering] 	step time for completion (seconds) = 2830
+
+INFO 	2016-06-25 09:31:33 	[post_filtering_statistics] 	generating post filtering descriptive statistics plots... saved at /users/project/4DGenome_no_backup/data/hic/samples/b1913e6c1_bb16b8aae/plots/hg38_mmtv/post_filtering_statistics:
+INFO 	2016-06-25 09:31:33 	[post_filtering_statistics] 	- filtered reads: sequencing coverage along chromosomes, coverage values and interaction matrix
+INFO 	2016-06-25 09:31:33 	[post_filtering_statistics] 	- dangling ends: sequencing coverage along chromosomes and coverage values
+INFO 	2016-06-25 09:31:33 	[post_filtering_statistics] 	- self-circle ends: sequencing coverage along chromosomes and coverage values
+Traceback (most recent call last):
+  File "/users/project/4DGenome/pipelines/hic-16.05/scripts/filtered_descriptive_statistics.py", line 50, in <module>
+    coverages = plot_genomic_distribution(filtered_reads, name='filtered', savefig=outfile, resolution=genomic_coverage_resolution, pair_id=pair_id)
+  File "/nfs/users/project/4DGenome/pipelines/hic-16.05/scripts/module_plotting_functions.py", line 86, in plot_genomic_distribution
+    fhandler = open(fnam)
+IOError: [Errno 2] No such file or directory: '/users/project/4DGenome_no_backup/data/hic/samples/b1913e6c1_bb16b8aae/results/hg38_mmtv/filtered_reads/*filtered_map.tsv'
+TIME 	2016-06-25 09:31:43 	[post_filtering_statistics] 	step time for completion (seconds) = 10
+
+INFO 	2016-06-25 09:31:45 	[map_to_bam] 	converting MAP to BAM
+Traceback (most recent call last):
+  File "/users/project/4DGenome/pipelines/hic-16.05/scripts/tadbit_map2sam_stdout_modified.py", line 141, in <module>
+    filter_handler[i] = open(filter_files[i])
+IOError: [Errno 21] Is a directory: '/nfs/users/project/4DGenome_no_backup/data/hic/samples/b1913e6c1_bb16b8aae/results/hg38_mmtv/processed_reads/b1913e6c1_bb16b8aae_both_map.tsv_tmp_files'
+TIME 	2016-06-25 09:31:49 	[map_to_bam] 	step time for completion (seconds) = 4
+
+INFO 	2016-06-25 09:31:51 	[downstream_bam] 	perform several downstream analyses
+ls: cannot access /users/project/4DGenome_no_backup/data/hic/samples/b1913e6c1_bb16b8aae/downstream/hg38_mmtv/b1913e6c1_bb16b8aae_tads*tsv: No such file or directory
+basename: missing operand
+Try `basename --help' for more information.
+grep: /users/project/4DGenome_no_backup/data/hic/samples/b1913e6c1_bb16b8aae/downstream/hg38_mmtv/b1913e6c1_bb16b8aae_tads_*.tsv: No such file or directory
+rm: cannot remove `/users/project/4DGenome_no_backup/data/hic/samples/b1913e6c1_bb16b8aae/downstream/hg38_mmtv/b1913e6c1_bb16b8aae_tads_chr*': No such file or directory
+INFO 	2016-06-25 09:31:55 	[downstream_bam] 	number of TADs = 0
+TIME 	2016-06-25 09:32:06 	[downstream_bam] 	step time for completion (seconds) = 15
+
+INFO 	2016-06-25 09:32:08 	[clean_up] 	deleting the following intermediate files/directories:
+INFO 	2016-06-25 09:32:08 	[clean_up] 	/users/project/4DGenome_no_backup/data/hic/samples/b1913e6c1_bb16b8aae/fastqs_processed
+INFO 	2016-06-25 09:32:08 	[clean_up] 	/users/project/4DGenome_no_backup/data/hic/samples/b1913e6c1_bb16b8aae/mapped_reads
+TIME 	2016-06-25 09:32:09 	[clean_up] 	step time for completion (seconds) = 1
+
+
+INFO 	2016-06-25 09:32:11 	[pipeline] 	completed successfully
+TIME 	2016-06-25 09:32:11 	[pipeline] 	total time for completion (seconds) = 140293
+

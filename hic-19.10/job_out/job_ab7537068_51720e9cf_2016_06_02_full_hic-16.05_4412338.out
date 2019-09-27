@@ -1,0 +1,330 @@
+Error in atexit._run_exitfuncs:
+Traceback (most recent call last):
+  File "/usr/lib64/python2.6/atexit.py", line 24, in _run_exitfuncs
+    func(*targs, **kargs)
+  File "/usr/lib64/python2.6/logging/__init__.py", line 1525, in shutdown
+    h.close()
+  File "/usr/lib64/python2.6/logging/__init__.py", line 844, in close
+    self.stream.close()
+IOError: [Errno 116] Stale file handle
+Error in sys.exitfunc:
+Traceback (most recent call last):
+  File "/usr/lib64/python2.6/atexit.py", line 24, in _run_exitfuncs
+    func(*targs, **kargs)
+  File "/usr/lib64/python2.6/logging/__init__.py", line 1525, in shutdown
+    h.close()
+  File "/usr/lib64/python2.6/logging/__init__.py", line 844, in close
+    self.stream.close()
+IOError: [Errno 116] Stale file handle
+
+INFO 	2016-06-02 17:59:54 	[configuration] 	script to access/write from/to metadata: /users/project/4DGenome/utils/io_metadata.sh
+INFO 	2016-06-02 17:59:54 	[configuration] 	metadata database: /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-06-02 17:59:54 	[configuration] 	data for ab7537068_51720e9cf will be stored at /users/project/4DGenome_no_backup/data/hic/samples/ab7537068_51720e9cf
+INFO 	2016-06-02 17:59:54 	[configuration] 	paths to input FASTQ files extracted from the metadata
+INFO 	2016-06-02 18:00:23 	[configuration] 	species (Homo_sapiens) and assembly version (hg38_mmtv) extracted from the metadata
+Traceback (most recent call last):
+  File "/users/project/4DGenome/utils/io_metadata.py", line 100, in <module>
+    tab.upsert(new_data, ['SAMPLE_ID'])
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/dataset/persistence/table.py", line 171, in upsert
+    row_count = self.update(row, keys, ensure=ensure, types=types)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/dataset/persistence/table.py", line 144, in update
+    rp = self.database.executable.execute(stmt)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1991, in execute
+    return connection.execute(statement, *multiparams, **params)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 914, in execute
+    return meth(self, multiparams, params)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/elements.py", line 323, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1010, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1146, in _execute_context
+    context)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1341, in _handle_dbapi_exception
+    exc_info
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/util/compat.py", line 200, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1139, in _execute_context
+    context)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 450, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked [SQL: u'UPDATE hic SET "PIPELINE_RUN_MODE"=? WHERE hic."SAMPLE_ID" = ?'] [parameters: ('full', 'ab7537068_51720e9cf')]
+Traceback (most recent call last):
+  File "/users/project/4DGenome/utils/io_metadata.py", line 100, in <module>
+    tab.upsert(new_data, ['SAMPLE_ID'])
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/dataset/persistence/table.py", line 171, in upsert
+    row_count = self.update(row, keys, ensure=ensure, types=types)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/dataset/persistence/table.py", line 144, in update
+    rp = self.database.executable.execute(stmt)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1991, in execute
+    return connection.execute(statement, *multiparams, **params)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 914, in execute
+    return meth(self, multiparams, params)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/elements.py", line 323, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1010, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1146, in _execute_context
+    context)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1341, in _handle_dbapi_exception
+    exc_info
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/util/compat.py", line 200, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1139, in _execute_context
+    context)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 450, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked [SQL: u'UPDATE hic SET "QUEUE"=? WHERE hic."SAMPLE_ID" = ?'] [parameters: ('long-sl65', 'ab7537068_51720e9cf')]
+Traceback (most recent call last):
+  File "/users/project/4DGenome/utils/io_metadata.py", line 100, in <module>
+    tab.upsert(new_data, ['SAMPLE_ID'])
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/dataset/persistence/table.py", line 171, in upsert
+    row_count = self.update(row, keys, ensure=ensure, types=types)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/dataset/persistence/table.py", line 144, in update
+    rp = self.database.executable.execute(stmt)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1991, in execute
+    return connection.execute(statement, *multiparams, **params)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 914, in execute
+    return meth(self, multiparams, params)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/elements.py", line 323, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1010, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1146, in _execute_context
+    context)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1341, in _handle_dbapi_exception
+    exc_info
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/util/compat.py", line 200, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1139, in _execute_context
+    context)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 450, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked [SQL: u'UPDATE hic SET "MEMORY"=? WHERE hic."SAMPLE_ID" = ?'] [parameters: ('100G', 'ab7537068_51720e9cf')]
+Traceback (most recent call last):
+  File "/users/project/4DGenome/utils/io_metadata.py", line 100, in <module>
+    tab.upsert(new_data, ['SAMPLE_ID'])
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/dataset/persistence/table.py", line 171, in upsert
+    row_count = self.update(row, keys, ensure=ensure, types=types)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/dataset/persistence/table.py", line 144, in update
+    rp = self.database.executable.execute(stmt)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1991, in execute
+    return connection.execute(statement, *multiparams, **params)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 914, in execute
+    return meth(self, multiparams, params)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/elements.py", line 323, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1010, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1146, in _execute_context
+    context)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1341, in _handle_dbapi_exception
+    exc_info
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/util/compat.py", line 200, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1139, in _execute_context
+    context)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 450, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked [SQL: u'UPDATE hic SET "MAX_TIME"=? WHERE hic."SAMPLE_ID" = ?'] [parameters: ('100:00:00', 'ab7537068_51720e9cf')]
+Traceback (most recent call last):
+  File "/users/project/4DGenome/utils/io_metadata.py", line 107, in <module>
+    tab.upsert(new_data, ['JOB_ID'])
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/dataset/persistence/table.py", line 182, in upsert
+    return self.insert(row, ensure=ensure, types=types)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/dataset/persistence/table.py", line 74, in insert
+    res = self.database.executable.execute(self.table.insert(row))
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1991, in execute
+    return connection.execute(statement, *multiparams, **params)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 914, in execute
+    return meth(self, multiparams, params)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/elements.py", line 323, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1010, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1146, in _execute_context
+    context)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1341, in _handle_dbapi_exception
+    exc_info
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/util/compat.py", line 200, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1139, in _execute_context
+    context)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 450, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked [SQL: u'INSERT INTO jobs ("JOB_ID", "SLOTS") VALUES (?, ?)'] [parameters: ('ab7537068_51720e9cf;2016-06-02-17-59', '10')]
+Traceback (most recent call last):
+  File "/users/project/4DGenome/utils/io_metadata.py", line 107, in <module>
+    tab.upsert(new_data, ['JOB_ID'])
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/dataset/persistence/table.py", line 182, in upsert
+    return self.insert(row, ensure=ensure, types=types)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/dataset/persistence/table.py", line 74, in insert
+    res = self.database.executable.execute(self.table.insert(row))
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1991, in execute
+    return connection.execute(statement, *multiparams, **params)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 914, in execute
+    return meth(self, multiparams, params)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/elements.py", line 323, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1010, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1146, in _execute_context
+    context)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1341, in _handle_dbapi_exception
+    exc_info
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/util/compat.py", line 200, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1139, in _execute_context
+    context)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 450, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked [SQL: u'INSERT INTO jobs ("JOB_ID", "ASSEMBLY_VERSION") VALUES (?, ?)'] [parameters: ('ab7537068_51720e9cf;2016-06-02-17-59', 'hg38_mmtv')]
+Traceback (most recent call last):
+  File "/users/project/4DGenome/utils/io_metadata.py", line 100, in <module>
+    tab.upsert(new_data, ['SAMPLE_ID'])
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/dataset/persistence/table.py", line 171, in upsert
+    row_count = self.update(row, keys, ensure=ensure, types=types)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/dataset/persistence/table.py", line 144, in update
+    rp = self.database.executable.execute(stmt)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1991, in execute
+    return connection.execute(statement, *multiparams, **params)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 914, in execute
+    return meth(self, multiparams, params)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/elements.py", line 323, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1010, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1146, in _execute_context
+    context)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1341, in _handle_dbapi_exception
+    exc_info
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/util/compat.py", line 200, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1139, in _execute_context
+    context)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 450, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked [SQL: u'UPDATE hic SET "JOB_NAME"=? WHERE hic."SAMPLE_ID" = ?'] [parameters: ('hic-16.05', 'ab7537068_51720e9cf')]
+Traceback (most recent call last):
+  File "/users/project/4DGenome/utils/io_metadata.py", line 100, in <module>
+    tab.upsert(new_data, ['SAMPLE_ID'])
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/dataset/persistence/table.py", line 171, in upsert
+    row_count = self.update(row, keys, ensure=ensure, types=types)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/dataset/persistence/table.py", line 144, in update
+    rp = self.database.executable.execute(stmt)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1991, in execute
+    return connection.execute(statement, *multiparams, **params)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 914, in execute
+    return meth(self, multiparams, params)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/elements.py", line 323, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1010, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1146, in _execute_context
+    context)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1341, in _handle_dbapi_exception
+    exc_info
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/util/compat.py", line 200, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1139, in _execute_context
+    context)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 450, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked [SQL: u'UPDATE hic SET "PATH_JOB_FILE"=? WHERE hic."SAMPLE_ID" = ?'] [parameters: ('/users/project/4DGenome/pipelines/hic-16.05/job_cmd/job_ab7537068_51720e9cf_2016_06_02_full_hic-16.05.sh', 'ab7537068_51720e9cf')]
+Traceback (most recent call last):
+  File "/users/project/4DGenome/utils/io_metadata.py", line 100, in <module>
+    tab.upsert(new_data, ['SAMPLE_ID'])
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/dataset/persistence/table.py", line 171, in upsert
+    row_count = self.update(row, keys, ensure=ensure, types=types)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/dataset/persistence/table.py", line 144, in update
+    rp = self.database.executable.execute(stmt)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1991, in execute
+    return connection.execute(statement, *multiparams, **params)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 914, in execute
+    return meth(self, multiparams, params)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/sql/elements.py", line 323, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1010, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1146, in _execute_context
+    context)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1341, in _handle_dbapi_exception
+    exc_info
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/util/compat.py", line 200, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1139, in _execute_context
+    context)
+  File "/software/mb/el6.3/Conda/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 450, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked [SQL: u'UPDATE hic SET "TADBIT_AND_DEPENDENCIES_VERSIONS"=? WHERE hic."SAMPLE_ID" = ?'] [parameters: ('TADbit:0.1_alpha.726;Machine:2.6.32-504.23.4.el6.x86_64x86_64GNU/Linux;IMP:2.5.0(randomseedindexedat1=1791095845);MCL:14-137;gem-mapper:Notfound;gemtools:Notfound;matplotlib:1.5.1;numpy:1.10.4;scipy:0.17.0', 'ab7537068_51720e9cf')]
+
+INFO 	2016-06-02 18:02:07 	[preliminary_checks] 	ab7537068_51720e9cf found in /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-06-02 18:13:20 	[preliminary_checks] 	paths to read1 and read2 saved to metadata database
+INFO 	2016-06-02 18:13:21 	[preliminary_checks] 	Sequencing index added as part of the metadata agrees with that observed in the FASTQ file
+INFO 	2016-06-02 18:13:23 	[preliminary_checks] 	read length added as part of the metadata agrees with that observed in the FASTQ file
+INFO 	2016-06-02 18:13:23 	[preliminary_checks] 	genome reference FASTA file found at /users/GR/mb/jquilez/assemblies/homo_sapiens/hg38_mmtv/ucsc/hg38_mmtv_chr1-22XYM.fa
+INFO 	2016-06-02 18:13:41 	[preliminary_checks] 	paths to reference FASTA saved to metadata database
+TIME 	2016-06-02 18:13:41 	[preliminary_checks] 	step time for completion (seconds) = 696
+
+INFO 	2016-06-02 18:13:43 	[raw_fastqs_quality_plots] 	restriction enzyme = DpnII
+INFO 	2016-06-02 18:13:43 	[raw_fastqs_quality_plots] 	a subset of 100000 reds will be used to generate the quality plots
+INFO 	2016-06-02 18:13:43 	[raw_fastqs_quality_plots] 	making quality plots of the raw FASTQ files... plots saved at /users/project/4DGenome_no_backup/data/hic/samples/ab7537068_51720e9cf/plots/hg38_mmtv/raw_fastqs_quality_plots
+INFO 	2016-06-02 18:14:01 	[raw_fastqs_quality_plots] 	percentages of dangling ends and ligated sites in read1 and read2 saved to metadata database
+TIME 	2016-06-02 18:14:01 	[raw_fastqs_quality_plots] 	step time for completion (seconds) = 18
+
+INFO 	2016-06-02 18:14:03 	[trim_reads_trimmomatic] 	sequencing type = PE
+INFO 	2016-06-02 18:14:03 	[trim_reads_trimmomatic] 	trimming TruSeq3 adapter sequences for HiSeq, NextSeq or HiSeq
+INFO 	2016-06-02 18:14:03 	[trim_reads_trimmomatic] 	trimming low-quality reads ends using trimmomatic's recommended practices
+INFO 	2016-06-02 19:30:37 	[trim_reads_trimmomatic] 	parse step log to extract generated metadata
+INFO 	2016-06-02 19:30:37 	[trim_reads_trimmomatic] 	reads after trimming = 150412335
+INFO 	2016-06-02 19:31:04 	[trim_reads_trimmomatic] 	trimmomatic parameters and numbe of trimmed reads added to metadata
+INFO 	2016-06-02 19:31:04 	[trim_reads_trimmomatic] 	trimmed reads are in /users/project/4DGenome_no_backup/data/hic/samples/ab7537068_51720e9cf/fastqs_processed/trimmomatic/paired_end
+INFO 	2016-06-02 19:31:04 	[trim_reads_trimmomatic] 	unpaired reads are deleted
+TIME 	2016-06-02 19:31:04 	[trim_reads_trimmomatic] 	step time for completion (seconds) = 4621
+
+INFO 	2016-06-02 19:31:05 	[align_and_merge] 	species = Homo_sapiens
+INFO 	2016-06-02 19:31:05 	[align_and_merge] 	assembly version = hg38_mmtv
+INFO 	2016-06-02 19:31:05 	[align_and_merge] 	restriction enzyme = DpnII
+INFO 	2016-06-02 19:31:05 	[align_and_merge] 	read length = 75
+INFO 	2016-06-02 19:31:06 	[align_and_merge] 	genome reference FASTA file found at /users/GR/mb/jquilez/assemblies/homo_sapiens/hg38_mmtv/ucsc/hg38_mmtv_chr1-22XYM.fa
+INFO 	2016-06-02 19:31:06 	[align_and_merge] 	mapping, processing reads according to restriction enzyme fragments and merging aligments for read1 and read2...
+INFO 	2016-06-03 02:55:14 	[align_and_merge] 	output saved in /users/project/4DGenome_no_backup/data/hic/samples/ab7537068_51720e9cf/logs/hg38_mmtv/ab7537068_51720e9cf_align_and_merge_paired_end.log
+TIME 	2016-06-03 02:57:44 	[align_and_merge] 	step time for completion (seconds) = 26799
+
+INFO 	2016-06-03 02:57:51 	[post_mapping_statistics] 	generating post mapping descriptive statistics plots...
+INFO 	2016-06-03 03:35:11 	[post_mapping_statistics] 	fraction of reads mapped read1 = 0.988487433561
+INFO 	2016-06-03 03:35:11 	[post_mapping_statistics] 	fraction of reads mapped read2 = 0.950882911298
+INFO 	2016-06-03 03:35:11 	[post_mapping_statistics] 	number of pairs in which both read1 and read2 are mapped = 112441892
+INFO 	2016-06-03 03:35:11 	[post_mapping_statistics] 	counts-to-distance slope = -1.23873991902
+TIME 	2016-06-03 03:35:18 	[post_mapping_statistics] 	step time for completion (seconds) = 2247
+
+INFO 	2016-06-03 03:35:40 	[reads_filtering] 	filtering reads based on multiple quality parameters...
+INFO 	2016-06-03 03:35:40 	[reads_filtering] 	filtered reads to be used for subsequent analyses are at /users/project/4DGenome_no_backup/data/hic/samples/ab7537068_51720e9cf/results/hg38_mmtv/filtered_reads
+INFO 	2016-06-03 03:35:40 	[reads_filtering] 	excluded reads due to dangling ends are at /users/project/4DGenome_no_backup/data/hic/samples/ab7537068_51720e9cf/results/hg38_mmtv/excluded_reads/dangling_ends
+INFO 	2016-06-03 03:35:40 	[reads_filtering] 	excluded reads due to self circle are at /users/project/4DGenome_no_backup/data/hic/samples/ab7537068_51720e9cf/results/hg38_mmtv/excluded_reads/self_circle
+INFO 	2016-06-03 03:35:40 	[reads_filtering] 	summary of excluded reads at /users/project/4DGenome_no_backup/data/hic/samples/ab7537068_51720e9cf/results/hg38_mmtv/excluded_reads/summary_excluded_per_filter
+INFO 	2016-06-03 03:57:40 	[reads_filtering] 	numbers and fractions of filtered and excluded reads added to the metadata
+TIME 	2016-06-03 03:59:12 	[reads_filtering] 	step time for completion (seconds) = 1432
+
+INFO 	2016-06-03 03:59:14 	[post_filtering_statistics] 	generating post filtering descriptive statistics plots... saved at /users/project/4DGenome_no_backup/data/hic/samples/ab7537068_51720e9cf/plots/hg38_mmtv/post_filtering_statistics:
+INFO 	2016-06-03 03:59:14 	[post_filtering_statistics] 	- filtered reads: sequencing coverage along chromosomes, coverage values and interaction matrix
+INFO 	2016-06-03 03:59:14 	[post_filtering_statistics] 	- dangling ends: sequencing coverage along chromosomes and coverage values
+INFO 	2016-06-03 03:59:14 	[post_filtering_statistics] 	- self-circle ends: sequencing coverage along chromosomes and coverage values
+TIME 	2016-06-03 04:17:15 	[post_filtering_statistics] 	step time for completion (seconds) = 1081
+
+INFO 	2016-06-03 04:17:27 	[map_to_bam] 	converting MAP to BAM
+[bam_sort_core] merging from 77 files...
+TIME 	2016-06-03 06:02:44 	[map_to_bam] 	step time for completion (seconds) = 6317
+
+INFO 	2016-06-03 06:02:58 	[downstream_bam] 	perform several downstream analyses
+INFO 	2016-06-03 12:02:57 	[downstream_bam] 	number of TADs = 2989
+TIME 	2016-06-03 12:03:08 	[downstream_bam] 	step time for completion (seconds) = 21610
+
+INFO 	2016-06-03 12:03:09 	[clean_up] 	deleting the following intermediate files/directories:
+INFO 	2016-06-03 12:03:09 	[clean_up] 	/users/project/4DGenome_no_backup/data/hic/samples/ab7537068_51720e9cf/fastqs_processed
+INFO 	2016-06-03 12:03:09 	[clean_up] 	/users/project/4DGenome_no_backup/data/hic/samples/ab7537068_51720e9cf/mapped_reads
+TIME 	2016-06-03 12:03:10 	[clean_up] 	step time for completion (seconds) = 1
+
+
+INFO 	2016-06-03 12:03:11 	[pipeline] 	completed successfully
+TIME 	2016-06-03 12:03:12 	[pipeline] 	total time for completion (seconds) = 64997
+

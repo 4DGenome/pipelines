@@ -1,0 +1,23 @@
+
+INFO 	2016-05-19 12:28:16 	[configuration] 	script to access/write from/to metadata: /users/project/4DGenome/utils/io_metadata.sh
+INFO 	2016-05-19 12:28:16 	[configuration] 	metadata database: /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-05-19 12:28:16 	[configuration] 	data for b1913e6c1_51720e9cf will be stored at /users/project/4DGenome_no_backup/data/hic/samples/b1913e6c1_51720e9cf
+INFO 	2016-05-19 12:28:16 	[configuration] 	paths to input FASTQ files extracted from the metadata
+INFO 	2016-05-19 12:28:37 	[configuration] 	species (Homo_sapiens) and assembly version (hg38_mmtv) extracted from the metadata
+
+INFO 	2016-05-19 12:29:10 	[post_filtering_statistics] 	generating post filtering descriptive statistics plots... saved at /users/project/4DGenome_no_backup/data/hic/samples/b1913e6c1_51720e9cf/plots/hg38_mmtv/post_filtering_statistics:
+INFO 	2016-05-19 12:29:10 	[post_filtering_statistics] 	- filtered reads: sequencing coverage along chromosomes, coverage values and interaction matrix
+INFO 	2016-05-19 12:29:10 	[post_filtering_statistics] 	- dangling ends: sequencing coverage along chromosomes and coverage values
+INFO 	2016-05-19 12:29:10 	[post_filtering_statistics] 	- self-circle ends: sequencing coverage along chromosomes and coverage values
+Traceback (most recent call last):
+  File "/users/project/4DGenome/pipelines/hic-16.05/scripts/filtered_descriptive_statistics.py", line 50, in <module>
+    coverages = plot_genomic_distribution(filtered_reads, name='filtered', savefig=outfile, resolution=genomic_coverage_resolution, pair_id=pair_id)
+  File "/nfs/users/project/4DGenome/pipelines/hic-16.05/scripts/module_plotting_functions.py", line 148, in plot_genomic_distribution
+    tmp = max(range(max(distr[crm]))) if len(distr[crm]) > 1 else 1
+ValueError: max() arg is an empty sequence
+TIME 	2016-05-19 12:34:33 	[post_filtering_statistics] 	step time for completion (seconds) = 323
+
+
+INFO 	2016-05-19 12:34:35 	[pipeline] 	completed successfully
+TIME 	2016-05-19 12:34:35 	[pipeline] 	total time for completion (seconds) = 379
+

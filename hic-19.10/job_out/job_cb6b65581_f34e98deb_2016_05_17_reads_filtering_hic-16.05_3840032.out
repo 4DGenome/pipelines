@@ -1,0 +1,19 @@
+
+INFO 	2016-05-17 15:49:30 	[configuration] 	script to access/write from/to metadata: /users/project/4DGenome/utils/io_metadata.sh
+INFO 	2016-05-17 15:49:30 	[configuration] 	metadata database: /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-05-17 15:49:30 	[configuration] 	data for cb6b65581_f34e98deb will be stored at /users/project/4DGenome_no_backup/data/hic/samples/cb6b65581_f34e98deb
+INFO 	2016-05-17 15:49:30 	[configuration] 	paths to input FASTQ files extracted from the metadata
+INFO 	2016-05-17 15:49:51 	[configuration] 	species (Homo_sapiens) and assembly version (hg38_mmtv) extracted from the metadata
+
+INFO 	2016-05-17 15:53:17 	[reads_filtering] 	filtering reads based on multiple quality parameters...
+INFO 	2016-05-17 15:53:17 	[reads_filtering] 	filtered reads to be used for subsequent analyses are at /users/project/4DGenome_no_backup/data/hic/samples/cb6b65581_f34e98deb/results/hg38_mmtv/filtered_reads
+INFO 	2016-05-17 15:53:18 	[reads_filtering] 	excluded reads due to dangling ends are at /users/project/4DGenome_no_backup/data/hic/samples/cb6b65581_f34e98deb/results/hg38_mmtv/excluded_reads/dangling_ends
+INFO 	2016-05-17 15:53:18 	[reads_filtering] 	excluded reads due to self circle are at /users/project/4DGenome_no_backup/data/hic/samples/cb6b65581_f34e98deb/results/hg38_mmtv/excluded_reads/self_circle
+INFO 	2016-05-17 15:53:18 	[reads_filtering] 	summary of excluded reads at /users/project/4DGenome_no_backup/data/hic/samples/cb6b65581_f34e98deb/results/hg38_mmtv/excluded_reads/summary_excluded_per_filter
+INFO 	2016-05-17 17:02:27 	[reads_filtering] 	numbers and fractions of filtered and excluded reads added to the metadata
+TIME 	2016-05-17 17:04:22 	[reads_filtering] 	step time for completion (seconds) = 4451
+
+
+INFO 	2016-05-17 17:04:24 	[pipeline] 	completed successfully
+TIME 	2016-05-17 17:04:24 	[pipeline] 	total time for completion (seconds) = 4494
+

@@ -1,0 +1,19 @@
+
+INFO 	2016-05-19 12:40:27 	[configuration] 	script to access/write from/to metadata: /users/project/4DGenome/utils/io_metadata.sh
+INFO 	2016-05-19 12:40:27 	[configuration] 	metadata database: /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-05-19 12:40:27 	[configuration] 	data for b1913e6c1_51720e9cf will be stored at /users/project/4DGenome_no_backup/data/hic/samples/b1913e6c1_51720e9cf
+INFO 	2016-05-19 12:40:27 	[configuration] 	paths to input FASTQ files extracted from the metadata
+INFO 	2016-05-19 12:40:49 	[configuration] 	species (Homo_sapiens) and assembly version (hg38_mmtv) extracted from the metadata
+
+INFO 	2016-05-19 12:41:12 	[map_to_bam] 	converting MAP to BAM
+[W::sam_parse1] mapped query cannot have zero coordinate; treated as unmapped
+[W::sam_parse1] mapped mate cannot have zero coordinate; treated as unmapped
+[W::sam_parse1] mapped query cannot have zero coordinate; treated as unmapped
+[W::sam_parse1] mapped mate cannot have zero coordinate; treated as unmapped
+[bam_sort_core] merging from 69 files...
+TIME 	2016-05-19 14:29:00 	[map_to_bam] 	step time for completion (seconds) = 6468
+
+
+INFO 	2016-05-19 14:29:14 	[pipeline] 	completed successfully
+TIME 	2016-05-19 14:29:14 	[pipeline] 	total time for completion (seconds) = 6527
+

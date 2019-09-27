@@ -1,0 +1,21 @@
+
+INFO 	2016-06-28 10:08:51 	[configuration] 	script to access/write from/to metadata: /users/project/4DGenome/utils/io_metadata.sh
+INFO 	2016-06-28 10:08:51 	[configuration] 	metadata database: /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-06-28 10:08:51 	[configuration] 	data for 2d656cab7_1de577577 will be stored at /users/project/4DGenome_no_backup/data/hic/samples/2d656cab7_1de577577
+INFO 	2016-06-28 10:08:51 	[configuration] 	paths to input FASTQ files extracted from the metadata
+INFO 	2016-06-28 10:09:12 	[configuration] 	species (Homo_sapiens) and assembly version (hg38_mmtv) extracted from the metadata
+
+INFO 	2016-06-28 10:09:40 	[downstream_bam] 	perform several downstream analyses
+/usr/share/univage/soldierantcluster/spool/node-hp0205/job_scripts/5424472: line 768: 11117 Aborted                 (core dumped) $python $SCRIPTS/tadbit_after_bam.py $ibam $flag_excluded $flag_included $flag_perzero $DOWNSTREAM/${sample_id}_ $slots $resolution_ab $resolution_tad &>$step_log
+ls: cannot access /users/project/4DGenome_no_backup/data/hic/samples/2d656cab7_1de577577/downstream/hg38_mmtv/2d656cab7_1de577577_tads*tsv: No such file or directory
+basename: missing operand
+Try `basename --help' for more information.
+grep: /users/project/4DGenome_no_backup/data/hic/samples/2d656cab7_1de577577/downstream/hg38_mmtv/2d656cab7_1de577577_tads_*.tsv: No such file or directory
+rm: cannot remove `/users/project/4DGenome_no_backup/data/hic/samples/2d656cab7_1de577577/downstream/hg38_mmtv/2d656cab7_1de577577_tads_chr*': No such file or directory
+INFO 	2016-06-28 11:08:35 	[downstream_bam] 	number of TADs = 0
+TIME 	2016-06-28 11:09:02 	[downstream_bam] 	step time for completion (seconds) = 3562
+
+
+INFO 	2016-06-28 11:09:04 	[pipeline] 	completed successfully
+TIME 	2016-06-28 11:09:04 	[pipeline] 	total time for completion (seconds) = 3613
+

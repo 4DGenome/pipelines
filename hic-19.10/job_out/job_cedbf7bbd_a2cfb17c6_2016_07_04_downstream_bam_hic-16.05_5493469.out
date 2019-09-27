@@ -1,0 +1,15 @@
+
+INFO 	2016-07-04 10:59:55 	[configuration] 	script to access/write from/to metadata: /users/project/4DGenome/utils/io_metadata.sh
+INFO 	2016-07-04 10:59:55 	[configuration] 	metadata database: /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-07-04 10:59:55 	[configuration] 	data for cedbf7bbd_a2cfb17c6 will be stored at /users/project/4DGenome_no_backup/data/hic/samples/cedbf7bbd_a2cfb17c6
+INFO 	2016-07-04 10:59:55 	[configuration] 	paths to input FASTQ files extracted from the metadata
+INFO 	2016-07-04 11:00:01 	[configuration] 	species (Homo_sapiens) and assembly version (hg38_mmtv) extracted from the metadata
+
+INFO 	2016-07-04 11:00:24 	[downstream_bam] 	perform several downstream analyses
+INFO 	2016-07-04 20:45:01 	[downstream_bam] 	number of TADs = 4290
+TIME 	2016-07-04 20:45:26 	[downstream_bam] 	step time for completion (seconds) = 35102
+
+
+INFO 	2016-07-04 20:45:28 	[pipeline] 	completed successfully
+TIME 	2016-07-04 20:45:28 	[pipeline] 	total time for completion (seconds) = 35133
+

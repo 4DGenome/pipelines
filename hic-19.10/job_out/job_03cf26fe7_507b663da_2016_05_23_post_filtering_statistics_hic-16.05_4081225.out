@@ -1,0 +1,17 @@
+
+INFO 	2016-05-23 12:37:16 	[configuration] 	script to access/write from/to metadata: /users/project/4DGenome/utils/io_metadata.sh
+INFO 	2016-05-23 12:37:16 	[configuration] 	metadata database: /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-05-23 12:37:16 	[configuration] 	data for 03cf26fe7_507b663da will be stored at /users/project/4DGenome_no_backup/data/hic/samples/03cf26fe7_507b663da
+INFO 	2016-05-23 12:37:16 	[configuration] 	paths to input FASTQ files extracted from the metadata
+INFO 	2016-05-23 12:37:50 	[configuration] 	species (Homo_sapiens) and assembly version (hg38_mmtv) extracted from the metadata
+
+INFO 	2016-05-23 12:38:24 	[post_filtering_statistics] 	generating post filtering descriptive statistics plots... saved at /users/project/4DGenome_no_backup/data/hic/samples/03cf26fe7_507b663da/plots/hg38_mmtv/post_filtering_statistics:
+INFO 	2016-05-23 12:38:24 	[post_filtering_statistics] 	- filtered reads: sequencing coverage along chromosomes, coverage values and interaction matrix
+INFO 	2016-05-23 12:38:24 	[post_filtering_statistics] 	- dangling ends: sequencing coverage along chromosomes and coverage values
+INFO 	2016-05-23 12:38:24 	[post_filtering_statistics] 	- self-circle ends: sequencing coverage along chromosomes and coverage values
+TIME 	2016-05-23 12:45:46 	[post_filtering_statistics] 	step time for completion (seconds) = 442
+
+
+INFO 	2016-05-23 12:45:49 	[pipeline] 	completed successfully
+TIME 	2016-05-23 12:45:49 	[pipeline] 	total time for completion (seconds) = 513
+

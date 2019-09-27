@@ -1,0 +1,18 @@
+
+INFO 	2016-05-23 15:32:40 	[configuration] 	script to access/write from/to metadata: /users/project/4DGenome/utils/io_metadata.sh
+INFO 	2016-05-23 15:32:40 	[configuration] 	metadata database: /users/project/4DGenome/data/4DGenome_metadata.db
+INFO 	2016-05-23 15:32:40 	[configuration] 	data for dc3a1e069_51720e9cf will be stored at /users/project/4DGenome_no_backup/data/hic/samples/dc3a1e069_51720e9cf
+INFO 	2016-05-23 15:32:40 	[configuration] 	paths to input FASTQ files extracted from the metadata
+INFO 	2016-05-23 15:33:17 	[configuration] 	species (Homo_sapiens) and assembly version (hg38_mmtv) extracted from the metadata
+
+INFO 	2016-05-23 15:33:54 	[post_mapping_statistics] 	generating post mapping descriptive statistics plots...
+INFO 	2016-05-23 16:07:32 	[post_mapping_statistics] 	fraction of reads mapped read1 = 1.02079243847
+INFO 	2016-05-23 16:07:32 	[post_mapping_statistics] 	fraction of reads mapped read2 = 0.918149141956
+INFO 	2016-05-23 16:07:32 	[post_mapping_statistics] 	number of pairs in which both read1 and read2 are mapped = 1
+INFO 	2016-05-23 16:07:32 	[post_mapping_statistics] 	counts-to-distance slope = -1.19970452892
+TIME 	2016-05-23 16:07:53 	[post_mapping_statistics] 	step time for completion (seconds) = 2039
+
+
+INFO 	2016-05-23 16:07:55 	[pipeline] 	completed successfully
+TIME 	2016-05-23 16:07:55 	[pipeline] 	total time for completion (seconds) = 2115
+

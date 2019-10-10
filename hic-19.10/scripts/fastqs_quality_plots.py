@@ -25,7 +25,7 @@ values = []
 for infile in [paired1, paired2]:
     bname = infile.split("/")[-1].replace(".fastq.gz", "")
     outfile = '%s/%s_processed_reads_quality.png' % (QUALITY_PLOTS, bname)
-    a, b = quality_plot(infile, nreads=int(reads_nummber_qc), r_enz=restriction_enzyme, savefig=outfile)    
+    a, b = quality_plot(infile, nreads=int(reads_nummber_qc), r_enz=restriction_enzyme.split(","), savefig=outfile)    
     values.append(a)
     values.append(b)
 print ';'.join([str(i) for i in values])

@@ -43,7 +43,7 @@ for k in xrange(1, len(masked) + 1):
     df = pd.DataFrame([k, masked[k]['name'], masked[k]['reads']]).transpose()
     df.columns = my_columns[:-1]
     df['reads_fraction'] = df['reads_number'] / both_reads_mapped
-    excluded = pd.concat([excluded, df])
+    excluded = pd.concat([excluded, df], sort=True)
     if k in filters_applied_numeric:
     	is_applied.append(1)
     else:

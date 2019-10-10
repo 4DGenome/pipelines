@@ -769,7 +769,7 @@ downstream_bam() {
 
 	# perform several downstream analyses
 	message_info $step "perform several downstream analyses"
-	$python $SCRIPTS/tadbit_after_bam_v2.py $ibam $flag_excluded $flag_included $flag_perzero $DOWNSTREAM/${sample_id}_ $slots $resolution_ab $resolution_tad &> $step_log
+	$python $SCRIPTS/tadbit_after_bam_v2.py $ibam $flag_excluded $flag_included $flag_perzero $DOWNSTREAM/${sample_id}_ $slots $bgzip $tabix $resolution_ab $resolution_tad &> $step_log
 
 
 	# arrange, merge chromosomes, compress and index TADs

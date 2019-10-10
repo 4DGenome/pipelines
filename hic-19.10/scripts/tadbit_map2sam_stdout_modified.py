@@ -81,12 +81,12 @@ def map2sam (line, flag):
 
         flag += filter_keys['trans'] 
 
-    return ((qname, str(flag), rname, pos, str(abs(int(mapq))), s1 + "M",
+    return ((qname, str(flag), rname, pos, '0', str(abs(int(mapq))) + "P",
              rnext, pnext, tlen, "*", "*",
-             "TC:i:" + tc, "E1:i:" + e1, "E2:i:" + e2, "E3:i:" + e3, "E4:i:" + e4),
-            (qname, str(flag), rnext, pnext, str(abs(int(tlen))), s2 + "M",
+             "TC:i:" + tc, "S1:i:" + s1, "S2:i:" + s2, "E1:i:" + e1, "E2:i:" + e2, "E3:i:" + e3, "E4:i:" + e4),
+            (qname, str(flag), rnext, pnext, '0', str(abs(int(tlen))) + "P",
              rname, pos, mapq, "*", "*",
-             "TC:i:" + tc, "E3:i:" + e3, "E4:i:" + e4, "E1:i:" + e1, "E2:i:" + e2))
+             "TC:i:" + tc, "S1:i:" + s1, "S2:i:" + s2, "E3:i:" + e3, "E4:i:" + e4, "E1:i:" + e1, "E2:i:" + e2))
 
 
 # get all filters

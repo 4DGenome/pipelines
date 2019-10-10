@@ -65,10 +65,10 @@ elif frag_map == 'False':
 for infile in [paired1, paired2]:
     bname = infile.split("/")[-1].replace(".fastq.gz", "")
     maps = full_mapping(
-             gem_index_path      = gem_index,
+             mapper_index_path   = gem_index,
              fastq_path          = infile,
              out_map_dir         = '%s/%s/' % (MAP_DIR, bname),
-             r_enz               = restriction_enzyme,
+             r_enz               = restriction_enzyme.split(","),
              windows             = windows,
              temp_dir            = '%s/tmp_dir_%s/' % (MAP_DIR, bname),
              frag_map            = frag_map,
@@ -102,6 +102,7 @@ for infile in [paired1, paired2]:
     infiles.append(maps)
     outfiles.append('%s/%s_map.tsv' % (RESULTS, bname))
 
-parse_map(infiles[0], infiles[1], outfiles[0], outfiles[1], genome_seq, restriction_enzyme, verbose = True, ncpus=slots)
+parse_map(infiles[0], infiles[1], outfiles[0], outfiles[1], genome_seq, restriction_enzyme.split(","),
+          verbose = True, ncpus=slots)
 final_output = outfiles[0].replace('read1', 'both')
 get_intersection(outfiles[0], outfiles[1], final_output, verbose = True)

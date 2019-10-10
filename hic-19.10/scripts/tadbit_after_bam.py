@@ -37,7 +37,9 @@ def main():
     perc_zero = int(sys.argv[4])
     outdir = sys.argv[5]
     ncpus = int(sys.argv[6])
-    resolution_list = [int(i) for i in sys.argv[7:]]
+    bgzip = sys.argv[7]
+    tabix = sys.argv[8]
+    resolution_list = [int(i) for i in sys.argv[9:]]
 
     # create dir
 
@@ -66,7 +68,7 @@ def main():
 
     print printime() + "Processing A/B compartments ..."
 
-    process_AB(dat_list[0], perc_zero, resolution_list[0], outdir, bin_list[0])
+    process_AB(dat_list[0], perc_zero, resolution_list[0], outdir, bin_list[0], bgzip, tabix)
 
     print printime() + "... done!"
 
@@ -74,7 +76,7 @@ def main():
 
     print printime() + "Processing TADs compartments ..."
 
-    process_TAD(dat_list[1], perc_zero, resolution_list[1], ncpus, outdir, bin_list[1])
+    process_TAD(dat_list[1], perc_zero, resolution_list[1], ncpus, outdir, bin_list[1], bgzip, tabix)
 
     print printime() + "... done!"
 
@@ -82,7 +84,7 @@ def main():
 
 # Define functions
 
-def compress(a, outfile):
+def compress(a, outfile, bgzip, tabix):
 
     of = open(outfile + ".tmp", "w")
     of.write('\n'.join(a))
@@ -90,8 +92,8 @@ def compress(a, outfile):
 
     subprocess.check_call(["sort", "-k", "1,1", "-k", "2,2n", "-o", outfile, outfile + ".tmp"])
     subprocess.check_call(["rm", outfile + ".tmp"])
-    subprocess.check_call(["/software/mb/bin/bgzip", "-f", outfile])
-    subprocess.check_call(["/software/mb/bin/tabix", "-f", "-s", "1", "-b", "2", "-e", "2",
+    subprocess.check_call([bgzip, "-f", outfile])
+    subprocess.check_call([tabix, "-f", "-s", "1", "-b", "2", "-e", "2",
                            outfile + ".gz"])
 
 
@@ -221,10 +223,9 @@ def bam_to_hic_data(inbam, resolution_list, filter_exclude, filter_include):
         for line in pysam.view("-F", str(filter_exclude),
                                "-f", str(filter_include),
                                inbam,
-                               chrom):
+                               chrom).splitlines(True):
 
             # get info
-
             info = line.strip().split("\t")
             chrom1 = info[2]
             pos1 = int(info[3])
@@ -256,7 +257,7 @@ def bam_to_hic_data(inbam, resolution_list, filter_exclude, filter_include):
 
 # functions to write raw/normalized/correlation matrices as compressed and indexed bed file
 
-def write_matrix_tabix(hic_object, norm, outfile, reso):
+def write_matrix_tabix(hic_object, norm, outfile, reso, bgzip, tabix):
     out = open(outfile, 'w')
     for sec in hic_object.chromosomes:
         lline = (hic_object.section_pos[sec][1] - hic_object.section_pos[sec][0]) * reso
@@ -267,11 +268,11 @@ def write_matrix_tabix(hic_object, norm, outfile, reso):
                                                hic_object.yield_matrix(
                                                    focus=sec, normalized=norm))]))
     out.close()
-    subprocess.check_call(["/software/mb/bin/bgzip", "-f", outfile])
-    subprocess.check_call(["/software/mb/bin/tabix", "-f", "-p", "bed", outfile + ".gz"])
+    subprocess.check_call([bgzip, "-f", outfile])
+    subprocess.check_call([tabix, "-f", "-p", "bed", outfile + ".gz"])
 
 
-def write_correlation_matrix_tabix(hic_object, outfile, reso):
+def write_correlation_matrix_tabix(hic_object, outfile, reso, bgzip, tabix):
 
     out = open(outfile, 'w')
     for chromosome in hic_object.chromosomes.keys():
@@ -292,25 +293,25 @@ def write_correlation_matrix_tabix(hic_object, outfile, reso):
                            for i, line in izip(xrange(0, lline, reso), mat)]))
     out.close()
 
-    subprocess.check_call(["/software/mb/bin/bgzip", "-f", outfile])
-    subprocess.check_call(["/software/mb/bin/tabix", "-f", "-p", "bed", outfile + ".gz"])
+    subprocess.check_call([bgzip, "-f", outfile])
+    subprocess.check_call([tabix, "-f", "-p", "bed", outfile + ".gz"])
 
 
-def write_matrices(hic_data, outdir, reso):
+def write_matrices(hic_data, outdir, reso, bgzip, tabix):
 
     # Store matrices
     start = 0
     end = len(hic_data)
     print "Store raw data\n"
-    write_matrix_tabix(hic_data, False, outdir + 'raw_%s.tsv' % nice(reso), reso)
+    write_matrix_tabix(hic_data, False, outdir + 'raw_%s.tsv' % nice(reso), reso, bgzip, tabix)
     print "Store normalized data\n"
     write_matrix_tabix(hic_data, True,
-                       outdir + 'normalized_%s.tsv' % nice(reso), reso)
+                       outdir + 'normalized_%s.tsv' % nice(reso), reso, bgzip, tabix)
     print "Compute correlation matrix and store it\n"
     write_correlation_matrix_tabix(hic_data, 
-                                   outdir + 'correlation_%s.tsv' % nice(reso), reso)
+                                   outdir + 'correlation_%s.tsv' % nice(reso), reso, bgzip, tabix)
 
-def process_AB(hic_data, perc_zero, reso, outdir, bins):
+def process_AB(hic_data, perc_zero, reso, outdir, bins, bgzip, tabix):
 
     # Get poor bins
 
@@ -327,7 +328,7 @@ def process_AB(hic_data, perc_zero, reso, outdir, bins):
     bads = [binsrev[i][0] + "\t" + str(binsrev[i][1] * reso) + "\t" + str(i)
             for i in hic_data.bads.keys()]
 
-    compress(bads, bad_file)
+    compress(bads, bad_file, bgzip, tabix)
 
     # Identify biases
 
@@ -340,7 +341,7 @@ def process_AB(hic_data, perc_zero, reso, outdir, bins):
     bias = [binsrev[i][0] + "\t" + str(binsrev[i][1] * reso) + "\t" + '%d\t%f' % (i, hic_data.bias[i])
             for i in hic_data.bias]
 
-    compress(bias, bias_file)
+    compress(bias, bias_file, bgzip, tabix)
 
     # percentage of cis interactions
 
@@ -369,13 +370,13 @@ def process_AB(hic_data, perc_zero, reso, outdir, bins):
     # store matrices
 
     print 'Store matrices'
-    write_matrices(hic_data, outdir, reso)
+    write_matrices(hic_data, outdir, reso, bgzip, tabix)
 
     # getting compartments
 
     print 'Searching compartments'
 
-    ev = hic_data.find_compartments()
+    ev, _ = hic_data.find_compartments()
     ev_file = outdir + 'ev_%s.tsv' % nice(reso)
 
     out = []
@@ -385,13 +386,13 @@ def process_AB(hic_data, perc_zero, reso, outdir, bins):
         for i in xrange(len(ev[ch][0]) - 1):
             out.append("\t".join((ch, str(i * reso), str(ev[ch][0][i]), str(ev[ch][1][i]))))
 
-    compress(out, ev_file)
+    compress(out, ev_file, bgzip, tabix)
 
     cmprt_file = outdir + 'compartments_%s.tsv' % nice(reso)
     hic_data.write_compartments(cmprt_file)
 
 
-def process_TAD(hic_data, perc_zero, reso, cpus, outdir, bins):
+def process_TAD(hic_data, perc_zero, reso, cpus, outdir, bins, bgzip, tabix):
 
     # Get poor bins
 
@@ -411,7 +412,7 @@ def process_TAD(hic_data, perc_zero, reso, cpus, outdir, bins):
     bad_file = outdir + 'bad_rows_%s_%d.tsv' % (nice(reso), perc_zero)
     bads = [binsrev[i][0] + "\t" + str(binsrev[i][1] * reso) + "\t" + str(i) for i in hic_data.bads.keys()]
 
-    compress(bads, bad_file)
+    compress(bads, bad_file, bgzip, tabix)
 
     # Identify biases
 
@@ -423,7 +424,7 @@ def process_TAD(hic_data, perc_zero, reso, cpus, outdir, bins):
     bias_file = outdir + 'bias_%s.tsv' % nice(reso)
     bias = [binsrev[i][0] + "\t" + str(binsrev[i][1] * reso) + "\t" + '%d\t%f' % (i, hic_data.bias[i]) for i in hic_data.bias]
 
-    compress(bias, bias_file)
+    compress(bias, bias_file, bgzip, tabix)
 
     # percentage of cis interactions
 
@@ -453,7 +454,7 @@ def process_TAD(hic_data, perc_zero, reso, cpus, outdir, bins):
 
     print 'Store matrices'
 
-    write_matrices(hic_data, outdir, reso)
+    write_matrices(hic_data, outdir, reso, bgzip, tabix)
 
     # getting TAD borders
 

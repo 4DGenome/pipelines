@@ -763,7 +763,7 @@ downstream_bam() {
 
 	# Calculate the number of mapped reads (takes about 2h!)
 	# mapped_reads=$(samtools sort -n $ibam | samtools view | sed 's,#,~,g' | cut -f 1 | cut -d $'~' -f 1 | uniq | wc -l)
-	imap=$PROCESSED/${SAMPLE}_both_map.tsv
+	imap=$PROCESSED/${sample_id}_both_map.tsv
 	mapped_reads=$(grep -v "^#" $imap | cut -f 1 | tr "~" "#" | cut -d "#" -f 1 | uniq | wc -l)
 
 	unique_filtered_reads=$(cat $filtered_file | sed 's,#,~,g' | cut -f 1 | cut -d $'~' -f 1 | uniq | wc -l)
